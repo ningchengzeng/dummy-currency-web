@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <title>虚拟币月成交量排行榜-非小号</title>
+    <meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
+    <meta name='applicable-device' content='pc'>
+    <meta http-equiv='X-UA-Compatible' content='IE=11' />
+    <!-- <meta http-equiv='mobile-agent' content='format=html5; url=//m.feixiaohao.com/' />
+    <link rel='alternate' media='only screen and(max-width: 640px)' href='//m.feixiaohao.com/' /> -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href='themes/default/css/stylesheet_nav.css' rel='stylesheet'>
+    <link href='themes/default/css/tablesort.css' rel='stylesheet'>
+    <link rel='shortcut icon' href='img/favicon.ico' />
+</head>
+
+<body>
+    <nav class=''>
+
+        <div class='navsub'>
+            <div class='minWidth' id='globalinfo'>
+
+            </div>
+        </div>
+        <div class='minWidth'>
+            <ul class='leftNav'>
+                <li class='logo'>
+                    <a href='/'>
+                        <img src='img/logo.png' alt='Logo'>
+                    </a>
+                </li>
+                <li class='navSlide'>
+                    行情
+                    <ul class='subNav'>
+                        <li>
+                            <a href='index.html'>所有</a>
+                        </li>
+                        <li>
+                            <a href='index.html'>货币</a>
+                        </li>
+                        <li>
+                            <a href='index.html'>代币</a>
+                        </li>
+                        <li>
+                            <a href='newcoin.html'>最新上市</a>
+                        </li>
+                        <li>
+                            <a href='concept.html'>概念行情</a>
+                        </li>
+                        <li>
+                            <a href='charts.html'>
+                                市值趋势
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class='navSlide'>
+                    排行榜
+                    <ul class='subNav'>
+                        <li>
+                            <a href='maxchange.html'>涨跌幅排行榜</a>
+                        </li>
+                        <li>
+                            <a href='vol.html'>24小时成交额排行(币种)</a>
+                        </li>
+                        <li>
+                            <a href='volexchange.html'>24小时成交额排行(交易平台)</a>
+                        </li>
+                        <li>
+                            <a href='monthrank.html'>月成交额排行</a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a href='exchange.html'>交易平台</a>
+                </li>
+            </ul>
+            <ul class='rightNav'>
+                <li class='searchForm' style='float: right'>
+                    <form action=''>
+                        <input type='text' id='input-sm' style="box-sizing: content-box" placeholder='输入关键词...'>
+                        <i class='icon-search' onclick='search(document.getElementById("input-sm").value)'></i>
+                    </form>
+                </li>
+                <li class='showmarket' style='float: right'>
+                </li>
+
+            </ul>
+        </div>
+
+    </nav>
+    <div class="m30"></div>
+
+
+    <div class="m30"></div>
+    <div class="w1200">
+        <div class="col">
+            <div class="box box1200">
+                <div class="boxTit">
+                    <h1>数字货币月成交额排行榜</h1>
+                </div>
+                <div class="boxTools">
+                    <div class="slideBtn unit">
+                        <button>人民币(CNY)</button>
+                        <ul>
+                            <li>
+                                <a href="#CNY" class="price-toggle" data-currency="cny">人民币(CNY)</a>
+                            </li>
+                            <li>
+                                <a href="#USD" class="price-toggle" data-currency="usd">美元(USD)</a>
+                            </li>
+                            <li>
+                                <a href="#BTC" class="price-toggle" data-currency="btc">比特币(BTC)</a>
+                            </li>
+                            <li>
+                                <a href="#ETH" class="price-toggle" data-currency="eth">以太坊(ETH)</a>
+                            </li>
+                            <li>
+                                <a href="#JPY" class="price-toggle" data-currency="jpy">日元(JPY)</a>
+                            </li>
+                            <li>
+                                <a href="#KRW" class="price-toggle" data-currency="krw">韩币(KRW)</a>
+                            </li>
+                            <li>
+                                <a href="#HKD" class="price-toggle" data-currency="hkd">港币(HKD)</a>
+                            </li>
+                            <li>
+                                <a href="#INR" class="price-toggle" data-currency="inr">卢比(INR)</a>
+                            </li>
+                            <li>
+                                <a href="#RUB" class="price-toggle" data-currency="rub">卢布(RUB)</a>
+                            </li>
+                            <li>
+                                <a href="#AUD" class="price-toggle" data-currency="aud">澳元(AUD)</a>
+                            </li>
+                            <li>
+                                <a href="#EUR" class="price-toggle" data-currency="eur">欧元(EUR)</a>
+                            </li>
+                            <li>
+                                <a href="#CHF" class="price-toggle" data-currency="chf">法郎(CHF)</a>
+                            </li>
+                            <li>
+                                <a href="#GBP" class="price-toggle" data-currency="gbp">英镑(GBP)</a>
+                            </li>
+                            <li>
+                                <a href="#CAD" class="price-toggle" data-currency="cad">加元(CAD)</a>
+                            </li>
+                            <li>
+                                <a href="#IDR" class="price-toggle" data-currency="idr">印尼盾(IDR)</a>
+                            </li>
+                            <li>
+                                <a href="#BRL" class="price-toggle" data-currency="brl">巴西雷亚尔(BRL)</a>
+                            </li>
+                            <li>
+                                <a href="#TWD" class="price-toggle" data-currency="twd">新台币(TWD)</a>
+                            </li>
+                            <li>
+                                <a href="#MXN" class="price-toggle" data-currency="mxn">比索(MXN)</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div style="display:none" id="currency-exchange-rates" data-cny="0.15793796196853876" data-usd="1" data-btc="7595.6784972569039"
+                        data-eth="501.82305775646813" data-jpy="0.009432627458378532" data-krw="0.0009346667912889054" data-hkd="0.1274949161402189"
+                        data-inr="0.01536688436419516" data-rub="0.01738507595539685" data-aud="0.7716031521531972" data-eur="1.2296266238756601"
+                        data-chf="1.0490504519833872" data-gbp="1.394700139470014" data-cad="0.7632713811395642" data-idr="7.267804320021872e-05"
+                        data-brl="0.3048687540014024" data-twd="0.034332406358361656" data-mxn="0.053505693005735815"></div>
+                </div>
+                <div class="boxContain">
+                    <table class="table table-rank">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>名称</th>
+                                <th>简称</th>
+                                <th>成交额(1天)</th>
+                                <th>成交额(7天)</th>
+                                <th>成交额(1月)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>
+                                    <a href="details.html" target="_blank">
+                                        <img src="#" alt="比特币-Bitcoin"> 比特币-Bitcoin
+                                    </a>
+                                </td>
+                                <td>BTC</td>
+                                <td class="volume" data-usd="5099621572.76793" data-cny="32288759872.9401" data-btc="670151.070739882">
+                                    <a href="details.html#markets" target="_blank">¥3,228,876万</a>
+                                </td>
+                                <td class="volume" data-usd="46110956773.576" data-cny="291715421190.081" data-btc="5312282.49386923">
+                                    <a href="details.html#markets" target="_blank">¥29,171,542万</a>
+                                </td>
+                                <td class="volume" data-usd="214006249613.994" data-cny="1355758096917.98" data-btc="21450138.458807">
+                                    <a href="details.html#markets" target="_blank">¥135,575,810万</a>
+                                </td>
+
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>
+                                    <a href="details.html" target="_blank">
+                                        <img src="#" alt="泰达币-Tether"> 泰达币-Tether
+                                    </a>
+                                </td>
+                                <td>USDT</td>
+                                <td class="volume" data-usd="1909290000" data-cny="12244006806.6667" data-btc="255145.379653214">
+                                    <a href="details.html#markets" target="_blank">¥1,224,401万</a>
+                                </td>
+                                <td class="volume" data-usd="14411920000" data-cny="95648711747.3376" data-btc="1749407.25535452">
+                                    <a href="details.html#markets" target="_blank">¥9,564,871万</a>
+                                </td>
+                                <td class="volume" data-usd="68541760000" data-cny="457657547275.02" data-btc="7282222.31853833">
+                                    <a href="details.html#markets" target="_blank">¥45,765,755万</a>
+                                </td>
+
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="m15"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="m30"></div>
+    <footer class='clear'>
+        <div class='w1200'>
+            <a class='logo2' href='/'>
+                <img src='img/logo.png' alt='Logo'>
+            </a>
+            <div class='info'>
+                <div>
+                    <a href='about.html' target='_blank'>关于我们</a>
+                    <i class='space2'></i>
+                    <a href='contact.html' target='_blank'>联系我们</a>
+                    <i class='space2'></i>
+                    <a href='faq.html' target='_blank'>常见问题</a>
+                    <i class='space2'></i>
+                    <a href='manager.html' target='_blank'>免责声明</a>
+                    <i class='space2'></i>
+                </div>
+                <div>
+                    <p>©Copyright xxxxxxxxxxx.com 2018 | 备案号：
+                        <a href='#' target='_blank'>xICP备xxxxxxxx号-x</a>
+                    </p>
+                </div>
+            </div>
+            <div class='media'>
+            </div>
+        </div>
+    </footer>
+
+    <div class="totop">
+
+        <div class="wCat2">
+            <div class="detal">
+                <!-- <img src="//static.feixiaohao.com/themes/default/images/fwh.jpg"  alt="非小号微信服务号"> -->
+                <!-- <img src="//static.feixiaohao.com/themes/default/images/wxdyh.png"  alt="币联社公众号"> -->
+                <!-- <div style="text-align: center;width: 116px;float: left;color: #fff">五指山微信服务号</div> -->
+                <!-- <div style="text-align: center;width: 116px;float: left;color: #fff">币联社公众号</div> -->
+            </div>
+        </div>
+        <a class="qq2" href="//wpa.qq.com/msgrd?v=3&uin=&site=qq&menu=yes" target="_blank">
+        </a>
+        <a class="sina2" href='//www.weibo.com' target='_blank'></a>
+        <div class="top"></div>
+    </div>
+
+    <script src="js/jquery-2.1.1.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/plugins/peity/jquery.peity.min.js"></script>
+    <script src='Scripts/tablesort.js'></script>
+    <script src='js/util.js'></script>
+    <script type="text/javascript">
+        $('.line').peity("line", { width: 50, height: 15, fill: '#f5f5f5', min: 99999, strokeWidth: 1 });
+    </script>
+</body>
+
+</html>

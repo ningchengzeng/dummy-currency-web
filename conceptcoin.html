@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <title>基于DAG板块涨跌幅</title>
+    <meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
+    <meta name='applicable-device' content='pc'>
+    <meta http-equiv='X-UA-Compatible' content='IE=11' />
+    <!-- <meta http-equiv='mobile-agent' content='format=html5; url=//m.feixiaohao.com/' />
+    <link rel='alternate' media='only screen and(max-width: 640px)' href='//m.feixiaohao.com/' /> -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href='themes/default/css/stylesheet_nav.css' rel='stylesheet'>
+    <link href='themes/default/css/tablesort.css' rel='stylesheet'>
+    <link rel='shortcut icon' href='img/favicon.ico' />
+
+</head>
+
+<body>
+    <nav class=''>
+
+        <div class='navsub'>
+            <div class='minWidth' id='globalinfo'>
+
+            </div>
+        </div>
+        <div class='minWidth'>
+            <ul class='leftNav'>
+                <li class='logo'>
+                    <a href='/'>
+                        <img src='img/logo.png' alt='Logo'>
+                    </a>
+                </li>
+                <li class='navSlide'>
+                    行情
+                    <ul class='subNav'>
+                        <li>
+                            <a href='index.html'>所有</a>
+                        </li>
+                        <li>
+                            <a href='index.html'>货币</a>
+                        </li>
+                        <li>
+                            <a href='index.html'>代币</a>
+                        </li>
+                        <li>
+                            <a href='newcoin.html'>最新上市</a>
+                        </li>
+                        <li>
+                            <a href='concept.html'>概念行情</a>
+                        </li>
+                        <li>
+                            <a href='charts.html'>
+                                市值趋势
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class='navSlide'>
+                    排行榜
+                    <ul class='subNav'>
+                        <li>
+                            <a href='maxchange.html'>涨跌幅排行榜</a>
+                        </li>
+                        <li>
+                            <a href='vol.html'>24小时成交额排行(币种)</a>
+                        </li>
+                        <li>
+                            <a href='volexchange.html'>24小时成交额排行(交易平台)</a>
+                        </li>
+                        <li>
+                            <a href='monthrank.html'>月成交额排行</a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a href='exchange.html'>交易平台</a>
+                </li>
+            </ul>
+            <ul class='rightNav'>
+                <li class='searchForm' style='float: right'>
+                    <form action=''>
+                        <input type='text' id='input-sm' style="box-sizing: content-box" placeholder='输入关键词...'>
+                        <i class='icon-search' onclick='search(document.getElementById("input-sm").value)'></i>
+                    </form>
+                </li>
+                <li class='showmarket' style='float: right'>
+                </li>
+
+            </ul>
+        </div>
+
+    </nav>
+    <div class="m30"></div>
+
+
+    <div class="m30"></div>
+    <div id="headad" style="width: 1200px;margin:0 auto;">
+
+    </div>
+    <div class="m15"></div>
+    <div class="w1200">
+        <div class="col ideaHead">
+
+            <div class="box box250 " style="width: 250px">
+                <div class="boxContain">
+                    <div class="tit">
+                        <h1>基于DAG</h1>
+                        <p class="sub">平均涨跌幅(24h)</p>
+                    </div>
+                    <div class="change text-red">-3.75%</div>
+                </div>
+            </div>
+            <div class="box box935">
+                <div class="cell">
+                    <div class="tit">
+                        货币总数
+                    </div>
+                    <div class="text">5</div>
+                </div>
+                <div class="cell">
+                    <div class="tit">
+                        上涨
+                    </div>
+                    <div class="text">2</div>
+                </div>
+                <div class="cell">
+                    <div class="tit">
+                        下跌
+                    </div>
+                    <div class="text">3</div>
+                </div>
+                <div class="cell">
+                    <div class="tit">
+                        表现最强
+                    </div>
+                    <div class="text" title="MIOTA-埃欧塔">
+                        <a href="details.html" target="_blank">MIOTA</a>
+                        <span class="tags-green">5.83%</span>
+                    </div>
+                </div>
+                <div class="cell">
+                    <div class="tit">
+                        表现最弱
+                    </div>
+                    <div class="text" title="GBYTE-字节雪球">
+                        <a href="details.html" target="_blank">GBYTE</a>
+                        <span class="tags-red">-13.11%</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="col">
+            <div class="box box860">
+                <div class="boxTit">
+                    <h2>概念币</h2>
+                    <a href="concept.html" target="_blank" class="more2">更多概念</a>
+                </div>
+                <div class="unit2">
+
+                    <a href="#CNY" class="active" title="人民币(CNY)" class="price-toggle" data-currency="cny">人民币(CNY)</a>
+                    <a href="#USD" title="美元(USD)" class="price-toggle" data-currency="usd">美元(USD)</a>
+                    <a href="#BTC" title="比特币(BTC)" class="price-toggle" data-currency="btc">比特币(BTC)</a>
+                    <a href="#ETH" title="以太坊(ETH)" class="price-toggle" data-currency="eth">以太坊(ETH)</a>
+                    <a href="#JPY" title="日元(JPY)" class="price-toggle" data-currency="jpy">日元(JPY)</a>
+                    <a href="#KRW" title="韩币(KRW)" class="price-toggle" data-currency="krw">韩币(KRW)</a>
+                    <a href="#HKD" title="港币(HKD)" class="price-toggle" data-currency="hkd">港币(HKD)</a>
+                    <a href="#INR" title="卢比(INR)" class="price-toggle" data-currency="inr">卢比(INR)</a>
+                    <span class="moreUnit2">
+                        <span>更多</span>
+                        <ul style="width:200px">
+                            <li style="float:left">
+                                <a href="#RUB" title="卢布(RUB)" class="price-toggle" data-currency="rub">卢布(RUB)</a>
+                            </li>
+                            <li style="float:left">
+                                <a href="#AUD" title="澳元(AUD)" class="price-toggle" data-currency="aud">澳元(AUD)</a>
+                            </li>
+                            <li style="float:left">
+                                <a href="#EUR" title="欧元(EUR)" class="price-toggle" data-currency="eur">欧元(EUR)</a>
+                            </li>
+                            <li style="float:left">
+                                <a href="#CHF" title="法郎(CHF)" class="price-toggle" data-currency="chf">法郎(CHF)</a>
+                            </li>
+                            <li style="float:left">
+                                <a href="#GBP" title="英镑(GBP)" class="price-toggle" data-currency="gbp">英镑(GBP)</a>
+                            </li>
+                            <li style="float:left">
+                                <a href="#CAD" title="加元(CAD)" class="price-toggle" data-currency="cad">加元(CAD)</a>
+                            </li>
+                            <li style="float:left">
+                                <a href="#IDR" title="印尼盾(IDR)" class="price-toggle" data-currency="idr">印尼盾(IDR)</a>
+                            </li>
+                            <li style="float:left">
+                                <a href="#BRL" title="巴西雷亚尔(BRL)" class="price-toggle" data-currency="brl">巴西雷亚尔(BRL)</a>
+                            </li>
+                            <li style="float:left">
+                                <a href="#TWD" title="新台币(TWD)" class="price-toggle" data-currency="twd">新台币(TWD)</a>
+                            </li>
+                            <li style="float:left">
+                                <a href="#MXN" title="比索(MXN)" class="price-toggle" data-currency="mxn">比索(MXN)</a>
+                            </li>
+                        </ul>
+                    </span>
+                </div>
+                <div style="display:none" id="currency-exchange-rates" data-cny="0.15793796196853876" data-usd="1" data-btc="7645.7083577652556"
+                    data-eth="501.97275543558129" data-jpy="0.009432627458378532" data-krw="0.0009346667912889054" data-hkd="0.1274949161402189"
+                    data-inr="0.01536688436419516" data-rub="0.01738507595539685" data-aud="0.7716031521531972" data-eur="1.2296266238756601"
+                    data-chf="1.0490504519833872" data-gbp="1.394700139470014" data-cad="0.7632713811395642" data-idr="7.267804320021872e-05"
+                    data-brl="0.3048687540014024" data-twd="0.034332406358361656" data-mxn="0.053505693005735815"></div>
+                <div class="m15"></div>
+                <div class="boxContain" style="min-height: 830px;">
+                    <table class="table3" id="table">
+                        <thead>
+                            <tr>
+                                <th style="min-width: 30px;padding-left: 10px">#</th>
+                                <th data-sort-method='none'>币种</th>
+                                <th>流通市值</th>
+                                <th>价格</th>
+                                <th>流通数量</th>
+                                <th>成交额(24h)</th>
+                                <th>涨跌幅(24h)</th>
+                                <th data-sort-method='none'>价格趋势(7d)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr id="iota">
+                                <td>1</td>
+                                <td>
+                                    <a href="details.html" target="_blank">
+                                        <img src="themes/img/Litecion_small.png" alt="MIOTA-埃欧塔">MIOTA-埃欧塔
+                                    </a>
+                                </td>
+                                <td class="market-cap" data-usd="3316313171" data-cny="20997568474" data-btc="433746">¥210亿 </td>
+                                <td>
+                                    <a href="details.html#markets" target="_blank" class="price" data-usd="1.19" data-cny="7.55"
+                                        data-btc="0.000156">¥7.55</a>
+                                </td>
+
+                                <td>277,953万*</td>
+                                <td>
+                                    <a href="details.html#markets" target="_blank" class="volume" data-usd="80602100" data-cny="507214725.086585"
+                                        data-btc="10463.2583982531">¥50,721万</a>
+                                </td>
+                                <td class="change">
+                                    <span class="text-green">5.83%</span>
+                                </td>
+                                <td class="char">
+                                    <span class='{"stroke": "#3ca316"}'>1.36,1.40,1.37,1.41,1.31,1.32,1.33,1.30,1.32,1.31,1.31,1.24,1.15,1.12,1.07,1.11,1.06,1.10,1.08,1.07,1.14,1.13,1.11,1.14,1.07,1.14,1.10,1.17</span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="boxTools">
+                    <div class="pageList">
+                        <a href='#' class='btn btn-white'>
+                            <</a>
+                                <a href='#' class='btn btn-white active'>1</a>
+                                <a href='#' class='btn btn-white'>></a>
+                    </div>
+                    <div class="tips">备注：* 不可挖矿&nbsp;&nbsp;&nbsp;&nbsp;** 有预挖矿</div>
+                </div>
+
+            </div>
+
+            <div class="box box325">
+                <div class="boxTit">
+                    <h2>热门概念</h2>
+                </div>
+                <div class="padding5">
+                    <table class="table3 Hotidea">
+                        <thead>
+                            <tr>
+                                <th>名称</th>
+                                <th>涨幅</th>
+                                <th>表现最强</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <a href="conceptcoin.html?id=19" target="_blank">
+                                        基于DAG
+                                    </a>
+                                </td>
+                                <td>
+                                    <span class="text-red">-3.75%</span>
+                                </td>
+                                <td>
+                                    <a href="details.html" target="_blank">MIOTA
+                                        <span class="tags-green">5.8%</span>
+                                    </a>
+                                </td>
+
+                            </tr>
+                            <tr>
+                                <td>
+                                    <a href="conceptcoin.html?id=4" target="_blank">
+                                        平台币
+                                    </a>
+                                </td>
+                                <td>
+                                    <span class="text-red">-4.59%</span>
+                                </td>
+                                <td>
+                                    <a href="details.html" target="_blank">YBCT
+                                        <span class="tags-green">13.8%</span>
+                                    </a>
+                                </td>
+
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="box box325">
+                <div class="plantListsSpread">
+
+                </div>
+            </div>
+            <div class="box box325">
+                <div class="tabTit">
+                    <h3 class="active tit" style="width: 40%">涨幅榜</h3>
+                    <h3 class="tit" style="width: 40%">跌幅榜</h3>
+                    <a href="maxchange.html" target="_blank" class="more" title="更多"></a>
+                </div>
+                <div class="tabBody padding5" style="height:385px">
+                    <ul class="tabTit-a" id="maxchange_up">
+                        <li>1小时</li>
+                        <li class="active">24小时</li>
+                        <li>1周</li>
+                    </ul>
+                    <div class="spiner-example">
+                        <div class="sk-spinner sk-spinner-fading-circle">
+                            <div class="sk-circle1 sk-circle"></div>
+                            <div class="sk-circle2 sk-circle"></div>
+                            <div class="sk-circle3 sk-circle"></div>
+                            <div class="sk-circle4 sk-circle"></div>
+                            <div class="sk-circle5 sk-circle"></div>
+                            <div class="sk-circle6 sk-circle"></div>
+                            <div class="sk-circle7 sk-circle"></div>
+                            <div class="sk-circle8 sk-circle"></div>
+                            <div class="sk-circle9 sk-circle"></div>
+                            <div class="sk-circle10 sk-circle"></div>
+                            <div class="sk-circle11 sk-circle"></div>
+                            <div class="sk-circle12 sk-circle"></div>
+                        </div>
+                    </div>
+                    <div class="m15"></div>
+                </div>
+                <div class="tabBody padding5" style="display: none;height:385px">
+                    <ul class="tabTit-a" id="maxchange_down">
+                        <li class="active">1小时</li>
+                        <li>24小时</li>
+                        <li>1周</li>
+                    </ul>
+                    <div class="spiner-example">
+                        <div class="sk-spinner sk-spinner-fading-circle">
+                            <div class="sk-circle1 sk-circle"></div>
+                            <div class="sk-circle2 sk-circle"></div>
+                            <div class="sk-circle3 sk-circle"></div>
+                            <div class="sk-circle4 sk-circle"></div>
+                            <div class="sk-circle5 sk-circle"></div>
+                            <div class="sk-circle6 sk-circle"></div>
+                            <div class="sk-circle7 sk-circle"></div>
+                            <div class="sk-circle8 sk-circle"></div>
+                            <div class="sk-circle9 sk-circle"></div>
+                            <div class="sk-circle10 sk-circle"></div>
+                            <div class="sk-circle11 sk-circle"></div>
+                            <div class="sk-circle12 sk-circle"></div>
+                        </div>
+                    </div>
+                    <div class="m15"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="m30"></div>
+
+    <footer class='clear'>
+        <div class='w1200'>
+            <a class='logo2' href='/'>
+                <img src='img/logo.png' alt='Logo'>
+            </a>
+            <div class='info'>
+                <div>
+                    <a href='about.html' target='_blank'>关于我们</a>
+                    <i class='space2'></i>
+                    <a href='contact.html' target='_blank'>联系我们</a>
+                    <i class='space2'></i>
+                    <a href='faq.html' target='_blank'>常见问题</a>
+                    <i class='space2'></i>
+                    <a href='manager.html' target='_blank'>免责声明</a>
+                    <i class='space2'></i>
+                </div>
+                <div>
+                    <p>©Copyright xxxxxxxxxxx.com 2018 | 备案号：
+                        <a href='#' target='_blank'>xICP备xxxxxxxx号-x</a>
+                    </p>
+                </div>
+            </div>
+            <div class='media'>
+            </div>
+        </div>
+    </footer>
+
+    <div class="totop">
+
+        <div class="wCat2">
+            <div class="detal">
+                <!-- <img src="//static.feixiaohao.com/themes/default/images/fwh.jpg"  alt="非小号微信服务号"> -->
+                <!-- <img src="//static.feixiaohao.com/themes/default/images/wxdyh.png"  alt="币联社公众号"> -->
+                <!-- <div style="text-align: center;width: 116px;float: left;color: #fff">五指山微信服务号</div> -->
+                <!-- <div style="text-align: center;width: 116px;float: left;color: #fff">币联社公众号</div> -->
+            </div>
+        </div>
+        <a class="qq2" href="//wpa.qq.com/msgrd?v=3&uin=&site=qq&menu=yes" target="_blank">
+        </a>
+        <a class="sina2" href='//www.weibo.com' target='_blank'></a>
+        <div class="top"></div>
+    </div>
+
+    <script src="js/jquery-2.1.1.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/plugins/peity/jquery.peity.min.js"></script>
+    <script src='Scripts/tablesort.js'></script>
+    <script src='js/util.js'></script>
+    <script type="text/javascript">
+
+        $('.line').peity("line", { width: 50, height: 15, fill: '#f5f5f5', min: 99999, strokeWidth: 1 });
+    // loadglobalinfo_new();
+    // startSocketHub(false);
+
+
+    </script>
+
+
+    <!-- <script src="//static.feixiaohao.com/Scripts/coinoutlink.js?v=1.35"></script>
+    <script src="//static.feixiaohao.com/Scripts/action.js"></script> -->
+
+    <script type="text/javascript">
+        // new Tablesort(document.getElementById('table'));
+    </script>
+
+    <script type="text/javascript">
+
+        // loadHomeCoinMaxChange();//涨跌幅
+        // loadConceptCoin();
+    //     $('.unit2 a').click(function () {
+    //         if ($(this).hasClass('active')) {
+    //             return;
+    //         }
+    //         $('.unit2 a').removeClass('active');
+    //         $(this).addClass('active')
+    //     })
+
+    // $('.table3 .char span').peity("line", {
+    //     width: 90,
+    //     height: 20,
+    //     fill: 'none',
+    //     strokeWidth: 1,
+    //     stroke: '#3499da',
+    //     min: 99999
+    // })
+    </script>
+
+</body>
+
+</html>

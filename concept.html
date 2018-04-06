@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <title>概念行情</title>
+    <meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
+    <meta name='applicable-device' content='pc'>
+    <meta http-equiv='X-UA-Compatible' content='IE=11' />
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href='themes/default/css/stylesheet_nav.css' rel='stylesheet'>
+    <link href='themes/default/css/tablesort.css' rel='stylesheet'>
+    <link rel='shortcut icon' href='img/favicon.ico' />
+</head>
+
+<body>
+    <nav class=''>
+
+        <div class='navsub'>
+            <div class='minWidth' id='globalinfo'>
+
+            </div>
+        </div>
+        <div class='minWidth'>
+            <ul class='leftNav'>
+                <li class='logo'>
+                    <a href='/'>
+                        <img src='img/logo.png' alt='Logo'>
+                    </a>
+                </li>
+                <li class='navSlide'>
+                    行情
+                    <ul class='subNav'>
+                        <li>
+                            <a href='index.html'>所有</a>
+                        </li>
+                        <li>
+                            <a href='index.html'>货币</a>
+                        </li>
+                        <li>
+                            <a href='index.html'>代币</a>
+                        </li>
+                        <li>
+                            <a href='newcoin.html'>最新上市</a>
+                        </li>
+                        <li>
+                            <a href='concept.html'>概念行情</a>
+                        </li>
+                        <li>
+                            <a href='charts.html'>
+                                市值趋势
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class='navSlide'>
+                    排行榜
+                    <ul class='subNav'>
+                        <li>
+                            <a href='maxchange.html'>涨跌幅排行榜</a>
+                        </li>
+                        <li>
+                            <a href='vol.html'>24小时成交额排行(币种)</a>
+                        </li>
+                        <li>
+                            <a href='volexchange.html'>24小时成交额排行(交易平台)</a>
+                        </li>
+                        <li>
+                            <a href='monthrank.html'>月成交额排行</a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a href='exchange.html'>交易平台</a>
+                </li>
+            </ul>
+            <ul class='rightNav'>
+                <li class='searchForm' style='float: right'>
+                    <form action=''>
+                        <input type='text' id='input-sm' style="box-sizing: content-box" placeholder='输入关键词...'>
+                        <i class='icon-search' onclick='search(document.getElementById("input-sm").value)'></i>
+                    </form>
+                </li>
+                <li class='showmarket' style='float: right'>
+                </li>
+
+            </ul>
+        </div>
+
+    </nav>
+    <div class="m30"></div>
+
+
+    <div class="m30"></div>
+    <div id="headad" style="width: 1200px;margin:0 auto;">
+
+    </div>
+    <div class="m15"></div>
+    <div class="w1200">
+        <div class="col">
+            <div class="box box860" style='min-height:780px'>
+
+                <div class="boxTit">
+                    <h2>概念行情</h2>
+                </div>
+                <div class="boxTools" style="display:none;">
+                    <div class="pageList">
+                        <a href='#' class='btn btn-white'>
+                            <</a>
+                                <a href='#' class='btn btn-white active'>1</a>
+                                <a href='#' class='btn btn-white'>></a>
+                    </div>
+                </div>
+                <div class="boxContain">
+                    <table class="table3 ideaTabel" id="table">
+                        <thead>
+                            <tr>
+                                <th>概念</th>
+                                <th>24时成交额</th>
+                                <th>平均涨跌幅</th>
+                                <th>表现最强</th>
+                                <th>表现最弱</th>
+                                <th>币数总数</th>
+                                <th>上涨数/下跌数</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <a href="conceptcoin.html?id=19" target="_blank">
+                                        基于DAG
+                                    </a>
+                                </td>
+                                <td>¥56,628万</td>
+                                <td class="text-red">-3.06%</td>
+                                <td title="MIOTA-埃欧塔">
+                                    <a href="details.html" target="_blank">
+                                        MIOTA
+                                    </a>
+                                    <span class="tags-green"> 4.23%</span>
+                                </td>
+                                <td title="GBYTE-字节雪球">
+                                    <a href="details.html" target="_blank">
+                                        GBYTE
+                                    </a>
+                                    <span class="tags-red">-13.67%</span>
+                                </td>
+                                <td>5</td>
+                                <td>
+                                    <span class="text-green">2</span>/
+                                    <span class="text-red">3</span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="boxTools">
+                    <div class="pageList">
+                        <a href='#' class='btn btn-white'>
+                            <</a>
+                                <a href='#' class='btn btn-white active'>1</a>
+                                <a href='#' class='btn btn-white'>></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="box box325">
+                <div class="boxTit">
+                    <h2>热门概念</h2>
+                </div>
+                <div class="padding5">
+                    <table class="table3 Hotidea">
+                        <thead>
+                            <tr>
+                                <th>名称</th>
+                                <th>涨幅</th>
+                                <th>表现最强</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <a href="conceptcoin.html?id=19" target="_blank">
+                                        基于DAG
+                                    </a>
+                                </td>
+                                <td>
+                                    <span class="text-red">-3.06%</span>
+                                </td>
+                                <td>
+                                    <a href="details.html" target="_blank">MIOTA
+                                        <span class="tags-green">4.2%</span>
+                                    </a>
+                                </td>
+
+                            </tr>
+                            <tr>
+                                <td>
+                                    <a href="conceptcoin.html" target="_blank">
+                                        平台币
+                                    </a>
+                                </td>
+                                <td>
+                                    <span class="text-red">-3.68%</span>
+                                </td>
+                                <td>
+                                    <a href="details.html" target="_blank">YBCT
+                                        <span class="tags-green">13.8%</span>
+                                    </a>
+                                </td>
+
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="box box325">
+                <div class="plantListsSpread">
+                    (概念页面)广告7
+                </div>
+            </div>
+            <div class="box box325">
+                <div class="tabTit">
+                    <h3 class="active tit" style="width: 40%">涨幅榜</h3>
+                    <h3 class="tit" style="width: 40%">跌幅榜</h3>
+                    <a href="maxchange.html" target="_blank" class="more" title="更多"></a>
+                </div>
+                <div class="tabBody padding5" style="">
+                    <ul class="tabTit-a" id="maxchange_up">
+                        <li>1小时</li>
+                        <li class="active">24小时</li>
+                        <li>1周</li>
+                    </ul>
+                    <div class="spiner-example">
+                        <div class="sk-spinner sk-spinner-fading-circle">
+                            <div class="sk-circle1 sk-circle"></div>
+                            <div class="sk-circle2 sk-circle"></div>
+                            <div class="sk-circle3 sk-circle"></div>
+                            <div class="sk-circle4 sk-circle"></div>
+                            <div class="sk-circle5 sk-circle"></div>
+                            <div class="sk-circle6 sk-circle"></div>
+                            <div class="sk-circle7 sk-circle"></div>
+                            <div class="sk-circle8 sk-circle"></div>
+                            <div class="sk-circle9 sk-circle"></div>
+                            <div class="sk-circle10 sk-circle"></div>
+                            <div class="sk-circle11 sk-circle"></div>
+                            <div class="sk-circle12 sk-circle"></div>
+                        </div>
+                    </div>
+                    <div class="m15"></div>
+                </div>
+                <div class="tabBody padding5" style="display: none;">
+                    <ul class="tabTit-a" id="maxchange_down">
+                        <li class="active">1小时</li>
+                        <li>24小时</li>
+                        <li>1周</li>
+                    </ul>
+
+                    <div class="m15"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="m30"></div>
+    <footer class='clear'>
+        <div class='w1200'>
+            <a class='logo2' href='/'>
+                <img src='img/logo.png' alt='Logo'>
+            </a>
+            <div class='info'>
+                <div>
+                    <a href='about.html' target='_blank'>关于我们</a>
+                    <i class='space2'></i>
+                    <a href='contact.html' target='_blank'>联系我们</a>
+                    <i class='space2'></i>
+                    <a href='faq.html' target='_blank'>常见问题</a>
+                    <i class='space2'></i>
+                    <a href='manager.html' target='_blank'>免责声明</a>
+                    <i class='space2'></i>
+                </div>
+                <div>
+                    <p>©Copyright xxxxxxxxxxx.com 2018 | 备案号：
+                        <a href='#' target='_blank'>xICP备xxxxxxxx号-x</a>
+                    </p>
+                </div>
+            </div>
+            <div class='media'>
+            </div>
+        </div>
+    </footer>
+
+    <div class="totop">
+
+        <div class="wCat2">
+            <div class="detal">
+                <!-- <img src="//static.feixiaohao.com/themes/default/images/fwh.jpg"  alt="非小号微信服务号"> -->
+                <!-- <img src="//static.feixiaohao.com/themes/default/images/wxdyh.png"  alt="币联社公众号"> -->
+                <!-- <div style="text-align: center;width: 116px;float: left;color: #fff">五指山微信服务号</div> -->
+                <!-- <div style="text-align: center;width: 116px;float: left;color: #fff">币联社公众号</div> -->
+            </div>
+        </div>
+        <a class="qq2" href="//wpa.qq.com/msgrd?v=3&uin=&site=qq&menu=yes" target="_blank">
+        </a>
+        <a class="sina2" href='//www.weibo.com' target='_blank'></a>
+        <div class="top"></div>
+    </div>
+
+    <script src="js/jquery-2.1.1.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/plugins/peity/jquery.peity.min.js"></script>
+    <script src='Scripts/tablesort.js'></script>
+    <script src='js/util.js'></script>
+    <script src="Scripts/coinoutlink.js?v=1.35"></script>
+    <script type="text/javascript">
+        // new Tablesort(document.getElementById('table'));
+    </script>
+    <script type="text/javascript"> 
+            // loadHomeCoinMaxChange();//涨跌幅
+            // loadConcept();
+    </script>
+
+</body>
+
+</html>

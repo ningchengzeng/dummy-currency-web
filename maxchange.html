@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <title>涨跌幅排行榜</title>
+    <meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
+    <meta name='applicable-device' content='pc'>
+    <meta http-equiv='X-UA-Compatible' content='IE=11' />
+    <!-- <meta http-equiv='mobile-agent' content='format=html5; url=//m.feixiaohao.com/' />
+    <link rel='alternate' media='only screen and(max-width: 640px)' href='//m.feixiaohao.com/' /> -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href='themes/default/css/stylesheet_nav.css' rel='stylesheet'>
+    <link href='themes/default/css/tablesort.css' rel='stylesheet'>
+    <link rel='shortcut icon' href='img/favicon.ico' />
+</head>
+
+<body>
+    <nav class=''>
+
+        <div class='navsub'>
+            <div class='minWidth' id='globalinfo'>
+
+            </div>
+        </div>
+        <div class='minWidth'>
+            <ul class='leftNav'>
+                <li class='logo'>
+                    <a href='/'>
+                        <img src='img/logo.png' alt='Logo'>
+                    </a>
+                </li>
+                <li class='navSlide'>
+                    行情
+                    <ul class='subNav'>
+                        <li>
+                            <a href='index.html'>所有</a>
+                        </li>
+                        <li>
+                            <a href='index.html'>货币</a>
+                        </li>
+                        <li>
+                            <a href='index.html'>代币</a>
+                        </li>
+                        <li>
+                            <a href='newcoin.html'>最新上市</a>
+                        </li>
+                        <li>
+                            <a href='concept.html'>概念行情</a>
+                        </li>
+                        <li>
+                            <a href='charts.html'>
+                                市值趋势
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class='navSlide'>
+                    排行榜
+                    <ul class='subNav'>
+                        <li>
+                            <a href='maxchange.html'>涨跌幅排行榜</a>
+                        </li>
+                        <li>
+                            <a href='vol.html'>24小时成交额排行(币种)</a>
+                        </li>
+                        <li>
+                            <a href='volexchange.html'>24小时成交额排行(交易平台)</a>
+                        </li>
+                        <li>
+                            <a href='monthrank.html'>月成交额排行</a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a href='exchange.html'>交易平台</a>
+                </li>
+            </ul>
+            <ul class='rightNav'>
+                <li class='searchForm' style='float: right'>
+                    <form action=''>
+                        <input type='text' id='input-sm' style="box-sizing: content-box" placeholder='输入关键词...'>
+                        <i class='icon-search' onclick='search(document.getElementById("input-sm").value)'></i>
+                    </form>
+                </li>
+                <li class='showmarket' style='float: right'>
+                </li>
+
+            </ul>
+        </div>
+
+    </nav>
+    <div class="m30"></div>
+
+
+    <div class="m30"></div>
+    <div id="headad" style="width: 1200px;margin:0 auto;">
+    </div>
+    <div class="m15"></div>
+    <div class="w1200">
+        <div class="col">
+            <div class="box box860">
+
+                <ul class="tabTit">
+                    <h2 class="active tit" style="width: 150px">涨幅排行榜</h2>
+                    <h2 class="tit" style="width: 150px">跌幅排行榜</h2>
+                </ul>
+                <div class="boxContain">
+                    <div class="tabBody">
+                        <div class="boxTools  boxTools-i">
+                            <div class="slideBtn unit">
+                                <button>人民币(CNY)</button>
+                                <ul>
+                                    <li>
+                                        <a href="#CNY" class="price-toggle" data-currency="cny">人民币(CNY)</a>
+                                    </li>
+                                    <li>
+                                        <a href="#USD" class="price-toggle" data-currency="usd">美元(USD)</a>
+                                    </li>
+                                    <li>
+                                        <a href="#BTC" class="price-toggle" data-currency="btc">比特币(BTC)</a>
+                                    </li>
+                                    <li>
+                                        <a href="#ETH" class="price-toggle" data-currency="eth">以太坊(ETH)</a>
+                                    </li>
+                                    <li>
+                                        <a href="#JPY" class="price-toggle" data-currency="jpy">日元(JPY)</a>
+                                    </li>
+                                    <li>
+                                        <a href="#KRW" class="price-toggle" data-currency="krw">韩币(KRW)</a>
+                                    </li>
+                                    <li>
+                                        <a href="#HKD" class="price-toggle" data-currency="hkd">港币(HKD)</a>
+                                    </li>
+                                    <li>
+                                        <a href="#INR" class="price-toggle" data-currency="inr">卢比(INR)</a>
+                                    </li>
+                                    <li>
+                                        <a href="#RUB" class="price-toggle" data-currency="rub">卢布(RUB)</a>
+                                    </li>
+                                    <li>
+                                        <a href="#AUD" class="price-toggle" data-currency="aud">澳元(AUD)</a>
+                                    </li>
+                                    <li>
+                                        <a href="#EUR" class="price-toggle" data-currency="eur">欧元(EUR)</a>
+                                    </li>
+                                    <li>
+                                        <a href="#CHF" class="price-toggle" data-currency="chf">法郎(CHF)</a>
+                                    </li>
+                                    <li>
+                                        <a href="#GBP" class="price-toggle" data-currency="gbp">英镑(GBP)</a>
+                                    </li>
+                                    <li>
+                                        <a href="#CAD" class="price-toggle" data-currency="cad">加元(CAD)</a>
+                                    </li>
+                                    <li>
+                                        <a href="#IDR" class="price-toggle" data-currency="idr">印尼盾(IDR)</a>
+                                    </li>
+                                    <li>
+                                        <a href="#BRL" class="price-toggle" data-currency="brl">巴西雷亚尔(BRL)</a>
+                                    </li>
+                                    <li>
+                                        <a href="#TWD" class="price-toggle" data-currency="twd">新台币(TWD)</a>
+                                    </li>
+                                    <li>
+                                        <a href="#MXN" class="price-toggle" data-currency="mxn">比索(MXN)</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div style="display:none" id="currency-exchange-rates" data-cny="0.15793796196853876" data-usd="1" data-btc="7582.7077765881086"
+                                data-eth="501.42424322271597" data-jpy="0.009432627458378532" data-krw="0.0009346667912889054"
+                                data-hkd="0.1274949161402189" data-inr="0.01536688436419516" data-rub="0.01738507595539685" data-aud="0.7716031521531972"
+                                data-eur="1.2296266238756601" data-chf="1.0490504519833872" data-gbp="1.394700139470014" data-cad="0.7632713811395642"
+                                data-idr="7.267804320021872e-05" data-brl="0.3048687540014024" data-twd="0.034332406358361656"
+                                data-mxn="0.053505693005735815"></div>
+                            <div class="pageList tabTit-b">
+                                <a>1小时</a>
+                                <a class="active">24小时</a>
+                                <a>1星期</a>
+                            </div>
+                        </div>
+                        <table class="table table-rank" style="display:none">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>名称</th>
+                                    <th>简称</th>
+                                    <th>成交额(24小时)</th>
+                                    <th>价格</th>
+                                    <th>% 1小时</th>
+                                </tr>
+                            </thead>
+                            <tbody id='items3'>
+                                <tr>
+                                    <td>
+                                        <span>1</span>
+                                    </td>
+                                    <td>
+                                        <a href="details.html" target="_blank">
+                                            <img src="themes/img/Litecion_small.png" alt="月亮币-Mooncoin"> 月亮币-Mooncoin
+                                        </a>
+                                    </td>
+                                    <td>MOON</td>
+                                    <td class="volume" data-usd="14538" data-cny="92051" data-btc="1.92">
+                                        <a href="details.html#markets" target="_blank">¥92,051</a>
+                                    </td>
+                                    <td class="price" data-usd="0.00009542" data-cny="0.000604" data-btc="0.00000001">
+                                        <a href="details.html#markets" target="_blank">¥0.000604</a>
+                                    </td>
+
+                                    <td>
+                                        <span class="text-green">26.6%</span>
+                                    </td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                        <table class="table table-rank">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>名称</th>
+                                    <th>简称</th>
+                                    <th>成交额(24小时)</th>
+                                    <th>价格</th>
+                                    <th>% 24小时</th>
+                                </tr>
+                            </thead>
+                            <tbody id='items1'>
+                            </tbody>
+                        </table>
+                        <table class="table table-rank" style="display:none">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>名称</th>
+                                    <th>简称</th>
+                                    <th>成交额(24小时)</th>
+                                    <th>价格</th>
+                                    <th>% 1周</th>
+                                </tr>
+                            </thead>
+                            <tbody id="items5">
+                                <tr>
+                                    <td>
+                                        <span>1</span>
+                                    </td>
+                                    <td>
+                                        <a href="details.html" target="_blank">
+                                            <img src="themes/img/Litecion_small.png" alt="High Voltage"> High Voltage
+                                        </a>
+                                    </td>
+                                    <td>HVCO</td>
+                                    <td class="volume" data-usd="64010" data-cny="458879" data-btc="9.51">
+                                        <a href="details.html#markets" target="_blank">¥46万</a>
+                                    </td>
+                                    <td class="price" data-usd="0.1244" data-cny="0.7874" data-btc="0.0000164">
+                                        <a href="details.html#markets" target="_blank">¥0.7874</a>
+                                    </td>
+
+                                    <td>
+                                        <span class="text-green">578.22%</span>
+                                    </td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                        <div class="m15"></div>
+                    </div>
+                    <div class="tabBody" style="display:none">
+                        <div class="boxTools  boxTools-i">
+                            <div class="slideBtn unit">
+                                <button>人民币(CNY)</button>
+                                <ul>
+                                    <li>
+                                        <a href="#CNY" class="price-toggle" data-currency="cny">人民币(CNY)</a>
+                                    </li>
+                                    <li>
+                                        <a href="#USD" class="price-toggle" data-currency="usd">美元(USD)</a>
+                                    </li>
+                                    <li>
+                                        <a href="#BTC" class="price-toggle" data-currency="btc">比特币(BTC)</a>
+                                    </li>
+                                    <li>
+                                        <a href="#ETH" class="price-toggle" data-currency="eth">以太坊(ETH)</a>
+                                    </li>
+                                    <li>
+                                        <a href="#JPY" class="price-toggle" data-currency="jpy">日元(JPY)</a>
+                                    </li>
+                                    <li>
+                                        <a href="#KRW" class="price-toggle" data-currency="krw">韩币(KRW)</a>
+                                    </li>
+                                    <li>
+                                        <a href="#HKD" class="price-toggle" data-currency="hkd">港币(HKD)</a>
+                                    </li>
+                                    <li>
+                                        <a href="#INR" class="price-toggle" data-currency="inr">卢比(INR)</a>
+                                    </li>
+                                    <li>
+                                        <a href="#RUB" class="price-toggle" data-currency="rub">卢布(RUB)</a>
+                                    </li>
+                                    <li>
+                                        <a href="#AUD" class="price-toggle" data-currency="aud">澳元(AUD)</a>
+                                    </li>
+                                    <li>
+                                        <a href="#EUR" class="price-toggle" data-currency="eur">欧元(EUR)</a>
+                                    </li>
+                                    <li>
+                                        <a href="#CHF" class="price-toggle" data-currency="chf">法郎(CHF)</a>
+                                    </li>
+                                    <li>
+                                        <a href="#GBP" class="price-toggle" data-currency="gbp">英镑(GBP)</a>
+                                    </li>
+                                    <li>
+                                        <a href="#CAD" class="price-toggle" data-currency="cad">加元(CAD)</a>
+                                    </li>
+                                    <li>
+                                        <a href="#IDR" class="price-toggle" data-currency="idr">印尼盾(IDR)</a>
+                                    </li>
+                                    <li>
+                                        <a href="#BRL" class="price-toggle" data-currency="brl">巴西雷亚尔(BRL)</a>
+                                    </li>
+                                    <li>
+                                        <a href="#TWD" class="price-toggle" data-currency="twd">新台币(TWD)</a>
+                                    </li>
+                                    <li>
+                                        <a href="#MXN" class="price-toggle" data-currency="mxn">比索(MXN)</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div style="display:none" id="currency-exchange-rates" data-cny="0.15793796196853876" data-usd="1" data-btc="7582.7077765881086"
+                                data-eth="501.42424322271597" data-jpy="0.009432627458378532" data-krw="0.0009346667912889054"
+                                data-hkd="0.1274949161402189" data-inr="0.01536688436419516" data-rub="0.01738507595539685" data-aud="0.7716031521531972"
+                                data-eur="1.2296266238756601" data-chf="1.0490504519833872" data-gbp="1.394700139470014" data-cad="0.7632713811395642"
+                                data-idr="7.267804320021872e-05" data-brl="0.3048687540014024" data-twd="0.034332406358361656"
+                                data-mxn="0.053505693005735815"></div>
+                            <div class="pageList tabTit-b">
+                                <a>1小时</a>
+                                <a class="active">24小时</a>
+                                <a>1星期</a>
+                            </div>
+                        </div>
+                        <table class="table table-rank" style="display:none">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>名称</th>
+                                    <th>简称</th>
+                                    <th>成交额(24小时)</th>
+                                    <th>价格</th>
+                                    <th>% 1小时</th>
+                                </tr>
+                            </thead>
+                            <tbody id='items4'>
+                                <tr>
+                                    <td>
+                                        <span>1</span>
+                                    </td>
+                                    <td>
+                                        <a href="details.html" target="_blank">
+                                            <img src="themes/img/Litecion_small.png" alt="SegWit2x"> SegWit2x
+                                        </a>
+                                    </td>
+                                    <td>BT2</td>
+                                    <td class="volume" data-usd="23902" data-cny="151340" data-btc="3.13">
+                                        <a href="details.html#markets" target="_blank">¥15万</a>
+                                    </td>
+                                    <td class="price" data-usd="1.44" data-cny="9.12" data-btc="0.00019">
+                                        <a href="details.html#markets" target="_blank">¥9.12</a>
+                                    </td>
+
+                                    <td>
+                                        <span class="text-red">-96.77%</span>
+                                    </td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                        <table class="table table-rank">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>名称</th>
+                                    <th>简称</th>
+                                    <th>成交额(24小时)</th>
+                                    <th>价格</th>
+                                    <th>% 24小时</th>
+                                </tr>
+                            </thead>
+                            <tbody id='items2'>
+                                <tr>
+                                    <td>
+                                        <span>1</span>
+                                    </td>
+                                    <td>
+                                        <a href="details.html" target="_blank">
+                                            <img src="themes/img/Litecion_small.png" alt="SegWit2x"> SegWit2x
+                                        </a>
+                                    </td>
+                                    <td>BT2</td>
+                                    <td class="volume" data-usd="23902" data-cny="151340" data-btc="3.13">
+                                        <a href="details.html#markets" target="_blank">¥15万</a>
+                                    </td>
+                                    <td class="price" data-usd="1.44" data-cny="9.12" data-btc="0.00019">
+                                        <a href="details.html#markets" target="_blank">¥9.12</a>
+                                    </td>
+
+                                    <td>
+                                        <span class="text-red">-96.73%</span>
+                                    </td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                        <table class="table table-rank" style="display:none">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>名称</th>
+                                    <th>简称</th>
+                                    <th>成交额(24小时)</th>
+                                    <th>价格</th>
+                                    <th>% 1周</th>
+                                </tr>
+                            </thead>
+                            <tbody id='items6'>
+                                <tr>
+                                    <td>
+                                        <span>1</span>
+                                    </td>
+                                    <td>
+                                        <a href="details.html" target="_blank">
+                                            <img src="themes/img/Litecion_small.png" alt="POLY AI"> POLY AI
+                                        </a>
+                                    </td>
+                                    <td>AI</td>
+                                    <td class="volume" data-usd="12858" data-cny="81412" data-btc="1.7">
+                                        <a href="details.html#markets" target="_blank">¥81,412</a>
+                                    </td>
+                                    <td class="price" data-usd="0.000379" data-cny="0.002401" data-btc="0.00000005">
+                                        <a href="details.html#markets" target="_blank">¥0.002401</a>
+                                    </td>
+
+                                    <td>
+                                        <span class="text-red">-99.9%</span>
+                                    </td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                        <div class="m15"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="box box325">
+                <div class="boxTit">
+                    <h2>币种成交额排行榜</h2>
+                    <a href="vol.html" class="more" title="更多"></a>
+                </div>
+                <div class="tabBody padding5">
+                    <div class="spiner-example" id="phb">
+                        <div class="sk-spinner sk-spinner-fading-circle">
+                            <div class="sk-circle1 sk-circle"></div>
+                            <div class="sk-circle2 sk-circle"></div>
+                            <div class="sk-circle3 sk-circle"></div>
+                            <div class="sk-circle4 sk-circle"></div>
+                            <div class="sk-circle5 sk-circle"></div>
+                            <div class="sk-circle6 sk-circle"></div>
+                            <div class="sk-circle7 sk-circle"></div>
+                            <div class="sk-circle8 sk-circle"></div>
+                            <div class="sk-circle9 sk-circle"></div>
+                            <div class="sk-circle10 sk-circle"></div>
+                            <div class="sk-circle11 sk-circle"></div>
+                            <div class="sk-circle12 sk-circle"></div>
+                        </div>
+                    </div>
+                    <table class="table table-rank noBg" id="vol_coin"></table>
+                </div>
+            </div>
+            <div class="box box325">
+                <div class="plantListsSpread">
+
+                </div>
+            </div>
+            <div class="box box325">
+                <div class="boxTit">
+                    <h2>最近上市的货币</h2>
+                    <a href="newcoin.html" class="more" title="更多"></a>
+                </div>
+                <div class="tabBody padding5">
+                    <div class="spiner-example" id="zxss">
+                        <div class="sk-spinner sk-spinner-fading-circle">
+                            <div class="sk-circle1 sk-circle"></div>
+                            <div class="sk-circle2 sk-circle"></div>
+                            <div class="sk-circle3 sk-circle"></div>
+                            <div class="sk-circle4 sk-circle"></div>
+                            <div class="sk-circle5 sk-circle"></div>
+                            <div class="sk-circle6 sk-circle"></div>
+                            <div class="sk-circle7 sk-circle"></div>
+                            <div class="sk-circle8 sk-circle"></div>
+                            <div class="sk-circle9 sk-circle"></div>
+                            <div class="sk-circle10 sk-circle"></div>
+                            <div class="sk-circle11 sk-circle"></div>
+                            <div class="sk-circle12 sk-circle"></div>
+                        </div>
+                    </div>
+                    <table class="table noBg" id="newCoin"></table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="m30"></div>
+
+
+    <footer class='clear'>
+        <div class='w1200'>
+            <a class='logo2' href='/'>
+                <img src='img/logo.png' alt='Logo'>
+            </a>
+            <div class='info'>
+                <div>
+                    <a href='about.html' target='_blank'>关于我们</a>
+                    <i class='space2'></i>
+                    <a href='contact.html' target='_blank'>联系我们</a>
+                    <i class='space2'></i>
+                    <a href='faq.html' target='_blank'>常见问题</a>
+                    <i class='space2'></i>
+                    <a href='manager.html' target='_blank'>免责声明</a>
+                    <i class='space2'></i>
+                </div>
+                <div>
+                    <p>©Copyright xxxxxxxxxxx.com 2018 | 备案号：
+                        <a href='#' target='_blank'>xICP备xxxxxxxx号-x</a>
+                    </p>
+                </div>
+            </div>
+            <div class='media'>
+            </div>
+        </div>
+    </footer>
+
+    <div class="totop">
+
+        <div class="wCat2">
+            <div class="detal">
+                <!-- <img src="//static.feixiaohao.com/themes/default/images/fwh.jpg"  alt="非小号微信服务号"> -->
+                <!-- <img src="//static.feixiaohao.com/themes/default/images/wxdyh.png"  alt="币联社公众号"> -->
+                <!-- <div style="text-align: center;width: 116px;float: left;color: #fff">五指山微信服务号</div> -->
+                <!-- <div style="text-align: center;width: 116px;float: left;color: #fff">币联社公众号</div> -->
+            </div>
+        </div>
+        <a class="qq2" href="//wpa.qq.com/msgrd?v=3&uin=&site=qq&menu=yes" target="_blank">
+        </a>
+        <a class="sina2" href='//www.weibo.com' target='_blank'></a>
+        <div class="top"></div>
+    </div>
+
+    <script src="js/jquery-2.1.1.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/plugins/peity/jquery.peity.min.js"></script>
+    <script src='Scripts/tablesort.js'></script>
+    <script src='js/util.js'></script>
+
+    <script src="Scripts/coinoutlink.js?v=1.35"></script>
+    <script>
+
+        $('body').on('click', '.tabTit-b a', function () {
+            var index = $(this).index();
+            var table = $(this).closest('.tabBody').find('table');
+            if (table.eq(index).css('display') != 'block') {
+                table.css('display', 'none')
+                table.eq(index).fadeIn('fast');
+                $(this).closest('.tabTit-b').find('a').removeClass('active');
+                $(this).addClass('active');
+            }
+        });
+
+        loadHomeNewCoin();
+        loadHomevolrank();
+        $('#zxss').hide();
+        $('#phb').hide();
+        gettingExchange()
+        function gettingExchange() {
+            //var coincode = $("#coincode").val();
+            var uri = "http://192.168.99.101/api/currency/getupdown";
+            function setvalue(val) {
+                return val.replace(/(\/\d{8}\/)/, '/time/');
+            }
+            $.ajax({
+                url: uri,
+                type: "GET",
+                dataType: 'json',
+                success: function (result) {
+
+                    data1 = result[0];
+                    data2 = result[1];
+                    data3 = result[2];
+                    data4 = result[3];
+                    data5 = result[4];
+                    data6 = result[5];
+                    if (data1.length != 0) {
+                        var items = '';
+                        for (var i = 0; i < data1.length; i++) {
+                            var item = data1[i];
+                            ;
+                            items += '<tr>'
+                                + '<td><span>' + (i + 1) + '</span></td>'
+                                + '<td><a href="currencies.html?currency=' + item.code + '" target="_blank"><img src="' + setvalue(item.icon) + '" alt="' + item.title.cn + '"> ' + item.title.cn + '</a></td>'
+                                + '<td>' + item.title.short + '</td>'
+                                + '<td class="volume" data-usd="' + item.volume.usd + '" data-cny="' + item.volume.cny + '" data-btc="' + item.volume.btc + '"><a href="currencies.html?currency=' + item.code + '#markets" target="_blank">' + item.volume.init + '</a></td>'
+                                + '<td class="price" data-usd="' + item.price.usd + '" data-cny="' + item.price.cny + '" data-btc="' + item.price.btc + '"><a href="currencies.html?currency=' + item.code + '#markets" target="_blank">' + item.price.init + '</a></td>'
+                                + '<td><span class="text-green">' + item.proportion + '%</span></td>'
+                                + '</tr>';
+                        }
+                        $('#items1').empty();
+                        $('#items1').append(items);
+                    }
+
+                    if (data2.length != 0) {
+                        var items = '';
+                        for (var i = 0; i < data2.length; i++) {
+                            var item = data2[i];
+                            items += '<tr>'
+                                + '<td><span>' + (i + 1) + '</span></td>'
+                                + '<td><a href="currencies.html?currency=' + item.code + '" target="_blank"><img src="' + setvalue(item.icon) + '" alt="' + item.title.cn + '"> ' + item.title.cn + '</a></td>'
+                                + '<td>' + item.title.short + '</td>'
+                                + '<td class="volume" data-usd="' + item.volume.usd + '" data-cny="' + item.volume.cny + '" data-btc="' + item.volume.btc + '"><a href="currencies.html?currency=' + item.code + '#markets" target="_blank">' + item.volume.init + '</a></td>'
+                                + '<td class="price" data-usd="' + item.price.usd + '" data-cny="' + item.price.cny + '" data-btc="' + item.price.btc + '"><a href="currencies.html?currency=' + item.code + '#markets" target="_blank">' + item.price.init + '</a></td>'
+                                + '<td><span class="text-red">' + item.proportion + '%</span></td>'
+                                + '</tr>';
+                        }
+                        $('#items2').empty();
+                        $('#items2').append(items);
+                    }
+
+                    if (data3.length != 0) {
+                        var items = '';
+                        for (var i = 0; i < data3.length; i++) {
+                            var item = data3[i];
+                            items += '<tr>'
+                                + '<td><span>' + (i + 1) + '</span></td>'
+                                + '<td><a href="currencies.html?currency=' + item.code + '" target="_blank"><img src="' + setvalue(item.icon) + '" alt="' + item.title.cn + '"> ' + item.title.cn + '</a></td>'
+                                + '<td>' + item.title.short + '</td>'
+                                + '<td class="volume" data-usd="' + item.volume.usd + '" data-cny="' + item.volume.cny + '" data-btc="' + item.volume.btc + '"><a href="currencies.html?currency=' + item.code + '#markets" target="_blank">' + item.volume.init + '</a></td>'
+                                + '<td class="price" data-usd="' + item.price.usd + '" data-cny="' + item.price.cny + '" data-btc="' + item.price.btc + '"><a href="currencies.html?currency=' + item.code + '#markets" target="_blank">' + item.price.init + '</a></td>'
+                                + '<td><span class="text-green">' + item.proportion + '%</span></td>'
+                                + '</tr>';
+                        }
+                        $('#items3').empty();
+                        $('#items3').append(items);
+                    }
+
+                    if (data4.length != 0) {
+                        var items = '';
+                        for (var i = 0; i < data4.length; i++) {
+                            var item = data4[i];
+                            items += '<tr>'
+                                + '<td><span>' + (i + 1) + '</span></td>'
+                                + '<td><a href="currencies.html?currency=' + item.code + '" target="_blank"><img src="' + setvalue(item.icon) + '" alt="' + item.title.cn + '"> ' + item.title.cn + '</a></td>'
+                                + '<td>' + item.title.short + '</td>'
+                                + '<td class="volume" data-usd="' + item.volume.usd + '" data-cny="' + item.volume.cny + '" data-btc="' + item.volume.btc + '"><a href="currencies.html?currency=' + item.code + '#markets" target="_blank">' + item.volume.init + '</a></td>'
+                                + '<td class="price" data-usd="' + item.price.usd + '" data-cny="' + item.price.cny + '" data-btc="' + item.price.btc + '"><a href="currencies.html?currency=' + item.code + '#markets" target="_blank">' + item.price.init + '</a></td>'
+                                + '<td><span class="text-red">' + item.proportion + '%</span></td>'
+                                + '</tr>';
+                        }
+                        $('#items4').empty();
+                        $('#items4').append(items);
+                    }
+
+                    if (data5.length != 0) {
+                        var items = '';
+                        for (var i = 0; i < data5.length; i++) {
+                            var item = data5[i];
+                            items += '<tr>'
+                                + '<td><span>' + (i + 1) + '</span></td>'
+                                + '<td><a href="currencies.html?currency=' + item.code + '" target="_blank"><img src="' + setvalue(item.icon) + '" alt="' + item.title.cn + '"> ' + item.title.cn + '</a></td>'
+                                + '<td>' + item.title.short + '</td>'
+                                + '<td class="volume" data-usd="' + item.volume.usd + '" data-cny="' + item.volume.cny + '" data-btc="' + item.volume.btc + '"><a href="currencies.html?currency=' + item.code + '#markets" target="_blank">' + item.volume.init + '</a></td>'
+                                + '<td class="price" data-usd="' + item.price.usd + '" data-cny="' + item.price.cny + '" data-btc="' + item.price.btc + '"><a href="currencies.html?currency=' + item.code + '#markets" target="_blank">' + item.price.init + '</a></td>'
+                                + '<td><span class="text-green">' + item.proportion + '%</span></td>'
+                                + '</tr>';
+                        }
+                        $('#items5').empty();
+                        $('#items5').append(items);
+                    }
+
+                    if (data6.length != 0) {
+                        var items = '';
+                        for (var i = 0; i < data6.length; i++) {
+                            var item = data6[i];
+                            items += '<tr>'
+                                + '<td><span>' + (i + 1) + '</span></td>'
+                                + '<td><a href="currencies.html?currency=' + item.code + '" target="_blank"><img src="' + setvalue(item.icon) + '" alt="' + item.title.cn + '"> ' + item.title.cn + '</a></td>'
+                                + '<td>' + item.title.short + '</td>'
+                                + '<td class="volume" data-usd="' + item.volume.usd + '" data-cny="' + item.volume.cny + '" data-btc="' + item.volume.btc + '"><a href="currencies.html?currency=' + item.code + '#markets" target="_blank">' + item.volume.init + '</a></td>'
+                                + '<td class="price" data-usd="' + item.price.usd + '" data-cny="' + item.price.cny + '" data-btc="' + item.price.btc + '"><a href="currencies.html?currency=' + item.code + '#markets" target="_blank">' + item.price.init + '</a></td>'
+                                + '<td><span class="text-red">' + item.proportion + '%</span></td>'
+                                + '</tr>';
+                        }
+                        $('#items6').empty();
+                        $('#items6').append(items);
+                    }
+                }
+            });
+        }
+    </script>
+
+</body>
+
+</html>

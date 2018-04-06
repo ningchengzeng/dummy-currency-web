@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <title>litebit的搜索结果</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="applicable-device" content="pc">
+    <meta http-equiv="X-UA-Compatible" content="IE=11" />
+    <meta http-equiv="mobile-agent" content="format=html5; url=http://m.feixiaohao.com/search/" />
+    <link rel="alternate" media="only screen and(max-width: 640px)" href="http://m.feixiaohao.com/search/" />
+    <link href="//static.feixiaohao.com/themes/default/css/stylesheet_nav.css?v=1.33" rel="stylesheet">
+    <link href="//static.feixiaohao.com/themes/default/css/tablesort.css" rel="stylesheet">
+    <script src="//static.feixiaohao.com/Scripts/jquery-2.1.1.js"></script>
+    <link rel="shortcut icon" href="//static.feixiaohao.com/themes/default/images/fav.ico" />
+
+</head>
+
+<body style="background:#fff;">
+    <nav class=''>
+
+        <div class='navsub'>
+            <div class='minWidth' id='globalinfo'>
+
+            </div>
+        </div>
+        <div class='minWidth'>
+            <ul class='leftNav'>
+                <li class='logo'>
+                    <a href='/'>
+                        <img src='img/logo.png' alt='Logo'>
+                    </a>
+                </li>
+                <li class='navSlide'>
+                    行情
+                    <ul class='subNav'>
+                        <li>
+                            <a href='index.html'>所有</a>
+                        </li>
+                        <li>
+                            <a href='index.html'>货币</a>
+                        </li>
+                        <li>
+                            <a href='index.html'>代币</a>
+                        </li>
+                        <li>
+                            <a href='newcoin.html'>最新上市</a>
+                        </li>
+                        <li>
+                            <a href='concept.html'>概念行情</a>
+                        </li>
+                        <li>
+                            <a href='charts.html'>
+                                市值趋势
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class='navSlide'>
+                    排行榜
+                    <ul class='subNav'>
+                        <li>
+                            <a href='maxchange.html'>涨跌幅排行榜</a>
+                        </li>
+                        <li>
+                            <a href='vol.html'>24小时成交额排行(币种)</a>
+                        </li>
+                        <li>
+                            <a href='volexchange.html'>24小时成交额排行(交易平台)</a>
+                        </li>
+                        <li>
+                            <a href='monthrank.html'>月成交额排行</a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a href='exchange.html'>交易平台</a>
+                </li>
+            </ul>
+            <ul class='rightNav'>
+                <li class='searchForm' style='float: right'>
+                    <form action=''>
+                        <input type='text' id='input-sm' style="box-sizing: content-box" placeholder='输入关键词...'>
+                        <i class='icon-search' onclick='search(document.getElementById("input-sm").value)'></i>
+                    </form>
+                </li>
+                <li class='showmarket' style='float: right'>
+                </li>
+
+            </ul>
+        </div>
+
+    </nav>
+    <div class="m30"></div>
+
+
+    <div class="m30"></div>
+    <div id="headad" style="width: 1200px;margin:0 auto;">
+    </div>
+    <div class="m15"></div>
+    <div class="w1200">
+        <div class="col">
+            <div class="box2 box815">
+                <div class="searchBar">
+                    <input type="text" id="searchbar" name="searchbar" value="litebit" style="background: none" placeholder="输入关键词搜索" onkeydown="javascript:if(event.keyCode==13) search(document.getElementById('word').value);">
+                    <button onclick="search(document.getElementById('searchbar').value)">
+                        <i class="icon-search"></i>
+                    </button>
+
+                    <div class="tips">共2个结果，1个币种，1个交易所</div>
+                </div>
+                <div class="m15"></div>
+                <div class="slide">
+                    <div class="active">币种</div>
+                    <div>交易平台</div>
+                </div>
+                <div class="slidebody" style="min-height: 830px;">
+                    <table class="table maintable" id="table">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th data-sort-method='none'>名称</th>
+                                <th>流通市值</th>
+                                <th>价格</th>
+                                <th>涨幅(24h)</th>
+                                <th>自选状态</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>
+                                    <a href="/currencies/litebitcoin/" target="_blank">
+                                        <img src="//static.feixiaohao.com/coin/9a7eedb1c9fd6385f69bb4bf999507_small.png" alt="LBTC">LBTC
+                                    </a>
+                                </td>
+
+
+                                <td>
+                                    ¥947,831
+
+                                </td>
+                                <td>￥0.0328</td>
+
+                                <td class="change">
+                                    <span class="text-red">-6.48%</span>
+                                </td>
+                                <td>
+                                    <div class="addto disactive" onclick="addfocus();">添加自选</div>
+                                </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                    <div class="m15"></div>
+
+                </div>
+                <div class="slidebody" style="min-height: 830px;display:none;">
+                    <ul class="plantList plantList2" id="liEx">
+                        <li>
+                            <div class="con">
+                                <a target="_blank" href="/exchange/litebit/" class="pic">
+                                    <img src="//static.feixiaohao.com/platimages/20170808/78d4c1615564439fbc8227d3b0118806_2_100_100.png" alt="LiteBit.eu的logo">
+                                </a>
+                                <div class="info">
+                                    <div class="tit">
+                                        <a target="_blank" href="/exchange/litebit/">
+                                            <b>LiteBit.eu</b>
+                                        </a>
+                                        <div class="star star3" style="float: right"></div>
+                                    </div>
+                                    <div class="des">
+
+                                    </div>
+                                    <div class="detal">
+                                        交易对:
+                                        <a target="_blank" href="/exchange/litebit/">45</a>
+                                        <i class="space"></i>国家:
+                                        <a href="/exchange/?code=holland">荷兰</a>
+                                        <i class="space"></i>
+                                        成交额(24h):
+                                        <a href="/exchange/litebit/">¥328万</a>
+
+                                        支持：
+                                        <span class="tag">
+                                            <a href="/exchange/?type=1">
+                                                <i class="xianhuo" title="支持现货"></i>
+                                            </a>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+
+                    </ul>
+                    <div class="m15"></div>
+
+                </div>
+            </div>
+
+            <div class="box325 searchRight">
+                <div class="boxTit">
+                    <h2>今日热门</h2>
+                </div>
+                <div class="hotsearch">
+                    <a href="/search?word=BTC">BTC</a>
+                    <a href="/search?word=EOS">EOS</a>
+                    <a href="/search?word=ETH">ETH</a>
+                    <a href="/search?word=TRX">TRX</a>
+                    <a href="/search?word=BNB">BNB</a>
+                    <a href="/search?word=XRP">XRP</a>
+                    <a href="/search?word=STORM">STORM</a>
+                    <a href="/search?word=HT">HT</a>
+                    <a href="/search?word=GXS">GXS</a>
+                    <a href="/search?word=IOST">IOST</a>
+                </div>
+            </div>
+            <div class="box box325 searchRight">
+                <div class="plantListsSpread">
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="m30"></div>
+
+    <div class="fLink clear">
+        <div class="w1200">
+            <h3>友情链接</h3>
+
+            <a href="http://robot.feixiaohao.com" target="_blank" title="非小号智能机器人">非小号智能机器人</a>
+            <a href="http://www.huoxing24.com/" target="_blank" title="火星财经">火星财经</a>
+            <a href="http://www.bitett.com" target="_blank" title="比特头条">比特头条</a>
+            <a href="http://www.coingogo.com/" target="_blank" title="币源社区">币源社区</a>
+            <a href="http://www.bcex.ca/" target="_blank" title="BCEX">BCEX</a>
+            <a href="http://uncoinex.com/" target="_blank" title="澳洲U网">澳洲U网</a>
+            <a href="http://www.btctrade.im/" target="_blank" title="比特币交易网">比特币交易网</a>
+            <a href="http://www.bixingxing.com" target="_blank" title="比特币导航">比特币导航</a>
+            <a href="http://topbtc.com/" target="_blank" title="TopBtc">TopBtc</a>
+            <a href="http://www.qukuaiwang.com.cn" target="_blank" title="区块网">区块网</a>
+            <a href="http://www.chainnews.com" target="_blank" title="链闻">链闻</a>
+            <a href="http://www.weilaicaijing.com/" target="_blank" title="未来财经">未来财经</a>
+        </div>
+    </div>
+
+    <footer class='clear'>
+        <div class='w1200'>
+            <a class='logo2' href='/'>
+                <img src='img/logo.png' alt='Logo'>
+            </a>
+            <div class='info'>
+                <div>
+                    <a href='about.html' target='_blank'>关于我们</a>
+                    <i class='space2'></i>
+                    <a href='contact.html' target='_blank'>联系我们</a>
+                    <i class='space2'></i>
+                    <a href='faq.html' target='_blank'>常见问题</a>
+                    <i class='space2'></i>
+                    <a href='manager.html' target='_blank'>免责声明</a>
+                    <i class='space2'></i>
+                </div>
+                <div>
+                    <p>©Copyright xxxxxxxxxxx.com 2018 | 备案号：
+                        <a href='#' target='_blank'>xICP备xxxxxxxx号-x</a>
+                    </p>
+                </div>
+            </div>
+            <div class='media'>
+            </div>
+        </div>
+    </footer>
+
+    <div class="totop">
+
+        <div class="wCat2">
+            <div class="detal">
+                <!-- <img src="//static.feixiaohao.com/themes/default/images/fwh.jpg"  alt="非小号微信服务号"> -->
+                <!-- <img src="//static.feixiaohao.com/themes/default/images/wxdyh.png"  alt="币联社公众号"> -->
+                <!-- <div style="text-align: center;width: 116px;float: left;color: #fff">五指山微信服务号</div> -->
+                <!-- <div style="text-align: center;width: 116px;float: left;color: #fff">币联社公众号</div> -->
+            </div>
+        </div>
+        <a class="qq2" href="//wpa.qq.com/msgrd?v=3&uin=&site=qq&menu=yes" target="_blank">
+        </a>
+        <a class="sina2" href='//www.weibo.com' target='_blank'></a>
+        <div class="top"></div>
+    </div>
+
+    <script src="js/jquery-2.1.1.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/plugins/peity/jquery.peity.min.js"></script>
+    <script src='Scripts/tablesort.js'></script>
+    <script src='js/util.js'></script>
+    <script type="text/javascript">
+
+        $('.line').peity("line", { width: 50, height: 15, fill: '#f5f5f5', min: 99999, strokeWidth: 1 });
+
+    </script>
+
+    <!-- <script src="//static.feixiaohao.com/Scripts/moresearchcoin.js"></script>
+    <script src="//static.feixiaohao.com/Scripts/coinoutlink.js?v=1.36"></script> -->
+
+</body>
+
+</html>
