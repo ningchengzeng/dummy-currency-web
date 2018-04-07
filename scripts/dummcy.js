@@ -690,3 +690,12 @@ var monthrank={
         monthrank.dataAjax();
     }
 };
+
+var exchangedetails={
+    dataAjax: function(){
+
+    },
+    process: function(){
+        exchangedetails.dataAjax();
+    }
+};
