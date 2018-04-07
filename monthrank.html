@@ -169,7 +169,7 @@
                         data-brl="0.3048687540014024" data-twd="0.034332406358361656" data-mxn="0.053505693005735815"></div>
                 </div>
                 <div class="boxContain">
-                    <table class="table table-rank">
+                    <table class="table table-rank" id="table-data">
                         <thead>
                             <tr>
                                 <th>#</th>
@@ -181,44 +181,6 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>
-                                    <a href="details.html" target="_blank">
-                                        <img src="#" alt="比特币-Bitcoin"> 比特币-Bitcoin
-                                    </a>
-                                </td>
-                                <td>BTC</td>
-                                <td class="volume" data-usd="5099621572.76793" data-cny="32288759872.9401" data-btc="670151.070739882">
-                                    <a href="details.html#markets" target="_blank">¥3,228,876万</a>
-                                </td>
-                                <td class="volume" data-usd="46110956773.576" data-cny="291715421190.081" data-btc="5312282.49386923">
-                                    <a href="details.html#markets" target="_blank">¥29,171,542万</a>
-                                </td>
-                                <td class="volume" data-usd="214006249613.994" data-cny="1355758096917.98" data-btc="21450138.458807">
-                                    <a href="details.html#markets" target="_blank">¥135,575,810万</a>
-                                </td>
-
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>
-                                    <a href="details.html" target="_blank">
-                                        <img src="#" alt="泰达币-Tether"> 泰达币-Tether
-                                    </a>
-                                </td>
-                                <td>USDT</td>
-                                <td class="volume" data-usd="1909290000" data-cny="12244006806.6667" data-btc="255145.379653214">
-                                    <a href="details.html#markets" target="_blank">¥1,224,401万</a>
-                                </td>
-                                <td class="volume" data-usd="14411920000" data-cny="95648711747.3376" data-btc="1749407.25535452">
-                                    <a href="details.html#markets" target="_blank">¥9,564,871万</a>
-                                </td>
-                                <td class="volume" data-usd="68541760000" data-cny="457657547275.02" data-btc="7282222.31853833">
-                                    <a href="details.html#markets" target="_blank">¥45,765,755万</a>
-                                </td>
-
-                            </tr>
                         </tbody>
                     </table>
                     <div class="m15"></div>
@@ -255,29 +217,15 @@
         </div>
     </footer>
 
-    <div class="totop">
-
-        <div class="wCat2">
-            <div class="detal">
-                <!-- <img src="//static.feixiaohao.com/themes/default/images/fwh.jpg"  alt="非小号微信服务号"> -->
-                <!-- <img src="//static.feixiaohao.com/themes/default/images/wxdyh.png"  alt="币联社公众号"> -->
-                <!-- <div style="text-align: center;width: 116px;float: left;color: #fff">五指山微信服务号</div> -->
-                <!-- <div style="text-align: center;width: 116px;float: left;color: #fff">币联社公众号</div> -->
-            </div>
-        </div>
-        <a class="qq2" href="//wpa.qq.com/msgrd?v=3&uin=&site=qq&menu=yes" target="_blank">
-        </a>
-        <a class="sina2" href='//www.weibo.com' target='_blank'></a>
-        <div class="top"></div>
-    </div>
-
     <script src="js/jquery-2.1.1.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/plugins/peity/jquery.peity.min.js"></script>
     <script src='scripts/tablesort.js'></script>
     <script src='js/util.js'></script>
+    <script src="scripts/dummcy.js"></script>
     <script type="text/javascript">
         $('.line').peity("line", { width: 50, height: 15, fill: '#f5f5f5', min: 99999, strokeWidth: 1 });
+        monthrank.process();
     </script>
 </body>
 

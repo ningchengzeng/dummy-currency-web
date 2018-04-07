@@ -216,75 +216,14 @@
         </div>
     </footer>
 
-    <div class="totop">
-
-        <div class="wCat2">
-            <div class="detal">
-                <!-- <img src="//static.feixiaohao.com/themes/default/images/fwh.jpg"  alt="非小号微信服务号"> -->
-                <!-- <img src="//static.feixiaohao.com/themes/default/images/wxdyh.png"  alt="币联社公众号"> -->
-                <!-- <div style="text-align: center;width: 116px;float: left;color: #fff">五指山微信服务号</div> -->
-                <!-- <div style="text-align: center;width: 116px;float: left;color: #fff">币联社公众号</div> -->
-            </div>
-        </div>
-        <a class="qq2" href="//wpa.qq.com/msgrd?v=3&uin=&site=qq&menu=yes" target="_blank">
-        </a>
-        <a class="sina2" href='//www.weibo.com' target='_blank'></a>
-        <div class="top"></div>
-    </div>
-
     <script src="js/jquery-2.1.1.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/plugins/peity/jquery.peity.min.js"></script>
     <script src='scripts/tablesort.js'></script>
     <script src='js/util.js'></script>
+    <script src="scripts/dummcy.js"></script>
     <script>
-        getNewCoin();
-        function getNewCoin() {
-            //var coincode = $("#coincode").val();
-            var uri = "http://192.168.99.101/api/currency/getNewCoin";
-            $.ajax({
-                url: uri,
-                type: "GET",
-                dataType: 'json',
-                success: function (data) {
-                    var items = '';
-                    ;
-                    if (data.length != 0) {
-                        for (var i = 0; i < data.length; i++) {
-                            var item = data[i];
-                            items+= '<tr>'
-                                + '<td><a href="currencies.html?currency='+data[i].code+'" target="_blank"><img src="'+setvalue(data[i].icon)+'" alt="'+data[i].title.cn+'">'+data[i].title.cn+'</a></td>'
-                                + ' <td>'+data[i].title.short+'</td>'
-                                + ' <td class="market-cap" data-usd="'+data[i].marketCap.usd+'" data-cny="'+data[i].marketCap.cny+'" data-btc="'+data[i].marketCap.btc+'">￥'+data[i].marketCap.cny+'</td>'
-                                + ' <td><a href="currencies.html?currency='+data[i].code+'" target="_blank" class="price" data-usd="'+data[i].price.usd+'" data-cny="'+data[i].price.cny+'" data-btc="'+data[i].price.cny+'">￥'+data[i].price.cny+'</a></td>'
-                                + ' <td>'+data[i].amount+'</td>'
-                                + ' <td class="volume" data-usd="'+data[i].volume.usd+'" data-cny="'+data[i].volume.cny+'" data-btc="'+data[i].volume.btc+'"><a href="currencies.html?currency='+data[i].code+'#markets" target="_blank">￥'+data[i].volume.cny+'</a></td>'
-                                + '<td><div '+validate(data[i].updown.replace("%",""))+'>'+data[i].updown+'</div></td>'
-                                + '<td>'+data[i].date+'</td>'
-                                + '</tr>';
-
-                        }
-                        $('#items').append(items);
-                    }
-
-
-                }
-            });
-        }
-
-        function setvalue(val){
-            return val.replace(/(\/\d{8}\/)/,'/time/').replace("//static.feixiaohao.com","themes");
-        }
-
-        function validate(num)
-        {
-            var reg = /^\d+(?=\.{0,1}\d+$|$)/
-            if(reg.test(num)){
-                return 'class="text-green"' ;
-            }else{
-                return 'class="text-red"';
-            }
-        }
+        newCoin.process();
     </script>
 </body>
 
