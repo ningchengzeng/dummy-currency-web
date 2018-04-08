@@ -316,7 +316,6 @@
                             <tr>
                                 <th>排名</th>
                                 <th>交易所</th>
-                                <th>交易对</th>
                                 <th>价格</th>
                                 <th>成交量</th>
                                 <th>成交额</th>
@@ -326,28 +325,9 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr class="adList">
-                                <td>* </td>
-                                <td>
-                                    <a href="https://www.okex.cn/?channelId=1162544" target="_blank">
-                                        <img src="#" alt="OKEX">OKEX </a>
-                                </td>
-                                <td>
-                                    <a href="https://www.okex.cn/?channelId=1162544" target="_blank"> LTC/USDT </a>
-                                </td>
-                                <td class="price" data-usd="147" data-cny="934" data-btc="0.0193" data-native="147">¥934</td>
-                                <td>46万</td>
-                                <td class="volume" data-usd="67384295" data-cny="426650399" data-btc="8822" data-native="457004">¥42,665万 </td>
-                                <td>15.17%</td>
-                                <td>刚刚</td>
-                                <td>
-                                    <div class="addto disactive" onclick="">添加自选</div>
-                                </td>
-                            </tr>
 
                         </tbody>
                     </table>
-                    <a class="seeAll" href="/coinmarket/litecoin/" target="_blank">查看全部</a>
                 </div>
             </div>
             <div class="box box325">
@@ -470,6 +450,7 @@
     <script src="js/plugins/peity/jquery.peity.min.js"></script>
     <script src='scripts/tablesort.js'></script>
     <script src='js/util.js'></script>
+    <script src="scripts/dummcy.js"></script>
 
     <script src="scripts/Highstock-5.0.12/highstock.js"></script>
     <script src="scripts/hischarts_new.js?v=1.12"></script>
@@ -477,189 +458,7 @@
     <script src="scripts/coinrank.js?v=1.12"></script>
     <script src="scripts/chartist/chartist.min.js"></script>
 
-    <script>
-        new Chartist.Pie('.ct-chart3', {
-            series: [5, 95]
-        }, {
-                donut: true,
-                donutWidth: 40,
-                startAngle: 270,
-                total: 200,
-                showLabel: false
-            });
-        new Chartist.Pie('.ct-chart2', {
-            series: [66, 34]
-        }, {
-                donut: true,
-                donutWidth: 40,
-                startAngle: 270,
-                total: 200,
-                showLabel: false
-            });
-        new Chartist.Pie('.ct-chart1', {
-            series: [2.814545, 97.18546]
-        }, {
-                donut: true,
-                donutWidth: 40,
-                startAngle: 270,
-                total: 200,
-                showLabel: false
-            });
-        loadcoinevent();
-        loadconcept(0);
-        function loadcoinevent() {
-            //var coincode = $("#coincode").val();
-            var coinCode = GetRequest().currency.split('/')[0];
-            var uri = "http://192.168.99.101/api/currency/getCoinevent";
-            $.ajax({
-                url: uri,
-                type: "GET",
-                dataType: 'json',
-                data: "currency=" + coinCode,
-                success: function (data) {
-                    if (data.length > 0) {
-                        $("#coineventtimeline").append(data);
-                        $("#timeLineBox").css("display", "block");
-                    }
-                }
-            });
-        }
-
-
-        $(document).ready(function () {
-
-            $('#piechart_coinvol').highcharts({
-                legend: {
-                    itemStyle: {
-                        color: '#666',
-                        fontWeight: 'normal',
-                    },
-                    itemWidth: 120,
-                    symbolRadius: 0
-                },
-                chart: {
-                    plotBackgroundColor: null,
-                    plotBorderWidth: null,
-                    plotShadow: false
-                },
-                title: {
-                    text: ''
-                },
-                tooltip: {
-                    headerFormat: '{series.name}<br>',
-                    pointFormat: '{point.name}: <b>{point.percentage:.1f}%</b>'
-                },
-                plotOptions: {
-                    pie: {
-                        allowPointSelect: true,
-                        cursor: 'pointer',
-                        dataLabels: {
-                            enabled: false
-                        },
-                        showInLegend: true
-                    }
-                },
-                series: [{
-                    type: 'pie',
-                    name: '交易对成交量占比'
-                }]
-
-            });
-
-            var coinCode = GetRequest().currency.split('/')[0];
-            var pieArr = [];
-
-            var urip = "http://192.168.99.101/api/currency/getCointradesPercent";
-            $.ajax({
-                url: urip,
-                type: "GET",
-                dataType: 'json',
-                data: "currency=" + coinCode,
-                success: function (data) {
-                    $(data).each(function (index, item) {
-                        pieArr.push([item.name, item.y]);
-                    });
-                    $('#piechart_coinvol').highcharts().series[0].setData(pieArr);
-                }
-            });
-            
-            getDetails();
-            function getDetails() {
-                //var coincode = $("#coincode").val();
-                var coinCode = GetRequest().currency.split('/')[0];
-                var uri = "http://192.168.99.101/api/currency/getCurrencies";
-                $.ajax({
-                    url: uri,
-                    type: "GET",
-                    dataType: 'json',
-                    data: "currency=" + coinCode,
-                    success: function (data) {
-                        
-                        $('#coinnameCN').text(data.title.en + " " + data.title.cn);
-                        $('#coinLogo').attr('src',data.icon);
-                        $('#24Max').text(data.twenty.price.max);
-                        $('#24Min').text(data.twenty.price.min);
-
-                        $('#mainy').text(data.price.usd);
-                        $('#price').text(data.price.cny);
-                        $('#mainbtc').text(data.price.btc);
-                        ;
-                        $('#ltinit').text(data.circulation.price.cny);
-                        $('#lty').text(data.circulation.price.usd);
-                        $('#ltbtc').text(data.circulation.price.btc);
-                        $('#ltlevel').text(data.circulation.ranking);
-
-                        $('#ltlltcz').text(data.amount.issue);
-                        $('#ltlltc').text(data.amount.circulation);
-
-                        $('#cjmoney').text(data.twenty.turnover.price.cny)
-                        $('#cjy').text(data.twenty.turnover.price.usd);
-                        $('#cjbtc').text(data.twenty.turnover.price.btc);
-                        $('#upOrDown').text(data.floatRate);
-                        $('#remark').text('');
-                        
-                        if(data.describe.length>80){
-                            $('#remark').append(data.describe.substr(0,80)+"...");
-                            $('#remark').append('<a href="coindetails.html?currenty='+coinCode+'" target="_blank">查看全部</a>');
-                        }else{
-                            $('#remark').append(data.describe);
-                        }
-                        
-                        $('#cnName').text(data.title.en);
-                        $('#enName').text(data.title.cn);
-                        $('#level3').text("第" + data.circulation.ranking + "名");
-                        $('#sjjys').text(data.ticker.count+"家");// 交易所
-                        $('#fxtime').text(data.date); // 上架时间
-
-                        $('#qqzsz').text(data.marketCapitalization);
-                        $('#ltl').text(data.amount.circulationRate);
-                        $('#hsl').text(data.twenty.turnover.rate);
-                        
-                        $('#bbook').text(data.whitePage.title);
-                        $('#bbook').attr('href',data.whitePage.title);
-                        if(data.webSite.length!=0){
-                            var res='';
-                            for(var i=0;i<data.webSite.length;i++){
-                                res+="<a href="+data.webSite[0].href+" rel='nofollow' target='_blank'>"+data.webSite[0].title+"</a>,";
-                            }
-                            $('#net').append(res.substr(0,res.length-1));
-                        }
-
-                        if(data.blockStation.length!=0){
-                            var res='';
-                            for(var i=0;i<data.blockStation.length;i++){
-                                res+="<a href="+data.blockStation[0].href+" rel='nofollow' target='_blank'>"+data.blockStation[0].title+"</a>,";
-                            }
-                            $('#qknet').append(res.substr(0,res.length-1));
-                        }
-                    }
-                });
-            }
-
-        })
-    </script>
-
-
+    <script>currencies.process();</script>
 </body>
 
 </html>

@@ -151,7 +151,6 @@ var index = {
             window.clearInterval(window.interval);
             delete window.interval;
         }
-        exchange.page.pageReader();
 
         var data = function(){
             var urip = BASE_URL +"api/currency/indexAll?pageSize=" + index.pageSize+ "&page=" + index.pageCurrent;
@@ -161,6 +160,7 @@ var index = {
                 dataType: 'json',
                 success: function (data) {
                     index.pageCount = Math.ceil(data.count/index.pageSize);
+                    index.page.pageReader();
                     $("div.boxContain table#table tbody").empty();
                     $(data.result).each(function (indexData, item) {
                         $("div.boxContain table#table tbody").append(index.row(item));
@@ -343,7 +343,7 @@ var exchange = {
                 + '<a href=\ "{0}\"></a>'
                 + '<a href=\ "{0}\"></a>'
                 + '<i class="space"></i>成交额(24h):'
-                + '<a href="exchangedetails.html?currenty=' + item.code + '">¥1,808,720万</a>支持：'
+                + '<a href="exchangedetails.html?currenty=' + item.code + '">'+item.price.cny+'</a>支持：'
                 + '<span class="tag">' + exchange.setIValue(item) + '</span>'
                 + '</div>'
                 + '</div>'
@@ -691,11 +691,286 @@ var monthrank={
     }
 };
 
+
 var exchangedetails={
-    dataAjax: function(){
+    detail:function(detail){
+        $("div.cover img").attr("src", detail.icon + ".jpg");
+        $("div.cover img").attr("alt", detail.title);
+
+        $("div.boxContain div.info h1").text(detail.title);
+        $("div.boxContain div.info div.star").addClass("star" + detail.star);
+        $("div.boxContain div.info div.text").append(detail.desc);
+
+        $(detail.tags).each(function(index,tag){
+            $("div.boxContain div.info div.tag").append("<i class=\"" +tag+ "\"></i>");
+        });
+
+        $("div.boxContain div.info div.web span:eq(0) a").attr("href", detail.wetsitHref);
+        $("div.boxContain div.info div.web span:eq(0) a").append(detail.wetsitTitle);
+
+        $("div.boxContain div.info div.web span:eq(1) a").attr("href",detail.countryHref);
+        $("div.boxContain div.info div.web span:eq(1) a").append(detail.countryTitle);
+
+        $("div.tabBody:eq(1) section.artBox").append(detail.description);
+        $("div.tabBody:eq(2) section.artBox").append(detail.costDescription);
+
+        $("div.vol div.num").text(detail.price.cny);
+        $("div.vol div.num2 span:eq(0)").text(detail.price.usd);
+        $("div.vol div.num2 span:eq(1)").text(detail.price.btc);
+    },
+    coin: function(list){
+        $("table.table.noBg tbody").empty();
+        $(list).each(function(index, item){
+            $("table.table.noBg tbody").append("<tr>" +
+                "    <td>" +
+                "        <a href=\"currencies.html?currency=\" target=\"_blank\">" +
+                "            <img src=\"" + item.coinIcon + "\" alt=\"" +item.title+ "\"/> " +item.title+
+                "    </td>" +
+                "    <td>" +
+                "        <a href=\"" + item.transaction.href + "\" target=\"_blank\"> "+ item.transaction.title +"</a>" +
+                "    </td>" +
+                "    <td class=\"price\" " +
+                "         data-usd=\""+item.price.usd+"\" data-cny=\""+item.price.cny+"\" " +
+                "         data-btc=\""+item.price.btc+"\" " +
+                "         data-native=\""+item.price.native+"\">" +item.price.init+ "</td>" +
+                "    <td>38万</td>" +
+                "    <td class=\"volume\" " +
+                "             data-usd=\""+item.volume.usd+"\" data-cny=\""+item.volume.cny+"\" " +
+                "         data-btc=\""+item.volume.btc+"\" " +
+                "         data-native=\""+item.volume.native+"\">" +item.volume.init+ "</td>" +
+                "    <td>"+ item.proportion+"</td>" +
+                "    <td>" + item.time + "</td>" +
+                "    <td>" +
+                "        <div class=\"addto disactive\" onclick=\"addfocus();\">添加自选</div>" +
+                "    </td>" +
+                "</tr>");
+        });
+    },
+    dataAjax: function(code){
+        $.ajax({
+            url: BASE_URL + "api/currency/getExchangeDetail?currenty=" + code,
+            type: "GET",
+            dataType: 'json',
+            success: function (data) {
+                exchangedetails.detail(data.detail);
+                exchangedetails.coin(data.coin);
+            }
+        });
+    },
+    process: function(){
+        var currenty = GetRequest().currenty.split('/')[0];
+        exchangedetails.dataAjax(currenty);
+    }
+};
+
+/**
+ * currencies.html
+ * @type {{process: currencies.process}}
+ */
+var currencies = {
+    exchageRow: function(data){
+      return "<tr class=\"adList\">" +
+          "    <td>* </td>" +
+          "    <td>" +
+          "        <a href=\""+ data.exchangeHref + "\" target=\"_blank\">" +
+          "            <img height='15' width='18' src=\"" +data.exchangeIcon+ ".jpg\" alt=\"" + data.exchangeTitle + "\">" + data.exchangeTitle + "</a>" +
+          "    </td>" +
+          "    <td class=\"price\" " +
+          "         data-usd=\""+data.price.usd+"\" data-cny=\""+data.price.cny+"\" " +
+          "         data-btc=\""+data.price.btc+"\" " +
+          "         data-native=\""+data.price.native+"\">" +data.price.init+ "</td>" +
+          "    <td>" +data.ammount+ "</td>" +
+          "    <td class=\"volume\" " +
+          "             data-usd=\""+data.volume.usd+"\" data-cny=\""+data.volume.cny+"\" " +
+          "         data-btc=\""+data.volume.btc+"\" " +
+          "         data-native=\""+data.volume.native+"\">" +data.volume.init+ "</td>" +
+          "    <td>"+data.proportion+"</td>" +
+          "    <td>" + data.time + "</td>" +
+          "    <td>" +
+          "        <div class=\"addto disactive\" onclick=\"\">添加自选</div>" +
+          "    </td>" +
+          "</tr>"
+    },
+    exchage: function(list){
+        $("div.boxContain table.table3 tbody").empty();
+        $(list).each(function(index, item){
+            $("div.boxContain table.table3 tbody").append(currencies.exchageRow(item));
+        });
+    },
+    details: function(data){
+        $('#coinnameCN').html(data["title"]["en"] + " " + data["title"]["cn"]);
+        $('#coinLogo').attr('src',data.icon);
+        $('#24Max').text(data.twenty.price.max);
+        $('#24Min').text(data.twenty.price.min);
+
+        $('#mainy').text(data.price.usd);
+        $('#price').text(data.price.cny);
+        $('#mainbtc').text(data.price.btc);
+        ;
+        $('#ltinit').text(data.circulation.price.cny);
+        $('#lty').text(data.circulation.price.usd);
+        $('#ltbtc').text(data.circulation.price.btc);
+        $('#ltlevel').text(data.circulation.ranking);
+
+        $('#ltlltcz').text(data.amount.issue);
+        $('#ltlltc').text(data.amount.circulation);
+
+        $('#cjmoney').text(data.twenty.turnover.price.cny)
+        $('#cjy').text(data.twenty.turnover.price.usd);
+        $('#cjbtc').text(data.twenty.turnover.price.btc);
+        $('#upOrDown').text(data.floatRate);
+        $('#remark').text('');
+
+        if(data.describe.length>80){
+            $('#remark').append(data.describe.substr(0,80)+"...");
+            $('#remark').append('<a href="coindetails.html?currenty='+data.code+'" target="_blank">查看全部</a>');
+        }else{
+            $('#remark').append(data.describe);
+        }
+
+        $('#cnName').text(data.title.en);
+        $('#enName').text(data.title.cn);
+        $('#level3').text("第" + data.circulation.ranking + "名");
+        $('#sjjys').text(data.ticker.count+"家");// 交易所
+        $('#fxtime').text(data.date); // 上架时间
+
+        $('#qqzsz').text(data.marketCapitalization);
+        $('#ltl').text(data.amount.circulationRate);
+        $('#hsl').text(data.twenty.turnover.rate);
+
+        $('#bbook').text(data.whitePage.title);
+        $('#bbook').attr('href',data.whitePage.title);
+        if(data.webSite.length!=0){
+            var res='';
+            for(var i=0;i<data.webSite.length;i++){
+                res+="<a href="+data.webSite[0].href+" rel='nofollow' target='_blank'>"+data.webSite[0].title+"</a>,";
+            }
+            $('#net').append(res.substr(0,res.length-1));
+        }
+
+        if(data.blockStation.length!=0){
+            var res='';
+            for(var i=0;i<data.blockStation.length;i++){
+                res+="<a href="+data.blockStation[0].href+" rel='nofollow' target='_blank'>"+data.blockStation[0].title+"</a>,";
+            }
+            $('#qknet').append(res.substr(0,res.length-1));
+        }
+    },
+    dataAjax: function(code){
+        $.ajax({
+            url: BASE_URL + "api/currency/getCurrencies",
+            type: "GET",
+            dataType: 'json',
+            data: "currency=" + code,
+            success: function (data) {
+                currencies.details(data.detail);
+                currencies.exchage(data.exchange);
+            }
+        });
+    },
+    loadCoinEvent: function(code){
+        var uri = BASE_URL + "api/currency/getCoinevent";
+        $.ajax({
+            url: uri,
+            type: "GET",
+            dataType: 'json',
+            data: "currency=" + code,
+            success: function (data) {
+                if (data.length > 0) {
+                    $("#coineventtimeline").append(data);
+                    $("#timeLineBox").css("display", "block");
+                }
+            }
+        });
+    },
+    loadPiechartCoinvol: function(code){
+        $.ajax({
+            url: BASE_URL + "api/currency/getCointradesPercent",
+            type: "GET",
+            dataType: 'json',
+            data: "currency=" + code,
+            success: function (data) {
+                var pieArr = [];
+                $(data).each(function (index, item) {
+                    pieArr.push([item.name, item.y]);
+                });
+                $('#piechart_coinvol').highcharts().series[0].setData(pieArr);
+            }
+        });
+    },
+    chart:function(){
+        new Chartist.Pie('.ct-chart3', {
+            series: [5, 95]
+        }, {
+            donut: true,
+            donutWidth: 40,
+            startAngle: 270,
+            total: 200,
+            showLabel: false
+        });
+        new Chartist.Pie('.ct-chart2', {
+            series: [66, 34]
+        }, {
+            donut: true,
+            donutWidth: 40,
+            startAngle: 270,
+            total: 200,
+            showLabel: false
+        });
+        new Chartist.Pie('.ct-chart1', {
+            series: [2.814545, 97.18546]
+        }, {
+            donut: true,
+            donutWidth: 40,
+            startAngle: 270,
+            total: 200,
+            showLabel: false
+        });
+
+        $('#piechart_coinvol').highcharts({
+            legend: {
+                itemStyle: {
+                    color: '#666',
+                    fontWeight: 'normal',
+                },
+                itemWidth: 120,
+                symbolRadius: 0
+            },
+            chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false
+            },
+            title: {
+                text: ''
+            },
+            tooltip: {
+                headerFormat: '{series.name}<br>',
+                pointFormat: '{point.name}: <b>{point.percentage:.1f}%</b>'
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: false
+                    },
+                    showInLegend: true
+                }
+            },
+            series: [{
+                type: 'pie',
+                name: '交易对成交量占比'
+            }]
+
+        });
 
     },
     process: function(){
-        exchangedetails.dataAjax();
+        currencies.chart();
+        var coinCode = GetRequest().currency.split('/')[0];
+        currencies.loadCoinEvent(coinCode);
+        currencies.loadPiechartCoinvol(coinCode);
+        currencies.dataAjax(coinCode);
     }
 };
