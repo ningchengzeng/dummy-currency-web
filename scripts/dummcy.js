@@ -792,9 +792,9 @@ var currencies = {
           "</tr>"
     },
     exchage: function(list){
-        $("div.boxContain table.table3 tbody").empty();
+        $("div#tickerlist div.boxContain table.table3.tableMaxWidth tbody:eq(0)").empty();
         $(list).each(function(index, item){
-            $("div.boxContain table.table3 tbody").append(currencies.exchageRow(item));
+            $("div#tickerlist div.boxContain table.table3.tableMaxWidth tbody:eq(0)").append(currencies.exchageRow(item));
         });
     },
     details: function(data){
