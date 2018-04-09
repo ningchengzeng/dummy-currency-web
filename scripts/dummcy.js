@@ -1,4 +1,4 @@
-var BASE_URL = "http://139.162.90.234:81/";
+var BASE_URL = "http://192.168.99.101/";
 
 /**
  * 工具处理
@@ -190,12 +190,12 @@ var index = {
 var newCoin = {
     row: function(data){
         return '<tr>'
-            + '<td><a href="currencies.html?currency='+data.code+'" target="_blank"><img src="'+newCoin.setvalue(data.icon)+'" alt="'+data.title.cn+'">'+data.title.cn+'</a></td>'
+            + '<td><a href="currencies.html?currency='+data.code+'" target="_blank"><img src="'+data.icon+'" alt="'+data.title.cn+'">'+data.title.cn+'</a></td>'
             + ' <td>'+data.title.short+'</td>'
-            + ' <td class="market-cap" data-usd="'+data.marketCap.usd+'" data-cny="'+data.marketCap.cny+'" data-btc="'+data.marketCap.btc+'">￥'+data.marketCap.cny+'</td>'
-            + ' <td><a href="currencies.html?currency='+data.code+'" target="_blank" class="price" data-usd="'+data.price.usd+'" data-cny="'+data.price.cny+'" data-btc="'+data.price.cny+'">￥'+data.price.cny+'</a></td>'
+            + ' <td class="market-cap" data-usd="'+data.marketCap.usd+'" data-cny="'+data.marketCap.cny+'" data-btc="'+data.marketCap.btc+'">'+data.marketCap.init+'</td>'
+            + ' <td><a href="currencies.html?currency='+data.code+'" target="_blank" class="price" data-usd="'+data.price.usd+'" data-cny="'+data.price.cny+'" data-btc="'+data.price.cny+'">'+data.price.init+'</a></td>'
             + ' <td>'+data.amount+'</td>'
-            + ' <td class="volume" data-usd="'+data.volume.usd+'" data-cny="'+data.volume.cny+'" data-btc="'+data.volume.btc+'"><a href="currencies.html?currency='+data.code+'#markets" target="_blank">￥'+data.volume.cny+'</a></td>'
+            + ' <td class="volume" data-usd="'+data.volume.usd+'" data-cny="'+data.volume.cny+'" data-btc="'+data.volume.btc+'"><a href="currencies.html?currency='+data.code+'#markets" target="_blank">'+data.volume.init+'</a></td>'
             + '<td><div '+ newCoin.validate(data.updown.replace("%",""))+'>'+data.updown+'</div></td>'
             + '<td>'+data.date+'</td>'
             + '</tr>';
@@ -213,9 +213,6 @@ var newCoin = {
                 });
             }
         });
-    },
-    setvalue: function(val){
-        return val.replace(/(\/\d{8}\/)/,'/time/').replace("//static.feixiaohao.com","themes");
     },
     validate:function(num) {
         var reg = /^\d+(?=\.{0,1}\d+$|$)/
@@ -432,18 +429,18 @@ var concept = {
             "<td>" +
             "<a href=\"conceptcoin.html?id=" + data.index + "\" target=\"_blank\">" + data.title + "</a></td>" +
             "<td>"+data.price24H+"</td>" +
-            "<td class=\"text-red\">" + data.avrUpDown + "</td>" +
+            "<td "+concept.validate(data.avrUpDown)+ ">" + data.avrUpDown + "</td>" +
             "<td title=\"" + data.up.title + "\">" +
             "   <a href=\"currencies.html?currency=" + data.up.code + "\" target=\"_blank\">"+data.up.title +"</a>" +
-            "   <span class=\"tags-green\">" +data.up.amount+ "</span>" +
+            "   <span " +concept.validateTag(data.up.amount) + ">" +data.up.amount+ "</span>" +
             "</td>" +
             "<td title=\"" + data.down.title + "\">" +
             "   <a href=\"currencies.html?currency=" + data.down.code + "\" target=\"_blank\">" +data.down.title+ "</a>" +
-            "   <span class=\"tags-red\">" +data.down.amount+ "</span>" +
+            "   <span "+concept.validateTag(data.down.amount) + ">" +data.down.amount+ "</span>" +
             "</td>" +
             "<td>" + data.coin.count + "</td>" +
             "<td>" +
-            "   <span class=\"text-green\">" + data.coin.up + "</span>/<span class=\"text-red\">" + data.coin.down + "</span>" +
+            "   <span "+concept.validate(data.coin.up)+ ">" + data.coin.up + "</span>/<span " +concept.validate(data.coin.down)+  ">" + data.coin.down + "</span>" +
             "</td>" +
             "</tr>";
     },
@@ -460,6 +457,30 @@ var concept = {
                 });
             }
         });
+    },
+    validateTag: function(num){
+        if(num.indexOf("%") > 0){
+            num = num.replace("%","");
+        }
+
+        var reg = /^\d+(?=\.{0,1}\d+$|$)/
+        if(reg.test(num)){
+            return 'class="tags-green"' ;
+        }else{
+            return 'class="tags-red"';
+        }
+    },
+    validate:function(num) {
+        if(num.indexOf("%") > 0){
+            num = num.replace("%","");
+        }
+
+        var reg = /^\d+(?=\.{0,1}\d+$|$)/
+        if(reg.test(num)){
+            return 'class="text-green"' ;
+        }else{
+            return 'class="text-red"';
+        }
     },
     process: function(){
         util.loadHomeCoinMaxChange();//涨跌幅
