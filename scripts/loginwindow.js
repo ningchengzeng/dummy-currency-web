@@ -61,7 +61,6 @@ function outerWindow(a) {
         "           <p class='alert'>*帐户名或者密码不正确</p>" +
         "       </div>" +
         "       <div class='links'>" +
-        "           <a href='' target='_blank' class='findPassword'>忘记密码</a>" +
         "           <span>没有帐号？<a rel='nofollow'class='signup'>立即注册</a></span>" +
         "       </div>" +
         "   </form>" +
