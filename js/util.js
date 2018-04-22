@@ -1,11 +1,10 @@
-var baseUrl = "http://192.168.99.101/";
 $('.unit2 a').click(function () {
     if ($(this).hasClass('active')) {
         return;
     }
     $('.unit2 a').removeClass('active');
     $(this).addClass('active')
-})
+});
 $('.secondPark a').on('click', function (e) {
 
     if ($(this).attr('href')[0] == "#") {
@@ -44,8 +43,6 @@ function tooltip_format_fiat() {
     return '<span style="color:' + this.color + '">\u25CF</span> ' + this.series.name + ': <b>' + val + '</b><br/>'
 }
 
-
-
 $('.tabTit .tit').click(function () {
 
     var box = $(this).closest('.box').find('.tabBody');
@@ -82,46 +79,6 @@ $('.artList').mouseover(function () {
     clearInterval(scroll1);
 })
 
-
-//返回顶部
-function totop() {
-    $(window).scroll(function () {
-        if ($(window).scrollTop() > $(document).height() - 100 - $(window).height()) {
-            $('.totop').css('bottom', '150px')
-        }
-        else {
-            $('.totop').css('bottom', '50px')
-        }
-    });
-    $(".totop .top").click(function () {
-        $('body,html').animate({ scrollTop: 0 }, 500);
-    })
-}
-
-
-
-$('.fixedIndex a').on('click', function (e) {
-    /* e.preventDefault();*/
-    if ($(this).attr('href')[0] == "#") {
-        $('html,body').animate({
-            scrollTop: $(this.hash).offset().top - 130
-        }, 500);
-        $('.fixedIndex a.active').removeClass('active');
-        $(this).addClass('active');
-        return false
-    } else {
-        return true
-    }
-});
-
-totop();
-
-$('.totop>div').hover(function () {
-    $(this).find('.detal').fadeIn('fast');
-}, function () {
-    $(this).find('.detal').hide();
-});
-
 //点击屏幕取消
 $('html').click(
     function () {
@@ -143,20 +100,6 @@ function fixedNav() {
     });
 }
 fixedNav();
-
-
-/**
- * Created by zfd on 2017/8/8.
- */
-
-// var socketUrl = '//socket.feixiaohao.com/lcc';
-// var apiHots = "//api.feixiaohao.com/";
-var con = $('<div class="autocomplete"></div>');
-var tit = $('<div class="tit"></div>');
-var ul = $('<ul class="datalist"></ul>');
-var s = $('<style>.autocomplete{position:absolute;border:1px solid #eaecef;background:#fff;overflow:hidden;max-width:250px;z-index:999999;box-shadow: 2px 2px 3px #999}.autocomplete ul{padding:0;margin:0;display:block;padding:5px}.autocomplete ul li{height:35px;line-height:35px;text-overflow:ellipsis;overflow:hidden;white-space:nowrap;padding:0 5px}.autocomplete ul li a{color:#676a6c;text-decoration:none;font-size:14px;display:block}.autocomplete ul li:hover{background:#3499da;color:#fff}.autocomplete ul li:hover a{color:#fff}.autocomplete .tit{border-bottom:1px solid #eaecef;padding:5px;font-size: 14px;font-family: "Microsoft YaHei",sans-serif;background: #f1f1f1;line-height: normal!important}.autocomplete ul li a img{margin-right: 5px;vertical-align: -2px;}</style>')
-var $li = $('<li><a href=""><img src="" alt=""></a></li>');
-$('head').append(s);
 
 function toLocaleString(n, m) {
     if (m == null || m == "") {
@@ -578,10 +521,23 @@ $('.unit ul li').click(function () {
 
 });
 
+$('div.desc a').click(function(e){
+    e.stopPropagation();
+    if ($("div.desc").find('div.describe').css('display') !== 'block') {
+        $("div.desc").find('div.describe').css('display', 'none');
+        $("div.desc").find('div.describe').slideDown(100);
+    }
+    else {
+        $("div.desc").find('div.describe').slideUp(100);
+    }
+
+});
+
 //点击屏幕取消
 $('html').click(
     function () {
         $('.slideBtn ul').slideUp(100);
+        $('.desc').find('div.describe').slideUp(100);
     }
 );
 //固定导航
@@ -659,20 +615,6 @@ $('.searchBtn').click(function () {
 });
 
 
-//固定页脚
-//(function () {
-//    if ($('body>.w1200').height() < 800) {
-//        $('footer').css('position', 'absolute').css('bottom', '0').css('left', '0').css('right', '0')
-//    }
-//})();
-//网页加载进度条
-/*
- * @Author: fanqian
- * @Date:   2016-06-15 12:34:55
- * @Website:   //iterabc.com/preload-js/
- * @使用请注明作者和网站
- *
- */
 $.QianLoad = {
     PageLoading: function (options) {
         var defaults = {
@@ -726,7 +668,6 @@ $('body').on('click', '.tabTit-a li', function () {
     var index = $(this).index();
     var table = $(this).closest('.tabBody').find('table');
     if (table.eq(index).css('display') == 'table') {
-
         return
     }
     else {
@@ -756,22 +697,13 @@ function coinConceptSlide() {
         }
     })
 }
-function search(word) {
-    if (word == undefined || word == null || word.length < 1 || word.trim().length < 1) {
-        alert("请输入关键词");
-        return false;
-    }
-    else {
-        word = word.trim();
-        window.location.href = "search.html?word=" + encodeURIComponent(word);
-    }
-}
-
-
-
-
-
-
-
-
-
+// function search(word) {
+//     if (word == undefined || word == null || word.length < 1 || word.trim().length < 1) {
+//         alert("请输入关键词");
+//         return false;
+//     }
+//     else {
+//         word = word.trim();
+//         window.location.href = "search.html?word=" + encodeURIComponent(word);
+//     }
+// }

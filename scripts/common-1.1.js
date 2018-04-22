@@ -2,13 +2,11 @@
  * Created by zfd on 2017/8/8.
  */
 
-var socketUrl = '//socket.feixiaohao.com/lcc';
 var apiHots = "//api.feixiaohao.com/";
-var con = $('<div class="autocomplete"></div>');
 var tit = $('<div class="tit"></div>');
 var ul = $('<ul class="datalist"></ul>');
 var s = $('<style>.autocomplete{position:absolute;border:1px solid #eaecef;background:#fff;overflow:hidden;max-width:250px;z-index:999999;box-shadow: 2px 2px 3px #999}.autocomplete ul{padding:0;margin:0;display:block;padding:5px}.autocomplete ul li{height:35px;line-height:35px;text-overflow:ellipsis;overflow:hidden;white-space:nowrap;padding:0 5px}.autocomplete ul li a{color:#676a6c;text-decoration:none;font-size:14px;display:block}.autocomplete ul li:hover{background:#3499da;color:#fff}.autocomplete ul li:hover a{color:#fff}.autocomplete .tit{border-bottom:1px solid #eaecef;padding:5px;font-size: 14px;font-family: "Microsoft YaHei",sans-serif;background: #f1f1f1;line-height: normal!important}.autocomplete ul li a img{margin-right: 5px;vertical-align: -2px;}</style>')
-var $li = $('<li><a href=""><img src="" alt=""></a></li>');
+
 $('head').append(s);
 
 function toLocaleString(n, m) {
@@ -387,40 +385,6 @@ function preheadUpdate_New(a, data, char,ishome) {
    
 }
 
-//首页页头行情实时推送
-function preheadUpdate(a, data, char) {
-
-    var old = parseInt($('.preHead .w299').eq(a).find('.num').text());
-    if (old == data) {
-        return;
-    }
-    if (0 == a) {
-        document.title = data + ' BTC-比特币(币安) - 非小号 feixiaohao';
-    }
-    if (old > data) {
-        if ($('.preHead .w299').eq(a).find('.num').hasClass('text-red')) {
-            $('.preHead .w299').eq(a).find('.num').text(returnFloat(data))
-
-        }
-        else {
-            $('.preHead .w299').eq(a).find('.num').text(returnFloat(data)).removeClass('text-green').addClass('text-red');
-        }
-        $('.preHead .w299').eq(a).find('.char span').text(char).peity("line", { width: 70, height: 20, fill: '#f5f5f5', strokeWidth: 1, stroke: '#e40101' });
-    }
-    else {
-        if ($('.preHead .w299').eq(a).find('.num').hasClass('text-green')) {
-            $('.preHead .w299').eq(a).find('.num').text(returnFloat(data))
-        }
-        else {
-            $('.preHead .w299').eq(a).find('.num').text(returnFloat(returnFloat(data))).removeClass('text-red').addClass('text-green');
-
-        }
-        $('.preHead .w299').eq(a).find('.char span').text(char).peity("line", { width: 70, height: 20, fill: '#f5f5f5', strokeWidth: 1, stroke: '#3ca316' });
-    }
-
-    $('.preHead .w299').eq(a).find('.num').css('background', '#eee').animate({ backgroundColor: 'transparent' }, 1500);
-}
-
 var b;
 //首页表格行情实时推送
 function tableUpdate(tr, name, cny, usd, btc) {//a是tr的ID
@@ -740,73 +704,6 @@ $.QianLoad = {
 $.QianLoad.PageLoading({
     sleep: 50
 });
-
-
-  function loadglobalinfo() {
-    $.ajax({
-        url: apiHots+"global/",
-        async: true,
-        success: function (data) {
-            $(".total").html(data); 
-        }
-    }); 
-  }
-  function loadglobalinfo_new() {
-      $.ajax({
-          url: apiHots + "global/v2/",
-          async: true,
-          success: function (data) {
-              $("#globalinfo").html(data);
-          }
-      });
-  }
-  function loadindexdaohang() {
-      $.ajax({
-          url: apiHots+"site/daohang/",
-          async: true,
-          success: function (data) {
-              $(".linksList").html(data);
-          }
-      });
-  }
-  function loadHomeNewCoin() {
-      $.ajax({
-          url: apiHots+"coins/homenewcoin/",
-          async: true,
-          success: function (data) {
-              $("#newCoin").append(data); 
-              
-          }
-      });
-  }
-  function loadHomeVolRank() {
-      $.ajax({
-          url: apiHots+"vol/homevolrank/",
-          async: true,
-          dataType: "json",
-          success: function (data) { 
-              $("#vol_coin").append(data.result1);
-              $("#vol_exchange").append(data.result2);
-
-              $('#vol_coin').closest('.tabBody').removeClass('loading');
-              $('#vol_exchange').closest('.tabBody').removeClass('loading');
-          }
-      });
-  }
-  function loadHomeCoinMaxChange() {
-      $.ajax({
-          url: apiHots+"coins/HomeCoinMaxChange/",
-          async: true,
-          dataType: "json",
-          success: function (data) {
-              $("#maxchange_up").after(data.result1);
-              $("#maxchange_down").after(data.result2);
-              $('#maxchange_up').closest('.tabBody').removeClass('loading');
-              $('#maxchange_down').closest('.tabBody').removeClass('loading');
-          }
-      });
-  }
-
   function updateGbi(id, data) {
 
       var lastdata = $("#" + id).text();
@@ -842,68 +739,6 @@ $.QianLoad.PageLoading({
       }
   }
 
-  function startSocketHub() {
-      // 建立对应server端Hub class的对象，请注意geffChat的第一个字母要改成小写
-      var globalTicker = $.connection.globalTickerHub;
-      var coinTicker = $.connection.coinTickerHub;
-      $.connection.hub.url = socketUrl;
-
-
-      globalTicker.client.updateGlobalTickerSocketInfo = function (ticker) {
-          preheadUpdate(ticker.OrderNo, ticker.Price, ticker.KLineData);
-      };
-
-      globalTicker.client.updateTotalVolCapSocketInfo = function (ticker) {
-          updateVol_MarketCap("total_vol", ticker.Vol);
-          updateVol_MarketCap("total_cap", ticker.MarketCap);
-          updateGbi("total_gbi", ticker.GBI);
-      };
-      coinTicker.client.updateCoinTickerInfo = function (ticker) {
-          var tr = $('table').find('#' + ticker.CoinCode);
-          if (0 == tr.length) {
-              return;
-          }
-          tableUpdate(tr, 'P', ticker.Price_Cny, ticker.Price_Usd, ticker.Price_Btc);
-          tableUpdate(tr, 'V', ticker.Vol_Cny, ticker.Vol_Usd, ticker.Vol_Btc);
-          tableUpdate(tr, 'C', ticker.MarketCap_Cny, ticker.MarketCap_Usd, ticker.MarketCap_Btc);
-          tableUpdateChange(tr, ticker.Change);
-
-      };
-
-      $.connection.hub.start().done();
-  }
-  function startSocketHub(ishome) {
-      // 建立对应server端Hub class的对象，请注意geffChat的第一个字母要改成小写
-      var globalTicker = $.connection.globalTickerHub;
-      var coinTicker = $.connection.coinTickerHub;
-      $.connection.hub.url = socketUrl;
-
-
-      globalTicker.client.updateGlobalTickerSocketInfo = function (ticker) {
-          preheadUpdate_New(ticker.OrderNo, ticker.Price, ticker.KLineData, ishome);
-      };
-
-      globalTicker.client.updateTotalVolCapSocketInfo = function (ticker) {
-          updateVol_MarketCap("total_vol", ticker.Vol);
-          updateVol_MarketCap("total_cap", ticker.MarketCap);
-          updateGbi("total_gbi", ticker.GBI);
-      };
-      if (ishome) {
-          coinTicker.client.updateCoinTickerInfo = function (ticker) {
-              var tr = $('table').find('#' + ticker.CoinCode);
-              if (0 == tr.length) {
-                  return;
-              }
-              tableUpdate(tr, 'P', ticker.Price_Cny, ticker.Price_Usd, ticker.Price_Btc);
-              tableUpdate(tr, 'V', ticker.Vol_Cny, ticker.Vol_Usd, ticker.Vol_Btc);
-              tableUpdate(tr, 'C', ticker.MarketCap_Cny, ticker.MarketCap_Usd, ticker.MarketCap_Btc);
-              tableUpdateChange(tr, ticker.Change);
-
-          };
-      }
-
-      $.connection.hub.start().done();
-  }
   //tabTit-a
   $('body').on('click', '.tabTit-a li', function () {
       var index = $(this).index();
@@ -920,49 +755,6 @@ $.QianLoad.PageLoading({
       }
   });
 
-  function loadcoinevent() {
-      var url = "//api.feixiaohao.com/";
-      var coincode = $("#coincode").val();
-      $.ajax({
-          url: url + "coinevent/" + coincode + "/",
-          async: true,
-          success: function (data) {
-              if (data.length > 0) {
-                  $("#coineventtimeline").append(data);
-                  $("#timeLineBox").css("display", "block");
-              }
-          }
-      });
-  }
-  function loadconcept(conceptid) {
-      var url = "//api.feixiaohao.com/";
-
-      $.ajax({
-          url: url + "hotconcept/" + conceptid + "/",
-          async: true,
-          dataType: "json",
-          success: function (data) {
-
-              if (null != data.result1 && data.result1.length > 0) {
-                  $("#hotconcept").html("");
-                  $("#hotconcept").append(data.result1);
-                  coinConceptSlide();
-                  $('body').on('click', "#hotconcept a", function () { 
-                          if ($(this).hasClass('active')) {
-                              return;
-                          }
-                          $('#hotconcept a').removeClass('active');
-                          $(this).addClass('active')
-                      
-                  }) 
-              }
-              if (null != data.result2 && data.result2.length > 0) {
-                  $("#hotconceptCoinTable").html("");
-                  $("#hotconceptCoinTable").append(data.result2);
-              }
-          }
-      });
-  }
   var length =0
   function coinConceptSlide() {
       length = $('.hotidea a').length;
@@ -1083,11 +875,7 @@ $.QianLoad.PageLoading({
       }
       return cookieValue;
   }
-  function loadwxqqpic() {
-     var div = '<div class="area_group"><div class="tit"><svg t="1515031462007" class="icon" style="" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2604" xmlns:xlink="http://www.w3.org/1999/xlink" width="16" height="16"><defs><style type="text/css"></style></defs><path d="M917.504 422.4h-55.296V181.76c0-61.44-50.176-111.616-111.616-111.616H135.68c-61.44 0-111.616 50.176-111.616 111.616v392.192c0 61.44 50.176 111.616 111.616 111.616h66.56l1.024 116.736c0.512 22.016 12.288 41.984 31.744 52.224 8.704 4.608 18.432 7.168 28.16 7.168 11.264 0 23.04-3.584 33.28-10.24l142.336-95.744v1.024c0 45.568 37.376 82.944 82.944 82.944h129.536l157.184 105.472c8.192 5.632 17.92 8.192 27.136 8.192 7.68 0 15.872-2.048 23.552-5.632 15.872-8.192 26.112-25.088 26.112-43.008l0.512-64.512h31.744c45.568 0 82.944-37.376 82.944-82.944V505.344c-0.512-45.568-37.888-82.944-82.944-82.944zM265.216 798.72l-1.024-118.784c-0.512-30.72-25.6-55.808-56.32-55.808h-71.68c-27.648 0-50.176-22.528-50.176-50.176v-391.68c0-27.648 22.528-50.176 50.176-50.176h614.4c27.648 0 50.176 22.528 50.176 50.176V573.44c0 27.648-22.528 50.176-50.176 50.176H542.208c-11.264 0-22.016 3.584-31.232 9.728L265.216 798.72z m673.28-40.96c0 11.776-9.728 21.504-21.504 21.504h-46.08c-25.6 0-47.104 20.992-47.104 46.592l-0.512 56.32-141.824-95.232c-7.68-5.632-16.896-8.192-26.112-8.192H521.216c-11.776 0-21.504-9.728-21.504-21.504v-41.984l44.032-29.696H750.08c61.44 0 111.616-50.176 111.616-111.616v-89.6h55.296c11.776 0 21.504 9.728 21.504 21.504V757.76z" p-id="2605" fill="#ffffff"></path><path d="M321.536 347.136h244.736c16.896 0 30.72-13.824 30.72-30.72s-13.824-30.72-30.72-30.72H321.536c-16.896 0-30.72 13.824-30.72 30.72 0 17.408 13.824 30.72 30.72 30.72z m273.92 88.064c0-16.896-13.824-30.72-30.72-30.72H320c-16.896 0-30.72 13.824-30.72 30.72s13.824 30.72 30.72 30.72h244.736c17.92 0 30.72-13.824 30.72-30.72z" p-id="2606" fill="#ffffff"></path></svg>非小号地区群</div><div class="qqpic"><img src="http://qq.liantu.com/areaqr/qq.jpg" alt="">QQ交流群</div><div class="wecatpic"><img src="http://qq.liantu.com/areaqr/weixin.jpg" alt="">微信交流群</div></div>'
-     $('body').append(div); 
-  }
-  
+
   //*******************************************搜索结果
 //搜索结果--添加自选(全网)
 function addsearchchose(keys) {
@@ -1134,7 +922,6 @@ function addsearchchose(keys) {
 
     }
 }
-
 
 //搜索结果--取消自选（全网）
 function cancelsearchchose(keys) {

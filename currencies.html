@@ -111,7 +111,7 @@
                             <input type="hidden" id="coincode" value="litecoin">
                             <input type="hidden" id="coinname" value="Litecoin"></h1>
                         <div>
-                            <div class="addto disactive" onclick="">添加自选</div>
+                            <div id="currency" class="addto disactive" onclick="addfocus(this);">添加自选</div>
                         </div>
                         <div class="coinprice">
                             <span id="price"></span>
@@ -129,8 +129,9 @@
                             <span id="mainy"></span>&nbsp;&nbsp
                             <span id="mainbtc"></span>
                         </div>
-                        <div class="des" id='remark'>
-                            <a href="/coindetails/litecoin/" target="_blank">查看全部</a>
+                        <div class="desc" id='remark'>
+                            <div class="describe"></div>
+                            <span></span><a href="javascript:void(0);">查看全部</a>
                         </div>
                     </div>
 
@@ -214,21 +215,41 @@
                             <span class="value" id="qknet">
                             </span>
                         </li>
-
-                        <li style="width:579px">
-                       
+                        <li id="funding">
+                            <span class="tit">众筹价格：</span>
+                            <span class="value">
+                            </span>
                         </li>
-                        <li id="erweima" style="width: 579px">
-
+                        <li id="concept">
+                            <span class="tit">相关概念：</span>
+                            <span class="value">
+                            </span>
+                        </li>
+                        <li id="assets">
+                            <span class="tit">是否代币：</span>
+                            <span class="value">
+                            </span>
+                        </li>
+                        <li id="assetsPlatform">
+                            <span class="tit">代币平台：</span>
+                            <span class="value">
+                            </span>
                         </li>
 
-                        <li style="width:100%">
-                            <span class="tit alert">
+                        <li>
+                            <span class="tit"></span>
+                            <span class="value">
+                            </span>
+                        </li>
+
+                        <li style="width:100%; height: 40px;padding: 0px">
+                            <span class="tit alert" style="padding: 5px">
                                 <b>风险提示：</b>炒币有风险，入市需谨慎；平台价差大，搬砖须谨慎！</span>
                         </li>
                     </ul>
                 </div>
             </div>
+
             <div class="box box1200" style="display:none" id="cointrend">
                 <div class="boxTit">
                     <h2>LTC价格趋势</h2>
@@ -254,7 +275,6 @@
             <div class="box box860" id="tickerlist">
                 <div class="boxTit">
                     <h2>LTC市场行情</h2>
-                    <a class="more" href="/coinmarket/litecoin/" target="_blank"></a>
                 </div>
 
                 <div class="unit2">
@@ -316,16 +336,15 @@
                             <tr>
                                 <th>排名</th>
                                 <th>交易所</th>
+                                <th>交易对</th>
                                 <th>价格</th>
                                 <th>成交量</th>
                                 <th>成交额</th>
                                 <th>占比</th>
                                 <th data-sort-method='none'>更新时间</th>
-                                <th data-sort-method='none'>自选状态</th>
                             </tr>
                         </thead>
                         <tbody>
-
                         </tbody>
                     </table>
                 </div>
@@ -344,7 +363,6 @@
             <div class="box box1200" id="timeLineBox" style="display:none">
                 <div class="boxTit">
                     <h2>LTC大事件</h2>
-                    <a href="/coinevent/litecoin/" target="_blank" class="more"></a>
                 </div>
                 <div class="boxContain">
                     <div class="timeLineWinodow">
@@ -354,6 +372,15 @@
                     </div>
                 </div>
             </div>
+            <div class="box box1200" style="display: none;" id="icotable">
+                <div class="boxTit">
+                    <h2 id="ico" >ETH的ICO信息</h2>
+                </div>
+
+                <table class="iCOtable">
+                </table>
+            </div>
+
 
             <div class="box box860" style="display:none" id="coinrankBox">
                 <div class="boxTit">
@@ -370,10 +397,10 @@
                     </div>
                 </div>
             </div>
-            <div class="box box325">
+            <div class="box box325" style="float: right;">
                 <div class="boxTit">
                     <h2>热门概念</h2>
-                    <a class="more" href="/concept/" target="_blank"></a>
+                    <a class="more" href="concept.html" target="_blank"></a>
                 </div>
                 <div class="unit2 coinhotconcept">
                     <div id="hotconcept">
@@ -448,7 +475,6 @@
     <script src="js/jquery-2.1.1.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/plugins/peity/jquery.peity.min.js"></script>
-    <script src='scripts/tablesort.js'></script>
     <script src='js/util.js'></script>
     <script src="scripts/dummcy.js"></script>
 

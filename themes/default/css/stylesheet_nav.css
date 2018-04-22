@@ -338,7 +338,18 @@ nav .leftNav li.logo img {
 	padding: 0 10px
 }
 
-.slideBtn ul {
+div.desc div.describe{
+	padding-left: 10px !important;
+	padding-right: 10px !important;
+	width: 400px;
+	z-index: 9999;
+	word-break:normal;
+	white-space:pre-wrap !important;
+	overflow:hidden;
+	min-width: auto !important;
+}
+
+.slideBtn ul, div.desc div.describe {
 	position: absolute;
 	border: 1px solid #eaecef;
 	box-shadow: 1px 1px 3px #eaecef;
@@ -1819,7 +1830,7 @@ li.showmarket {
 }
 
 .showmarket .cell {
-	width: 130px;
+	width: 140px;
 	border-left: 1px solid #eaecef;
 	background: #fff;
 	padding: 15px 10px
@@ -2841,7 +2852,8 @@ nav .leftNav>li>a {
 
 .iCOtable td,.iCOtable th {
 	border-bottom: 1px solid #eaecef;
-	border-left: 1px solid #eaecef
+	border-left: 1px solid #eaecef;
+	text-align: center !important;
 }
 
 .iCOtable tr th:first-child,.iCOtable tr td:first-child {

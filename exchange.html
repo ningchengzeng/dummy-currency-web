@@ -15,214 +15,260 @@
 </head>
 
 <body>
-    <nav class=''>
-        <div class='navsub'>
-            <div class='minWidth' id='globalinfo'>
-            </div>
+<nav class=''>
+    <div class='navsub'>
+        <div class='minWidth' id='globalinfo'>
         </div>
-        <div class='minWidth'>
-            <ul class='leftNav'>
-                <li class='logo'>
-                    <a href='/'>
-                        <img src='img/logo.png' alt='Logo'>
-                    </a>
-                </li>
-                <li class='navSlide'>
-                    行情
-                    <ul class='subNav'>
-                        <li>
-                            <a href='index.html'>所有</a>
-                        </li>
-                        <li>
-                            <a href='index.html'>货币</a>
-                        </li>
-                        <li>
-                            <a href='index.html'>代币</a>
-                        </li>
-                        <li>
-                            <a href='newcoin.html'>最新上市</a>
-                        </li>
-                        <li>
-                            <a href='concept.html'>概念行情</a>
-                        </li>
-                        <li>
-                            <a href='charts.html'>
-                                市值趋势
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                <li class='navSlide'>
-                    排行榜
-                    <ul class='subNav'>
-                        <li>
-                            <a href='maxchange.html'>涨跌幅排行榜</a>
-                        </li>
-                        <li>
-                            <a href='vol.html'>24小时成交额排行(币种)</a>
-                        </li>
-                        <li>
-                            <a href='volexchange.html'>24小时成交额排行(交易平台)</a>
-                        </li>
-                        <li>
-                            <a href='monthrank.html'>月成交额排行</a>
-                        </li>
-                    </ul>
-                </li>
-
-                <li>
-                    <a href='exchange.html'>交易平台</a>
-                </li>
-            </ul>
-            <ul class='rightNav'>
-                <li class='searchForm' style='float: right'>
-                    <form action=''>
-                        <input type='text' id='input-sm' style="box-sizing: content-box" placeholder='输入关键词...'>
-                        <i class='icon-search' onclick='search(document.getElementById("input-sm").value)'></i>
-                    </form>
-                </li>
-                <li class='showmarket' style='float: right'>
-                </li>
-
-            </ul>
-        </div>
-
-    </nav>
-    <div class="m30"></div>
-    <div class="m30"></div>
-    <div class="w1200">
-        <div class="col">
-            <div class="box box860" style="min-height:800px">
-                <div class="boxTit">
-                    <h1>数字货币交易平台列表</h1>
-                </div>
-                <div class="boxTools">
-                    <div class="pageList pageList-left">
-                        <a href="exchange.html" class="btn btn-default dropdown-toggle" aria-expanded="false">
-                            默认
+    </div>
+    <div class='minWidth'>
+        <ul class='leftNav'>
+            <li class='logo'>
+                <a href='/'>
+                    <img src='img/logo.png' alt='Logo'>
+                </a>
+            </li>
+            <li class='navSlide'>
+                行情
+                <ul class='subNav'>
+                    <li>
+                        <a href='index.html'>所有</a>
+                    </li>
+                    <li>
+                        <a href='index.html'>货币</a>
+                    </li>
+                    <li>
+                        <a href='index.html'>代币</a>
+                    </li>
+                    <li>
+                        <a href='newcoin.html'>最新上市</a>
+                    </li>
+                    <li>
+                        <a href='concept.html'>概念行情</a>
+                    </li>
+                    <li>
+                        <a href='charts.html'>
+                            市值趋势
                         </a>
-                        <a href="exchange.html?filter=star" class="btn btn-default dropdown-toggle" aria-expanded="false">
-                            星级
-                        </a>
-                        <a href="exchange.html?filter=name" class="btn btn-default dropdown-toggle" aria-expanded="false">
-                            名称
-                        </a>
-                        <a href="exchange.html?filter=pair" class="btn btn-default dropdown-toggle" aria-expanded="false">
-                            交易对数量
-                        </a>
-                    </div>
-                    <div class="toolLable" style="margin-left: 15px;">筛选</div>
-                    <div class="slideBtn">
-                        <button>类型</button>
-                        <ul>
-                            <li>
-                                <a href="exchange.html">全部</a>
-                            </li>
-                            <li>
-                                <a href="exchange.html?type=1">现货</a>
-                            </li>
-                            <li>
-                                <a href="exchange.html?type=2">期货</a>
-                            </li>
-                            <li>
-                                <a href="exchange.html?type=3">法币</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="pageList" id="pageList">
-                    </div>
-                </div>
-
-                <ul class="plantList" id='itemsList'>
+                    </li>
                 </ul>
-                <div class="boxTools">
+            </li>
+            <li class='navSlide'>
+                排行榜
+                <ul class='subNav'>
+                    <li>
+                        <a href='maxchange.html'>涨跌幅排行榜</a>
+                    </li>
+                    <li>
+                        <a href='vol.html'>24小时成交额排行(币种)</a>
+                    </li>
+                    <li>
+                        <a href='volexchange.html'>24小时成交额排行(交易平台)</a>
+                    </li>
+                    <li>
+                        <a href='monthrank.html'>月成交额排行</a>
+                    </li>
+                </ul>
+            </li>
 
-                    <div class="pageList" id="pageList2">
+            <li>
+                <a href=''>交易平台</a>
+            </li>
+        </ul>
+        <ul class='rightNav'>
+            <li class='searchForm' style='float: right'>
+                <form action=''>
+                    <input type='text' id='input-sm' style="box-sizing: content-box" placeholder='输入关键词...'>
+                    <i class='icon-search' onclick='search(document.getElementById("input-sm").value)'></i>
+                </form>
+            </li>
+            <li class='showmarket' style='float: right'>
+            </li>
 
-                    </div>
-                </div>
+        </ul>
+    </div>
+
+</nav>
+<div class="m30"></div>
+<div class="m30"></div>
+<div class="w1200">
+    <div class="col">
+        <div class="box box860" style="min-height:800px">
+            <div class="boxTit">
+                <h1>数字货币交易平台列表</h1>
             </div>
-            <div class="box box325">
-                <div class="boxTit">
-                    <h2>交易所最新公告</h2>
-                    <a href="notice.html" target="_blank" class="more" title="更多"></a>
+            <div class="boxTools">
+                <div class="toolLable">排序</div>
+                <div class="pageList pageList-left">
+                    <a href="javascript:exchange.filter='';exchange.ajaxData();" class="btn btn-default dropdown-toggle" aria-expanded="false">
+                        默认
+                    </a>
+                    <a href="javascript:exchange.filter='star';exchange.ajaxData();" class="btn btn-default dropdown-toggle"
+                       aria-expanded="false">
+                        星级
+                    </a>
+                    <a href="javascript:exchange.filter='title';exchange.ajaxData();" class="btn btn-default dropdown-toggle"
+                       aria-expanded="false">
+                        名称
+                    </a>
+                    <a href="javascript:exchange.filter='coinCount';exchange.ajaxData();" class="btn btn-default dropdown-toggle"
+                       aria-expanded="false">
+                        交易对数量
+                    </a>
                 </div>
-                <div class="boxContain" style="height:400px;overflow: hidden;padding-buttom:10px" id="artList">
-                    <ul class="artList" style="padding: 0" id="z1">
-                        <li>
-                            <a href="https://www.bite.ceo/i/blog_c_172.jsp" target="_blank" rel="nofollow" title="【CEO交易所】香港CEO交易所 启用全球加速域名公告">
-                                <span class="tit">
-                                    <img src="themes/img/18408b4c721b42398264b2b96937030d_15_15.png" alt="香港CEO交易所 启用全球加速域名公告">香港CEO交易所 启用全球加速域名公告
-                                </span>
-                                <span class="time">03-18 14:11</span>
-                            </a>
-                        </li>
+                <div class="toolLable" style="margin-left: 15px;">筛选</div>
+                <div class="slideBtn unit">
+                    <button>国家</button>
+                    <ul>
+                        <li><a href="javascript:exchange.code='';exchange.ajaxData();">全部</a></li>
+                        <li><a href="javascript:exchange.code='cn';exchange.ajaxData();">中国</a></li>
+                        <li><a href="javascript:exchange.code='uk';exchange.ajaxData();">英国</a></li>
+                        <li><a href="javascript:exchange.code='us';exchange.ajaxData();">美国</a></li>
+                        <li><a href="javascript:exchange.code='jp';exchange.ajaxData();">日本</a></li>
+                        <li><a href="javascript:exchange.code='kr';exchange.ajaxData();">韩国</a></li>
+                        <li><a href="javascript:exchange.code='hongkong';exchange.ajaxData();">中国香港</a></li>
+                        <li><a href="javascript:exchange.code='pola';exchange.ajaxData();">波兰</a></li>
+                        <li><a href="javascript:exchange.code='can';exchange.ajaxData();">加拿大</a></li>
+                        <li><a href="javascript:exchange.code='thailand';exchange.ajaxData();">泰国</a></li>
+                        <li><a href="javascript:exchange.code='india';exchange.ajaxData();">印度</a></li>
+                        <li><a href="javascript:exchange.code='aus';exchange.ajaxData();">澳洲</a></li>
+                        <li><a href="javascript:exchange.code='de';exchange.ajaxData();">德国</a></li>
+                        <li><a href="javascript:exchange.code='wkl';exchange.ajaxData();">乌克兰</a></li>
+                        <li><a href="javascript:exchange.code='newzeland';exchange.ajaxData();">新西兰</a></li>
+                        <li><a href="javascript:exchange.code='holland';exchange.ajaxData();">荷兰</a></li>
+                        <li><a href="javascript:exchange.code='els';exchange.ajaxData();">俄罗斯</a></li>
+                        <li><a href="javascript:exchange.code='danmark';exchange.ajaxData();">丹麦</a></li>
+                        <li><a href="javascript:exchange.code='sser';exchange.ajaxData();">塞舌尔</a></li>
+                        <li><a href="javascript:exchange.code='spain';exchange.ajaxData();">西班牙</a></li>
+                        <li><a href="javascript:exchange.code='malta';exchange.ajaxData();">马耳他</a></li>
+                        <li><a href="javascript:exchange.code='tsny';exchange.ajaxData();">坦桑尼亚</a></li>
+                        <li><a href="javascript:exchange.code='mesica';exchange.ajaxData();">墨西哥</a></li>
+                        <li><a href="javascript:exchange.code='switzerland';exchange.ajaxData();">瑞士</a></li>
+                        <li><a href="javascript:exchange.code='teq';exchange.ajaxData();">土耳其</a></li>
+                        <li><a href="javascript:exchange.code='brazil';exchange.ajaxData();">巴西</a></li>
+                        <li><a href="javascript:exchange.code='ysl';exchange.ajaxData();">以色列</a></li>
+                        <li><a href="javascript:exchange.code='tw';exchange.ajaxData();">台湾</a></li>
+                        <li><a href="javascript:exchange.code='singepo';exchange.ajaxData();">新加坡</a></li>
+                        <li><a href="javascript:exchange.code='kldy';exchange.ajaxData();">克罗地亚</a></li>
+                        <li><a href="javascript:exchange.code='zl';exchange.ajaxData();">智利</a></li>
+                        <li><a href="javascript:exchange.code='nanfei';exchange.ajaxData();">南非</a></li>
+                        <li><a href="javascript:exchange.code='mengu';exchange.ajaxData();">蒙古国</a></li>
+                        <li><a href="javascript:exchange.code='vietnam';exchange.ajaxData();">越南</a></li>
+                        <li><a href="javascript:exchange.code='asny';exchange.ajaxData();">爱沙尼亚</a></li>
+                        <li><a href="javascript:exchange.code='malaysia';exchange.ajaxData();">马来西亚</a></li>
+                        <li><a href="javascript:exchange.code='cayman';exchange.ajaxData();">开曼群岛</a></li>
+                        <li><a href="javascript:exchange.code='alq';exchange.ajaxData();">阿联酋</a></li>
+                        <li><a href="javascript:exchange.code='samora';exchange.ajaxData();">萨摩亚</a></li>
+                        <li><a href="javascript:exchange.code='unknow';exchange.ajaxData();">未知</a></li>
                     </ul>
-                    <ul class="artList" style="padding: 0" id="z1">
-                        <li>
-                            <a href="https://www.bite.ceo/i/blog_c_172.jsp" target="_blank" rel="nofollow" title="【CEO交易所】香港CEO交易所 启用全球加速域名公告">
-                                <span class="tit">
-                                    <img src="themes/img/18408b4c721b42398264b2b96937030d_15_15.png" alt="香港CEO交易所 启用全球加速域名公告">香港CEO交易所 启用全球加速域名公告
-                                </span>
-                                <span class="time">03-18 14:11</span>
-                            </a>
-                        </li>
+                </div>
+                <div class="slideBtn">
+                    <button>类型</button>
+                    <ul>
+                        <li><a href="javascript:exchange.type='';exchange.ajaxData();">全部</a></li>
+                        <li><a href="javascript:exchange.type='xianhuo';exchange.ajaxData();">现货</a></li>
+                        <li><a href="javascript:exchange.type='qihuo';exchange.ajaxData();">期货</a></li>
+                        <li><a href="javascript:exchange.type='otc';exchange.ajaxData();">法币</a></li>
                     </ul>
                 </div>
+                <div class="pageList" id="pageList">
+                </div>
             </div>
-            <div class="box box325">
-                <div class="plantListsSpread">
 
+            <ul class="plantList" id='itemsList'>
+            </ul>
+            <div class="boxTools">
+                <div class="pageList" id="pageList2">
                 </div>
             </div>
-            <div class="box box325">
-                <div class="boxTit">
-                    <h2>交易所成交额排行榜</h2>
-                    <a href="volexchange.html" class="more" title="更多"></a>
-                </div>
-                <div class="tabBody padding5">
-                    <table class="table table-rank noBg" id="vol_exchange"></table>
-                </div>
+        </div>
+        <div class="box box325">
+            <div class="boxTit">
+                <h2>交易所最新公告</h2>
+                <a href="notice.html" target="_blank" class="more" title="更多"></a>
+            </div>
+            <div class="boxContain" style="height:400px;overflow: hidden;padding-buttom:10px" id="artList">
+                <ul class="artList" style="padding: 0" id="z1">
+
+                </ul>
+            </div>
+        </div>
+        <div class="box box325" style="display: none;">
+            <div class="plantListsSpread">
+            </div>
+        </div>
+        <div class="box box325">
+            <div class="boxTit">
+                <h2>交易所成交额排行榜</h2>
+                <a href="volexchange.html" class="more" title="更多"></a>
+            </div>
+            <div class="tabBody padding5">
+                <table class="table table-rank noBg" id="vol_exchange"></table>
             </div>
         </div>
     </div>
-    <div class="m30"></div>
-    <footer class='clear'>
-        <div class='w1200'>
-            <a class='logo2' href='/'>
-                <img src='img/logo.png' alt='Logo'>
-            </a>
-            <div class='info'>
-                <div>
-                    <a href='about.html' target='_blank'>关于我们</a>
-                    <i class='space2'></i>
-                    <a href='contact.html' target='_blank'>联系我们</a>
-                    <i class='space2'></i>
-                    <a href='faq.html' target='_blank'>常见问题</a>
-                    <i class='space2'></i>
-                    <a href='manager.html' target='_blank'>免责声明</a>
-                    <i class='space2'></i>
-                </div>
-                <div>
-                    <p>©Copyright xxxxxxxxxxx.com 2018 | 备案号：
-                        <a href='#' target='_blank'>xICP备xxxxxxxx号-x</a>
-                    </p>
-                </div>
+</div>
+<div class="m30"></div>
+<footer class='clear'>
+    <div class='w1200'>
+        <a class='logo2' href='/'>
+            <img src='img/logo.png' alt='Logo'>
+        </a>
+        <div class='info'>
+            <div>
+                <a href='about.html' target='_blank'>关于我们</a>
+                <i class='space2'></i>
+                <a href='contact.html' target='_blank'>联系我们</a>
+                <i class='space2'></i>
+                <a href='faq.html' target='_blank'>常见问题</a>
+                <i class='space2'></i>
+                <a href='manager.html' target='_blank'>免责声明</a>
+                <i class='space2'></i>
             </div>
-            <div class='media'>
+            <div>
+                <p>©Copyright xxxxxxxxxxx.com 2018 | 备案号：
+                    <a href='#' target='_blank'>xICP备xxxxxxxx号-x</a>
+                </p>
             </div>
         </div>
-    </footer>
+        <div class='media'>
+        </div>
+    </div>
+</footer>
 
-    <script src="js/jquery-2.1.1.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/plugins/peity/jquery.peity.min.js"></script>
-    <script src='js/util.js'></script>
-    <script src="scripts/dummcy.js"></script>
-    <script type="text/javascript">
-        $('.line').peity("line", { width: 50, height: 15, fill: '#f5f5f5', min: 99999, strokeWidth: 1 });
-        exchange.process();
-    </script>
+<script src="js/jquery-2.1.1.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/plugins/peity/jquery.peity.min.js"></script>
+<script src='js/util.js'></script>
+<script src="scripts/dummcy.js"></script>
+<script type="text/javascript">
+    $('.line').peity("line", { width: 50, height: 15, fill: '#f5f5f5', min: 99999, strokeWidth: 1 });
+
+    var mun = 0;
+    var scroll1 = null;
+    function scroll() {
+        scroll1 = setInterval(function () {
+            mun--;
+            $('.artList').eq(0).css('margin-top', mun + 'px');
+            if (mun == -400) {
+                $('.artList').eq(0).appendTo('#artList');
+                $('.artList').css('margin-top', '0')
+                setTimeout(function () {
+                    mun = 0;
+                    clearInterval(scroll1);
+                    scroll()
+                }, 75)
+            }
+        }, 80)
+    }
+    scroll();
+    $('.artList').hover(function () {
+        clearInterval(scroll1);
+    }, function () {
+        scroll()
+    });
+
+    exchange.process();
+</script>
 
 </body>
 
