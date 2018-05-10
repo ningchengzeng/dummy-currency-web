@@ -593,26 +593,6 @@ $('.tabTit .tit').click(function () {
         box.eq(index).fadeIn('100');
     }
 });
-//返回顶部
-function totop() {
-    $(window).scroll(function () {
-        if ($(window).scrollTop() > $(document).height() - 100 - $(window).height()) {
-            $('.totop').css('bottom', '150px')
-        }
-        else {
-            $('.totop').css('bottom', '50px')
-        }
-    });
-    $(".totop .top").click(function () {
-        $('body,html').animate({ scrollTop: 0 }, 500);
-    })
-}
-totop();
-$('.totop>div').hover(function () {
-    $(this).find('.detal').fadeIn('fast');
-}, function () {
-    $(this).find('.detal').hide();
-});
 
 //滚动固定fixedBox
 $(window).scroll(function () {

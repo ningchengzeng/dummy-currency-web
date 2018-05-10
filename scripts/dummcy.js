@@ -92,6 +92,191 @@ function unfocus(self){
     });
 }
 
+function totop(){
+    $("<div class=\"totop\" style=\"bottom: 50px;\">" +
+        "<div class=\"wCat2\"><div class=\"detal\" style=\"display: none;width: auto;\">" +
+        "<img src=\"img/qrcode_01.jpg\" alt=\"币小金微信服务号\"> " +
+        "<div style=\"text-align:center;width:116px;float:left;color:#fff\">币小金微信服务号</div>" +
+        "</div>" +
+        "</div>" +
+        "   <a class=\"qq2\" href=\"//wpa.qq.com/msgrd?v=3&amp;uin=3145899467&amp;site=qq&amp;menu=yes\" target=\"_blank\"> </a> " +
+
+        "<div class=\"top\"></div>" +
+        "</div>").appendTo("body");
+
+    $(window).scroll(function () {
+        if ($(window).scrollTop() > $(document).height() - 100 - $(window).height()) {
+            $('.totop').css('bottom', '150px')
+        }
+        else {
+            $('.totop').css('bottom', '50px')
+        }
+    });
+
+    $(".totop .top").click(function () {
+        $('body,html').animate({ scrollTop: 0 }, 500);
+    });
+
+    $('.totop>div').hover(function () {
+        $(this).find('.detal').fadeIn('fast');
+    }, function () {
+        $(this).find('.detal').hide();
+    });
+}
+
+/**
+ * 分页处理
+ * @param pageIndex 当前页
+ * @param page 页面数目
+ * @param callback 回调函数
+ * @returns {string}
+ */
+function getPageHtml(content, pageIndex, page, callbackFunction) {
+    var prev = $("<a href=\"javascript:void(0)\" data-prev='true' class=\"btn btn-white\">&lt;</a>");
+    var next = $("<a href=\"javascript:void(0)\" data-next='true' class=\"btn btn-white\">&gt;</a>");
+    var node = $("<a class=\"btn btn-white\" data-node='true' href=\"javascript:void(0)\"></a>");
+    var dot = $("<a class=\"btn btn-white\" data-more='true' href=\"javascript:void(0)\">...</a>");
+
+    $(content).empty();
+    var callback = function(self){
+        var currentIndex = parseInt($("a.active", content).first().attr("index"));
+        if($(self).data("prev")){
+            if(currentIndex > 1){
+                callbackFunction(currentIndex - 1);
+                getPageHtml(content, currentIndex - 1, page, callbackFunction);
+            }
+        }
+        if($(self).data("next")){
+            if(currentIndex < page){
+                callbackFunction(currentIndex + 1);
+                getPageHtml(content, currentIndex + 1, page, callbackFunction);
+            }
+        }
+
+        if($(self).data("node")){
+            var index = parseInt($(self).attr("index"));
+            callbackFunction(index);
+            getPageHtml(content, index, page, callbackFunction);
+        }
+
+        if($(self).data("more")){
+            var index = currentIndex;
+            var nextIndex = $(self).next().attr("index");
+            if(nextIndex > currentIndex){
+                index = parseInt((page - currentIndex) / 2) + currentIndex;
+            }
+            else{
+                index = parseInt(currentIndex / 2);
+            }
+
+            callbackFunction(index);
+            getPageHtml(content, index, page, callbackFunction);
+        }
+    };
+
+    if (page == 1) { //页数为1
+        content.append(prev.clone()).attr("index", 1).append(node.clone().text("1").click(function(){
+            callback(this);
+        })).append(next);
+    } else {
+        if (page > 1) {
+            if (pageIndex > 1) {    //上一步
+                content.append(prev.clone().click(function(){
+                    callback(this);
+                }));
+            } else {
+                content.append(prev.clone());
+            }
+
+            if ((pageIndex - 3) > 1) { //页数-3大于1
+                content.append(node.clone().attr("index", 1).text("1").click(function(){
+                    callback(this);
+                }));
+
+                content.append(dot.clone().click(function(){
+                    callback(this);
+                }));
+
+                if (pageIndex <= (page - 3)) {
+                    for (var i = (pageIndex - 2); i < pageIndex; i++) {
+                        content.append(node.clone().attr("index", i).text(i).click(function(){
+                            callback(this);
+                        }));
+                    }
+
+                    content.append(node.clone().attr("index", pageIndex).text(pageIndex).click(function(){
+                        callback(this);
+                    }));
+                }
+            } else if (pageIndex - 3 <= 1) {
+                for (var i = 1; i <= 5; i++) {
+                    if (i == pageIndex) {
+                        content.append(node.clone().attr("index", pageIndex).text(pageIndex).click(function(){
+                            callback(this);
+                        }));
+                    } else {
+                        content.append(node.clone().attr("index", i).text(i).click(function(){
+                            callback(this);
+                        }));
+                    }
+                }
+
+            }
+
+            if ((pageIndex + 5) < page) {
+                if (pageIndex >= 5) {
+                    content.append(node.clone().attr("index", pageIndex + 1).text(pageIndex+1).click(function(){
+                        callback(this);
+                    }));
+                }
+                content.append(dot.clone().click(function(){
+                    callback(this);
+                }));
+            } else {
+                if (pageIndex <= (page - 3)) {
+                    if (pageIndex >= 5) {
+                        content.append(node.clone().attr("index", pageIndex + 1).text(pageIndex+1).click(function(){
+                            callback(this);
+                        }));
+                    }
+                    content.append(dot.clone().click(function(){
+                        callback(this);
+                    }));
+                } else {
+                    for (var i = (page - 4); i <= page; i++) {
+                        if (i == pageIndex) {
+                            content.append(node.clone().attr("index", pageIndex).text(pageIndex).click(function(){
+                                callback(this);
+                            }));
+                        } else {
+                            content.append(node.clone().attr("index", i).text(i).click(function(){
+                                callback(this);
+                            }));
+                        }
+
+                    }
+                }
+            }
+        }
+    }
+    if ((pageIndex + 2) < page) {
+        content.append(node.clone().attr("index", page).text(page).click(function(){
+            callback(this);
+        }));
+    }
+    if (page > 1) {
+        if (pageIndex != page) {
+            content.append(next.clone().click(function(){
+                callback(this);
+            }));
+        } else {
+            content.append(next.clone());
+        }
+    }
+
+    $("a[index="+pageIndex+"]", content).addClass("active");
+}
+
 /**
  * 工具处理
  * @type {{loadHomeNewCoin: util.loadHomeNewCoin, loadHomevolrank: util.loadHomevolrank, loadHomeCoinMaxChange: util.loadHomeCoinMaxChange, loadconcept: util.loadconcept}}
@@ -345,38 +530,11 @@ var index = {
             "</td>" +
             "</tr>";
     },
-    page:{
-        pageReader: function(){
-            $("div.pageList").empty();
-
-            if(index.pageCurrent == 1){
-                $("div.pageList").append('<a href=\'#\' class=\'btn btn-white\' onclick="index.page.prev()"><</a>' +
-                    '<a href="#" class="btn btn-white">首页</a>'+
-                    '<a class=\'btn btn-white\' onclick="index.page.next()" href=\'#\'>></a>');
-            }else if(index.pageCurrent == index.pageCount -1){
-                $("div.pageList").append('<a href=\'#\' class=\'btn btn-white\' onclick="index.page.prev()"><</a>' +
-                    '<a href="#" class="btn btn-white">尾页</a>'+
-                    '<a class=\'btn btn-white\' onclick="index.page.next()" href=\'#\'>></a>');
-            }else{
-                $("div.pageList").append('<a href=\'#\' class=\'btn btn-white\' onclick="index.page.prev()"><</a>' +
-                    '<a href="#" class="btn btn-white">第' + index.pageCurrent + '页</a>'+
-                    '<a class=\'btn btn-white\' onclick="index.page.next()" href=\'#\'>></a>');
-            }
-        },
-        next: function(){
-            if(index.pageCurrent < index.pageSize){
-                index.pageCurrent ++;
-            }
-            index.page.pageReader();
+    pageReader: function(){
+        getPageHtml($("div.pageList"), index.pageCurrent, index.pageCount,function(currentIndex){
+            index.pageCurrent = currentIndex;
             index.ajaxData();
-        },
-        prev: function(){
-            if(index.pageCurrent > 1){
-                index.pageCurrent -- ;
-            }
-            index.page.pageReader();
-            index.ajaxData();
-        }
+        });
     },
     type: GetRequest().type,
     limit: GetRequest().limit,
@@ -409,7 +567,7 @@ var index = {
                 dataType: 'json',
                 success: function (data) {
                     index.pageCount = Math.ceil(data.count/index.pageSize);
-                    index.page.pageReader();
+                    index.pageReader();
                     $("div.boxContain table#table tbody").empty();
                     $(data.result).each(function (indexData, item) {
                         $("div.boxContain table#table tbody").append(index.row(item));
@@ -423,6 +581,7 @@ var index = {
         window.interval = window.setInterval(data, 1000 * 30);
     },
     process: function(){
+        totop();
         index.ajaxData();
         util.loadhander();
         util.showmarket();
@@ -780,6 +939,7 @@ var currencies = {
 
     },
     process: function(){
+        totop();
         currencies.chart();
         var coinCode = GetRequest().currency.split('/')[0];
         currencies.loadCoinEvent(coinCode);
@@ -833,6 +993,7 @@ var newCoin = {
         }
     },
     process: function(){
+        totop();
         newCoin.getNewCoin();
         util.loadhander();
         util.showmarket();
@@ -919,6 +1080,7 @@ var upDown = {
         return val.replace(/(\/\d{8}\/)/, '/time/');
     },
     process: function(){
+        totop();
         upDown.gettingupDown();
 
         util.loadhander();
@@ -976,45 +1138,17 @@ var exchange = {
         }
         return i;
     },
-    page:{
-        pageReader: function(){
-            $("div#pageList").empty();
-
-            if(exchange.pageCurrent == 1){
-                $("div#pageList").append('<a href=\'#\' class=\'btn btn-white\' onclick="exchange.page.prev()"><</a>' +
-                    '<a href="#" class="btn btn-white">首页</a>'+
-                    '<a class=\'btn btn-white\' onclick="exchange.page.next()" href=\'#\'>></a>');
-            }else if(exchange.pageCurrent == exchange.pageCount -1){
-                $("div#pageList").append('<a href=\'#\' class=\'btn btn-white\' onclick="exchange.page.prev()"><</a>' +
-                    '<a href="#" class="btn btn-white">尾页</a>'+
-                    '<a class=\'btn btn-white\' onclick="exchange.page.next()" href=\'#\'>></a>');
-            }else{
-                $("div#pageList").append('<a href=\'#\' class=\'btn btn-white\' onclick="exchange.page.prev()"><</a>' +
-                    '<a href="#" class="btn btn-white">第' + exchange.pageCurrent + '页</a>'+
-                    '<a class=\'btn btn-white\' onclick="exchange.page.next()" href=\'#\'>></a>');
-            }
-        },
-        next: function(){
-            if(exchange.pageCurrent < exchange.pageSize){
-                exchange.pageCurrent ++;
-            }
-            exchange.page.pageReader();
+    pageReader: function(){
+        getPageHtml($("div#pageList"), exchange.pageCurrent, exchange.pageCount,function(currentIndex){
+            exchange.pageCurrent = currentIndex;
             exchange.ajaxData();
-        },
-        prev: function(){
-            if(exchange.pageCurrent > 1){
-                exchange.pageCurrent -- ;
-            }
-            exchange.page.pageReader();
-            exchange.ajaxData();
-        }
+        });
     },
     filter: "",
     code: "",
     type: "",
     ajaxData: function(){
         var uri = BASE_URL + "api/currency/getExchange";
-        exchange.page.pageReader();
         $.ajax({
             url: uri,
             type: "GET",
@@ -1026,6 +1160,7 @@ var exchange = {
             "&type=" + exchange.type,
             success: function(data){
                 exchange.pageCount = Math.ceil(data.count/index.pageSize);
+                exchange.pageReader();
 
                 $('#itemsList').empty();
                 $(data.result).each(function(index, item){
@@ -1035,6 +1170,7 @@ var exchange = {
         });
     },
     process: function(){
+        totop();
         exchange.ajaxData();
 
         util.loadhander();
@@ -1114,6 +1250,7 @@ var exchangedetails={
         });
     },
     process: function(){
+        totop();
         var currenty = GetRequest().currenty.split('/')[0];
         exchangedetails.dataAjax(currenty);
 
@@ -1187,6 +1324,7 @@ var concept = {
         }
     },
     process: function(){
+        totop();
         concept.dataAjax();
 
         util.loadhander();
@@ -1272,6 +1410,7 @@ var coneptCoin = {
         });
     },
     process: function(){
+        totop();
         var index = GetRequest().id;
         coneptCoin.dataAjax(index);
 
@@ -1321,6 +1460,7 @@ var vol ={
         });
     },
     process: function(){
+        totop();
         vol.dataAjax();
         vol.scroll();
 
@@ -1368,6 +1508,7 @@ var volexchange={
         })
     },
     process: function(){
+        totop();
         volexchange.dataAjax();
         volexchange.scroll();
 
@@ -1428,6 +1569,7 @@ var monthrank={
         });
     },
     process: function(){
+        totop();
         monthrank.dataAjax();
         util.loadhander();
         util.showmarket();
@@ -1435,7 +1577,7 @@ var monthrank={
 };
 
 /**
- *
+ * 文本信息
  * @type {{pageCount: number, pageSize: number, pageCurrent: number, row: notes.row, page: {pageReader: notes.page.pageReader, next: notes.page.next, prev: notes.page.prev}, ajaxData: notes.ajaxData, process: notes.process}}
  */
 var notes = {
@@ -1499,6 +1641,7 @@ var notes = {
         });
     },
     process:function(){
+        totop();
         notes.ajaxData();
 
         util.loadhander();
@@ -1506,6 +1649,10 @@ var notes = {
     }
 };
 
+/**
+ * 用户货币列表
+ * @type {{pageCount: number, pageSize: number, pageCurrent: number, row: userticker.row, pageReader: userticker.pageReader, type, limit: *, volume: *|number|ConstrainDoubleRange|DoubleRange|boolean, price: *, list: userticker.list, getUserInfo: userticker.getUserInfo, process: userticker.process}}
+ */
 var userticker = {
     pageCount: 1,
     pageSize: 50,
@@ -1546,38 +1693,11 @@ var userticker = {
             "</td>" +
             "</tr>";
     },
-    page:{
-        pageReader: function(){
-            $("div.pageList").empty();
-
-            if(index.pageCurrent == 1){
-                $("div.pageList").append('<a href=\'#\' class=\'btn btn-white\' onclick="userticker.page.prev()"><</a>' +
-                    '<a href="#" class="btn btn-white">首页</a>'+
-                    '<a class=\'btn btn-white\' onclick="userticker.page.next()" href=\'#\'>></a>');
-            }else if(index.pageCurrent == index.pageCount -1){
-                $("div.pageList").append('<a href=\'#\' class=\'btn btn-white\' onclick="userticker.page.prev()"><</a>' +
-                    '<a href="#" class="btn btn-white">尾页</a>'+
-                    '<a class=\'btn btn-white\' onclick="userticker.page.next()" href=\'#\'>></a>');
-            }else{
-                $("div.pageList").append('<a href=\'#\' class=\'btn btn-white\' onclick="userticker.page.prev()"><</a>' +
-                    '<a href="#" class="btn btn-white">第' + userticker.pageCurrent + '页</a>'+
-                    '<a class=\'btn btn-white\' onclick="userticker.page.next()" href=\'#\'>></a>');
-            }
-        },
-        next: function(){
-            if(userticker.pageCurrent < userticker.pageSize){
-                userticker.pageCurrent ++;
-            }
-            userticker.page.pageReader();
-            userticker.list();
-        },
-        prev: function(){
-            if(userticker.pageCurrent > 1){
-                userticker.pageCurrent -- ;
-            }
-            userticker.page.pageReader();
-            userticker.list();
-        }
+    pageReader: function(){
+        getPageHtml($("div.pageList"), userticker.pageCurrent, userticker.pageCount,function(currentIndex){
+            userticker.pageCurrent = currentIndex;
+            userticker.ajaxData();
+        });
     },
     type: GetRequest().type,
     limit: GetRequest().limit,
@@ -1610,7 +1730,7 @@ var userticker = {
             data: data,
             success: function (data) {
                 userticker.pageCount = Math.ceil(data.count/userticker.pageSize);
-                userticker.page.pageReader();
+                userticker.pageReader();
 
                 $("tbody#usertickerpageBody").empty();
                 $(data.result).each(function (indexData, item) {
@@ -1639,10 +1759,153 @@ var userticker = {
         });
     },
     process: function(){
+        totop();
         userticker.getUserInfo();
         util.loadhander();
         util.showmarket();
         util.loadnotes();
         util.loadHomeCoinMaxChange();
+    }
+};
+
+/**
+ * 账户中心
+ * @type {{}}
+ */
+var setting = {
+    //修改密码
+    modify: function(password){
+        if(password.old.length == 0){
+            alert("旧密码不可以为空！");
+        }
+        if(password.new1.length<4){
+            alert("新密码长度过短！");
+        }
+        if(password.new1 != password.new2){
+            alert("两次密码输入错误");
+            return;
+        }
+
+        $.ajax({
+            url: BASE_URL + "user/main/modifypassword",
+            type: "POST",
+            dataType: "json",
+            data: {
+                "psession": localStorage.getItem("psession"),
+                "password": password
+            },
+            success: function(data){
+                if(data.status == "success"){
+                    alert("密码修改成功");
+                    $("div.modify button.cancel").click();
+                    setting.dataAjax();
+                }else{
+                    alert(data.content);
+                }
+            },
+            error: function(){
+                alert("密码修改失败");
+            }
+        });
+    },
+    //用户昵称修改
+    namenick:function(usernick){
+        $.ajax({
+            url: BASE_URL + "user/main/usernick",
+            type: "POST",
+            dataType: "json",
+            data: {
+                "psession": localStorage.getItem("psession"),
+                "usernick": usernick
+            },
+            success: function(data){
+                alert("昵称修改成功");
+                $("div.usernick span.nameedit button.cancel").click();
+                setting.dataAjax();
+            },
+            error: function(){
+                alert("昵称修改失败");
+            }
+        });
+    },
+    dataAjax: function(){
+        $.ajax({
+            url: BASE_URL + "user/main/userInfo",
+            type: "POST",
+            dataType: "json",
+            data: {
+                "psession": localStorage.getItem("psession")
+            },
+            success: function (data) {
+                if(data.status == "success"){
+                    $("div.userName div.main").text(data.username);
+                    $("div.userName div.sub").text(data.usernick);
+                    $("div.userinfo div.username span.info").text(data.username);
+                    $("div.userinfo div.usernick span.info").text(data.usernick);
+                    $("div.userinfo div.usernick span.nameedit input").val(data.usernick);
+                    $("div.userinfo div.usertime span.info").text(data.time);
+                }
+                else{
+                    alert("账户没有登录");
+                    window.location.replace("index.html");
+                }
+            }
+        });
+    },
+    process: function(){
+        totop();
+        util.loadhander();
+        setting.dataAjax();
+
+        $("span.editbtn.editname").click(function(){
+            $(this).hide();
+            $("div.usernick span.info").hide();
+            $("div.usernick span.nameedit").show();
+        });
+        $("div.usernick span.nameedit button.sure").click(function(){
+            setting.namenick($("span.input.nameedit input").val());
+        });
+        $("div.usernick span.nameedit button.cancel").click(function(){
+            $("span.editbtn.editname").show();
+            $("div.usernick span.info").show();
+            $("div.usernick span.nameedit").hide();
+        });
+
+        $("div.modify span.editbtn.editpwd").click(function(){
+            $(this).hide();
+            $("div.input.pwdedit").show();
+        });
+        $("div.modify button.cancel").click(function(){
+            $("div.modify span.editbtn.editpwd").show();
+            $("div.input.pwdedit").hide();
+        });
+        $("div.modify button.sure").click(function(){
+            setting.modify({
+                old: $("input#old").val(),
+                new1: $("input#new1").val(),
+                new2: $("input#new2").val(),
+            });
+        });
+    }
+};
+
+var about = {
+    process: function(){
+        totop();
+    }
+};
+var contact = {
+    process: function(){
+        totop();
+    }
+};
+var faq = {
+    process: function(){
+        totop();
+    }
+};
+var manager = {
+    process: function(){
+        totop();
     }
 };

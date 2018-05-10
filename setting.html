@@ -2,30 +2,30 @@
 <html lang="zh-cn">
 
 <head>
-    <title>数字货币交易所最新公告</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="applicable-device" content="pc">
-    <meta http-equiv="X-UA-Compatible" content="IE=11" />
+    <title>自选行情</title>
+    <meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
+    <meta name='applicable-device' content='pc'>
+    <meta http-equiv='X-UA-Compatible' content='IE=11' />
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
     <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
     <link href='themes/default/css/stylesheet_nav.css' rel='stylesheet'>
     <link href='themes/default/css/tablesort.css' rel='stylesheet'>
+
     <link rel='shortcut icon' href='img/favicon.ico' />
+
 </head>
 
 <body>
     <nav class=''>
-
         <div class='navsub'>
             <div class='minWidth' id='globalinfo'>
-
             </div>
         </div>
         <div class='minWidth'>
             <ul class='leftNav'>
                 <li class='logo'>
-                    <a href='/'>
+                    <a href='#'>
                         <img src='img/logo.png' alt='Logo'>
                     </a>
                 </li>
@@ -79,8 +79,8 @@
             <ul class='rightNav'>
                 <li class='searchForm' style='float: right'>
                     <form action=''>
-                        <input type='text' id='input-sm' style="box-sizing: content-box" placeholder='输入关键词...'>
-                        <i class='icon-search' onclick='search(document.getElementById("input-sm").value)'></i>
+                        <input type='text' id='input-sm' autocomplete='off' style="box-sizing: content-box" placeholder='输入关键词...'>
+                        <!-- <i class='icon-search' onclick='search(document.getElementById("input-sm").value)'></i> -->
                     </form>
                 </li>
                 <li class='showmarket' style='float: right'>
@@ -91,34 +91,78 @@
 
     </nav>
     <div class="m30"></div>
-
-
     <div class="m30"></div>
     <div class="w1200">
         <div class="col">
-            <div class="box box1200">
-                <div class="boxTit">
-
-                    <h2>交易平台公告列表</h2>
-                </div>
-
-                <div class="boxContain">
-                    <div class="m15"></div>
-                    <ul class="noticeList">
-
-                    </ul>
-                    <div class="m15"></div>
-
-                </div>
-                <div class="boxTools">
-                    <div class="pageList">
+            <div class="box box325">
+                <div class="userCard">
+                    <div class="headPic">
+                        <img src="//static.feixiaohao.com/themes/default/images/sharelogo.png">
+                    </div>
+                    <div class="userName">
+                        <div class="main"></div>
+                        <div class="sub"></div>
                     </div>
                 </div>
-                <div class="m15"></div>
+                <div class="menu">
+                    <ul class="usermenu">
+                        <li class="active">个人中心</li>
+                        <li><a rel="nofollow" onclick="logout();return false">退出登录</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="box box860">
+                <div class="boxTit"><h1>个人中心</h1></div>
+                <div class="padding15 userinfo" style="display: inline-block;">
+                    <div class="infocell username">
+                        <span class="main">登录账号：</span> <span class="info"></span></div>
+                    <div class="infocell usernick">
+                        <span class="main ">用户昵称：</span>
+                        <span class="info"></span>
+                        <span class="input nameedit">
+                            <input value="">
+                            <button type="submit" class="sure">确定</button>
+                            <button type="reset" class="cancel">取消</button>
+                        </span>
+                        <span class="editbtn editname"> <a>更改</a> </span>
+                    </div>
+                    <div class="infocell usertime">
+                        <span class="main">注册时间：</span>
+                        <span class="info"></span>
+                    </div>
+                    <div class="infocell modify">
+                        <span class="main">修改密码</span>
+                        <div class="input pwdedit" style="margin-left: 15px;">
+                            旧密码：<input type="password" class="padding" style="padding: 3px 0 0 5px" id="old"><br>
+                            新密码：<input type="password" class="padding" style="padding: 3px 0 0 5px; margin-top: 5px;" id="new1"><br>
+                            确认密码：<input type="password" id="new2" style="padding: 3px 0 0 5px; margin-top: 5px;"><br>
+                            <button type="submit" class="sure">确定</button>
+                            <button type="reset" class="cancel">取消</button>
+                        </div>
+                        <span class="editbtn editpwd"> <a>更改</a> </span>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-    <div class="m30"></div>
+
+
+    <div class='fLink clear'>
+        <div class='w1200'>
+            <h3>友情链接</h3>
+
+            <a href='http://www.bitett.com' target='_blank' title='比特头条'>比特头条</a>
+            <a href='http://www.coingogo.com/' target='_blank' title='币源社区'>币源社区</a>
+            <a href='http://www.bcex.ca/' target='_blank' title='BCEX'>BCEX</a>
+            <a href='http://uncoinex.com/' target='_blank' title='澳洲U网'>澳洲U网</a>
+            <a href='http://www.btctrade.im/' target='_blank' title='比特币交易网'>比特币交易网</a>
+            <a href='http://www.bixingxing.com' target='_blank' title='比特币导航'>比特币导航</a>
+            <a href='http://topbtc.com/' target='_blank' title='TopBtc'>TopBtc</a>
+            <a href='http://www.qukuaiwang.com.cn' target='_blank' title='区块网'>区块网</a>
+            <a href='http://www.chainnews.com' target='_blank' title='链闻'>链闻</a>
+            <a href='http://www.weilaicaijing.com/' target='_blank' title='未来财经'>未来财经</a>
+        </div>
+    </div>
     <footer class='clear'>
         <div class='w1200'>
             <div class='info'>
@@ -146,12 +190,10 @@
     <script src="js/jquery-2.1.1.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/plugins/peity/jquery.peity.min.js"></script>
-    <script src='scripts/tablesort.js'></script>
     <script src='js/util.js'></script>
+    <script src='scripts/autocomplete.js'></script>
     <script src="scripts/dummcy.js"></script>
-    <script type="text/javascript">
-        notes.process();
-    </script>
+    <script>setting.process();</script>
 </body>
 
 </html>
