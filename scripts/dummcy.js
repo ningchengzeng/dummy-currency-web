@@ -2,6 +2,9 @@ var BASE_URL = "http://192.168.99.101/";
 
 document.write("<script src=\"scripts/autocomplete.js\"></script>");
 
+$("footer div.info div:eq(1)").hide()
+
+
 function getUserInfo() {
     $.ajax({
         type: "POST",
