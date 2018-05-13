@@ -689,6 +689,11 @@ var currencies = {
         $('#cjlevel').text("第" + data.twenty.price.ranking + "名");
 
         $('#upOrDown').text(data.floatRate + "%");
+        if(data.floatRate>0){
+            $('#upOrDown').addClass("tags-green");
+        }else{
+            $('#upOrDown').addClass("tags-red");
+        }
 
         $('#remark span').append(data.desc);
         $('#remark div.describe').append(data.describe);

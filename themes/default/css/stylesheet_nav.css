@@ -675,17 +675,15 @@ div.desc div.describe{
 }
 
 .fixedNav {
-	position: fixed;
-	top: 0;
-	z-index: 99999
+
 }
 
 .fixedNav .leftNav {
-	margin-left: 20px
+	/* margin-left: 20px */
 }
 
 .fixedNav .rightNav {
-	margin-right: 20px
+	/* margin-right: 20px */
 }
 
 .minWidth {
@@ -1861,15 +1859,15 @@ nav .leftNav li.logo {
 }
 
 .fixedNav .leftNav {
-	margin-left: 5px
+	/* margin-left: 5px */
 }
 
 .fixedNav .rightNav {
-	margin-right: 5px
+	/* margin-right: 5px */
 }
 
 nav .logo a {
-	padding: 0!important
+	/* padding: 0!important */
 }
 
 .minWidth {
