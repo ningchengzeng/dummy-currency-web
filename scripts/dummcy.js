@@ -174,8 +174,23 @@ function getPageHtml(content, pageIndex, page, callbackFunction) {
         }
     };
 
-    if (page == 1) { //页数为1
-        content.append(prev.clone()).attr("index", 1).append(node.clone().text("1").click(function(){
+    if(page <= 5){
+        if(pageIndex == 1){
+            content.append(prev.clone());
+        }
+        else{
+            content.append(prev.clone().click(function(){
+                callback(this);
+            }));
+        }
+
+        for(var index = 1;index<= page; index++){
+            content.append(node.clone().attr("index", index).text(index).click(function(){
+                callback(this);
+            }));
+        }
+    }else if (page == 1) { //页数为1
+        content.append(prev.clone()).append(node.clone().attr("index", 1).text("1").click(function(){
             callback(this);
         })).append(next);
     } else {
@@ -209,7 +224,7 @@ function getPageHtml(content, pageIndex, page, callbackFunction) {
                     }));
                 }
             } else if (pageIndex - 3 <= 1) {
-                for (var i = 1; i <= 5; i++) {
+                for (var i = 1; i <= page; i++) {
                     if (i == pageIndex) {
                         content.append(node.clone().attr("index", pageIndex).text(pageIndex).click(function(){
                             callback(this);
@@ -259,6 +274,7 @@ function getPageHtml(content, pageIndex, page, callbackFunction) {
             }
         }
     }
+
     if ((pageIndex + 2) < page) {
         content.append(node.clone().attr("index", page).text(page).click(function(){
             callback(this);
@@ -1427,6 +1443,72 @@ var coneptCoin = {
  * @type {{process: vol.process}}
  */
 var vol ={
+    row: function(item){
+        var resultString = "<div class=\"vol-rank\"><div class=\"tit\"><div class=\"rank\">NO." + item.currencie.index + "</div>\n" +
+            "    <a class=\"coin\" href=\"currencies.html?currency="+ item.currencie.code + "\">\n" +
+            "        <img src=\""+item.currencie.icon+"\" alt=\"+item.currencie.title+\">"+item.currencie.title+"</a>\n" +
+            "        <div class=\"data\">\n" +
+            "            <small>流通市值</small>\n" +
+            "            <span class=\"volume\" \n" +
+            "                data-usd=\""+item.currencie.marketCap.usd+"\" \n" +
+            "                data-cny=\""+item.currencie.marketCap.cny+"\" \n" +
+            "                data-btc=\""+item.currencie.marketCap.btc+"\">"+item.currencie.marketCap.init+"</span>\n" +
+            "        </div>\n" +
+            "        <div class=\"data\">\n" +
+            "            <small>价格</small>\n" +
+            "            <span class=\"price\" " +
+            "                   data-usd=\""+item.currencie.price.usd+"\" " +
+            "                   data-cny=\""+item.currencie.price.cny+"\" " +
+            "                   data-btc=\""+item.currencie.price.btc+"\">"+ item.currencie.price.init + "</span>\n" +
+            "        </div>\n" +
+            "        <a class=\"more\" title=\"查看更多\" href=\"currencies.html?currency="+ item.currencie.code + "\"></a>\n" +
+            "    </div>\n" +
+            "    <table class=\"table\">\n" +
+            "        <thead>\n" +
+            "            <tr>\n" +
+            "                <th>#</th><th>交易平台</th><th>交易对</th><th>成交额</th><th>价格</th><th>占比</th>\n" +
+            "            </tr>\n" +
+            "        </thead>\n" +
+            "        <tbody>\n" +
+            "        </tbody>\n" +
+            "    </table>\n" +
+            "</div>\n" +
+            "<div class=\"m30\"></div>";
+        var resultDocument = $("<div></div>").append($(resultString));
+
+        $(item.exchange).each(function(index, data){
+            var transaction ="";
+            if(data.transaction){
+                if(data.transaction.href != ""){
+                    transaction = "<a href=\""+data.transaction.href+"\" target=\"_blank\"> " + data.transaction.title + " </a>";
+                }else{
+                    transaction = data.transaction.title;
+                }
+            }
+
+            var itemString = "<tr>" +
+                "    <td>"+data.index+"</td>" +
+                "    <td>" +
+                "        <a href=\""+ data.exchangeHref + "\" target=\"_blank\">" +
+                "            <img height='15' width='18' src=\"" +data.exchangeIcon+ ".jpg\" alt=\"" + data.exchangeTitle + "\">" + data.exchangeTitle + "</a>" +
+                "    </td>" +
+                "    <td>" +transaction+ "</td>" +
+                "    <td class=\"volume\" " +
+                "             data-usd=\""+data.volume.usd+"\" data-cny=\""+data.volume.cny+"\" " +
+                "         data-btc=\""+data.volume.btc+"\" " +
+                "         data-native=\""+data.volume.native+"\">" +data.volume.init+ "</td>" +
+                "    <td class=\"price\" " +
+                "         data-usd=\""+data.price.usd+"\" data-cny=\""+ data.price.cny+"\" " +
+                "         data-btc=\""+data.price.btc+"\" " +
+                "         data-native=\""+data.price.native+"\">" +data.price.init+ "</td>" +
+
+                "    <td>"+data.proportion+"%</td>" +
+                "</tr>"
+            $("table tbody", resultDocument).append($(itemString));
+        });
+
+        return $(resultDocument).html();
+    },
     pageIndex : 0,
     dataAjax: function(){
         vol.pageIndex ++;
@@ -1439,7 +1521,10 @@ var vol ={
             },
             success: function (ret) {
                 if (ret.length > 0) {
-                    $(".boxContain").append(ret);
+                    console.log(ret);
+                    $(ret).each(function(index, item){
+                        $(".boxContain").append(vol.row(item));
+                    });
                 } else {
                     vol.pageIndex = 1;
                 }
