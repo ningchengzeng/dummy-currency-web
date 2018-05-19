@@ -1,16 +1,3 @@
-var baseUrl = "http://139.162.90.234/";
-function save_preferences(chartName, index, chart) {
-    var seriesVisible = []
-    for (i = 0; i < chart.series.length; i++) {
-        if (i == index) {
-            seriesVisible[i] = !chart.series[i].visible;
-        } else {
-            seriesVisible[i] = chart.series[i].visible;
-        }
-    }
-    Cookies.set("highcharts_" + chartName, seriesVisible, { expires: 180 })
-}
-
 function series_is_visible(chartName, index, defaultState) {
     var preferences = Cookies.getJSON("highcharts_" + chartName);
     if (preferences === undefined) {
@@ -28,32 +15,19 @@ function tooltip_format_crypto() {
 }
 
 function tooltip_format_fiat() {
-    val = format_fiat(this.y);
+    val = format_crypto(this.y);
     return '<span style="color:' + this.color + '">\u25CF</span> ' + this.series.name + ': <b>' + val + '</b><br/>'
 }
-function tooltip_format_percentage() {
-    val = this.y.toFixed(2)
-    return '<span style="color:' + this.color + '">\u25CF</span> ' + this.series.name + ': <b>' + val + '%</b><br/>'
-}
-function label_format_market_cap() {
-    val = format_market_cap(this.value)
-    return '$' + val;
-}
-function label_format_crypto() {
-    val = format_crypto(this.value)
-    return val + ' BTC';
-}
+
+
+
 function label_format_fiat() {
-    val = format_fiat(this.value)
-    return '$' + val;
+    val = format_crypto(this.value)
+    return val;
 }
-function is_altcoin(slug) {
-    if (slug == "bitcoin") {
-        return false;
-    }
-    return true;
-}
+
 function is_mobile() {
+
     var mobile = $("#metadata").data("mobile");
     return mobile == "True"
 }
@@ -89,7 +63,6 @@ HighChartsGraph.prototype.updateCharts = function (min, max) {
     var that = this;
     var chart = $('#' + that.graphId).highcharts();
     chart.showLoading('');
-    //chart.showLoading('正在加载数据...');
     that.fetchAndLoad(that.finishUpdateCharts, min, max);
 }
 HighChartsGraph.prototype.finishUpdateCharts = function (seriesData) {
@@ -98,38 +71,28 @@ HighChartsGraph.prototype.fetchAndLoad = function (callback, start, end) {
 }
 HighChartsGraph.prototype.initCharts = function (seriesData) {
 }
-
-
-function CapVolGraph(graphId, loadingId, noDataId) {
+function GbiGraph(graphId, loadingId, noDataId) {
     HighChartsGraph.call(this, graphId, loadingId, noDataId);
-     
+
 }
-CapVolGraph.prototype = new HighChartsGraph;
-CapVolGraph.constructor = CapVolGraph;
-CapVolGraph.prototype.finishUpdateCharts = function (seriesData) {
+GbiGraph.prototype = new HighChartsGraph;
+GbiGraph.constructor = GbiGraph;
+GbiGraph.prototype.finishUpdateCharts = function (seriesData) {
     var that = this;
     var chart = $('#' + that.graphId).highcharts();
-    ;
-    chart.series[0].setData(seriesData["market_cap_by_available_supply"]); 
-    chart.series[1].setData(seriesData["vol_usd"]);
-
+    chart.series[0].setData(seriesData["gbi"]);
     chart.hideLoading();
 }
-CapVolGraph.prototype.fetchAndLoad = function (callback, start, end) {
+GbiGraph.prototype.fetchAndLoad = function (callback, start, end) {
 
     var that = this;
-    var dataType = $('#' + that.graphId).data("value");
-    //var apiDomain = "//api.feixiaohao.com";
+    var apiDomain = "http://139.162.90.234/api/currency";
     timeParams = ""
     if (start !== undefined && end !== undefined) {
         timeParams = start + "/" + end + "/";
     }
-
-
-
-    //callback.call(that, data5);
     $.ajax({
-        url: baseUrl + "api/currency/getcharts?dataType=" + dataType,
+        url: apiDomain + "/gbi",
         type: "GET",
         dataType: "json",
         error: function () {
@@ -141,7 +104,7 @@ CapVolGraph.prototype.fetchAndLoad = function (callback, start, end) {
         }
     });
 }
-CapVolGraph.prototype.initCharts = function (seriesData) {
+GbiGraph.prototype.initCharts = function (seriesData) {
     var that = this;
     Highcharts.setOptions({
         global: { useUTC: false },
@@ -165,11 +128,7 @@ CapVolGraph.prototype.initCharts = function (seriesData) {
             thousandsSep: ","
         }
     });
-    var dataType = $('#' + that.graphId).data("value");
-    var titleName = "全球数字货币总市值走势图";
-    if (dataType == "1") {
-        titleName = titleName+"(比特币Btc除外)";
-    }
+    var titleName = "全球区块链GBI指数走势图";
 
     $('#' + that.graphId).highcharts('StockChart', {
         chart: { type: 'line', zoomType: is_mobile() ? 'null' : 'x', height: 520, ignoreHiddenSeries: true },
@@ -188,24 +147,26 @@ CapVolGraph.prototype.initCharts = function (seriesData) {
         },
         navigator: { adaptToUpdatedData: false },
         scrollbar: { liveRedraw: false },
-        title: { text: titleName , align: "left", style: { fontSize: "24px" } },
+        title: { text: titleName, align: "left", style: { fontSize: "24px" } },
         subtitle: { text: '' },
         rangeSelector: {
             allButtonsEnabled: true,
-            buttons: [{ type: 'day', count: 1, text: '天' }, { type: 'week', count: 1, text: '周' }, {
+            buttons: [{ type: 'day', count: 1, text: 'D' }, { type: 'week', count: 1, text: 'W' }, {
                 type: 'month',
                 count: 1,
-                text: '1月'
-            }, { type: 'month', count: 3, text: '3月' }, { type: 'year', count: 1, text: '1年' }, {
-                type: 'ytd',
-                count: 1,
-                text: '今年'
-            }, { type: 'all', text: '所有' }],
-            selected: 6,
+                text: 'M'
+            }, { type: 'year', count: 1, text: 'Y' }, { type: 'all', text: 'ALL' }],
+            selected: 5,
             inputEnabled: true,
             enabled: true
         },
         xAxis: [{
+            dateTimeLabelFormats: {
+                day: '%Y<br/>%m-%d',
+                week: '%Y<br/>%m-%d',
+                month: '%Y-%m',
+                year: '%Y'
+            },
             events: {
                 afterSetExtremes: function (e) {
                     that.afterSetExtremes(e)
@@ -213,40 +174,20 @@ CapVolGraph.prototype.initCharts = function (seriesData) {
             }, minRange: 24 * 3600 * 1000
         }],
         yAxis: [{
-            labels: {
-                formatter: function () {
-                    return '$' + this.axis.defaultLabelFormatter.call(this);
-                }, align: 'right', style: { color: '#7cb5ec' }
-            },
-            title: { text: '市值', style: { color: '#7cb5ec', 'font-weight': 'bold' } },
+            labels: { formatter: label_format_fiat, style: { color: '#666666', }, align: "left", x: -30 },
+            title: { text: '', style: { color: '#666666', 'font-weight': 'bold' } },
             showEmpty: false,
-            height: '80%',
-            opposite: false,
+            height: '100%',
+            opposite: true,
             floor: 0
-        },  {
-            labels: { align: 'right', style: { color: '#777', } },
-            title: { text: '24h 成交量', style: { color: '#777', 'font-weight': 'bold' } },
-            showEmpty: false,
-            top: '80%',
-            height: '20%',
-            offset: 2,
-            lineWidth: 1,
-            opposite: false
         }],
         series: [{
-            name: '市值',
-            color: '#7cb5ec',
-            tooltip: { pointFormatter: tooltip_format_market_cap },
-            data: seriesData["market_cap_by_available_supply"], 
+            name: '全球区块链GBI指数',
+            yAxis: 0,
+            color: '#85BCEB',
+            tooltip: { pointFormatter: tooltip_format_fiat },
+            data: seriesData["gbi"],
             dataGrouping: { enabled: false }
-        }, {
-            type: 'column',
-            name: '24h 成交量',
-            color: '#777',
-            yAxis: 1,
-            tooltip: { pointFormatter: tooltip_format_market_cap },
-            data: seriesData["vol_usd"] ,
-            dataGrouping: { approximation: "average", enabled: false }
         }],
         plotOptions: {
             series: {
@@ -260,15 +201,14 @@ CapVolGraph.prototype.initCharts = function (seriesData) {
         },
     });
     that.hideLoading();
-};
+}
 
 $(document).ready(function () {
     $(function () {
-        var capvolGraph = new CapVolGraph("highcharts-graph", "highcharts-loading", "highcharts-nodata" );
-        capvolGraph.init();
+        var gbiGraph = new GbiGraph("highcharts-graph", "highcharts-loading", "highcharts-nodata")
 
-        var capvolGraph_Altcoin = new CapVolGraph("highcharts-graph_altcoin", "highcharts-loading_altcoin", "highcharts-nodata_altcoin" );
-        capvolGraph_Altcoin.init();
+        gbiGraph.init();
+
     });
 
 });

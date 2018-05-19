@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <title>市值趋势</title>
+    <meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
+    <meta name='applicable-device' content='pc'>
+    <meta http-equiv='X-UA-Compatible' content='IE=11' />
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href='themes/default/css/stylesheet_nav.css' rel='stylesheet'>
+    <link href='themes/default/css/tablesort.css' rel='stylesheet'>
+    <link href="scripts/chartist/chartist.min.css" rel="stylesheet">
+    <script src="scripts/chartist/chartist.min.js"></script>
+
+    <link rel='shortcut icon' href='img/favicon.ico' />
+</head>
+
+<body>
+<nav class=''>
+
+    <div class='navsub'>
+        <div class='minWidth' id='globalinfo'>
+
+        </div>
+    </div>
+    <div class='minWidth'>
+        <ul class='leftNav'>
+            <li class='logo'>
+                <a href='/'>
+                    <img src='img/logo.png' alt='Logo'>
+                </a>
+            </li>
+            <li class='navSlide'>
+                行情
+                <ul class='subNav'>
+                    <li>
+                        <a href='index.html'>所有</a>
+                    </li>
+                    <li>
+                        <a href='index.html'>货币</a>
+                    </li>
+                    <li>
+                        <a href='index.html'>代币</a>
+                    </li>
+                    <li>
+                        <a href='newcoin.html'>最新上市</a>
+                    </li>
+                    <li>
+                        <a href='concept.html'>概念行情</a>
+                    </li>
+                    <li>
+                        <a href='charts.html'>
+                            市值趋势
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class='navSlide'>
+                排行榜
+                <ul class='subNav'>
+                    <li>
+                        <a href='maxchange.html'>涨跌幅排行榜</a>
+                    </li>
+                    <li>
+                        <a href='vol.html'>24小时成交额排行(币种)</a>
+                    </li>
+                    <li>
+                        <a href='volexchange.html'>24小时成交额排行(交易平台)</a>
+                    </li>
+                    <li>
+                        <a href='monthrank.html'>月成交额排行</a>
+                    </li>
+                </ul>
+            </li>
+
+            <li>
+                <a href='exchange.html'>交易平台</a>
+            </li>
+        </ul>
+        <ul class='rightNav'>
+            <li class='searchForm' style='float: right'>
+                <form action=''>
+                    <input type='text' id='input-sm' style="box-sizing: content-box" placeholder='输入关键词...'>
+                    <i class='icon-search' onclick='search(document.getElementById("input-sm").value)'></i>
+                </form>
+            </li>
+            <li class='showmarket' style='float: right'>
+            </li>
+
+        </ul>
+    </div>
+
+</nav>
+<div class="m30"></div>
+
+
+<div class="m30"></div>
+<div class="w1200">
+    <div class="col">
+        <div class="box box1200">
+            <div class="m15"></div>
+            <div class="boxContain">
+
+                <div class="tab-header">
+                    <div for="highcharts-graph" id="highcharts-loading" class="text-center highcharts-loading" style="height: 520px">
+                        <div>
+                            <span class="loading"></span>
+                        </div>
+                    </div>
+                    <div for="highcharts-graph" id="highcharts-nodata" class="hidden text-center highcharts-nodata hidden" style="height: 520px"></div>
+                    <div class="clear"></div>
+                </div>
+
+                <div id="highcharts-graph" data-value="0"></div>
+                <div class="m15"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="m30"></div>
+<footer class='clear'>
+    <div class='w1200'>
+        <div class='info'>
+            <div>
+                <a href='about.html' target='_blank'>关于我们</a>
+                <i class='space2'></i>
+                <a href='contact.html' target='_blank'>联系我们</a>
+                <i class='space2'></i>
+                <a href='faq.html' target='_blank'>常见问题</a>
+                <i class='space2'></i>
+                <a href='manager.html' target='_blank'>免责声明</a>
+                <i class='space2'></i>
+            </div>
+            <div>
+                <p>©Copyright xxxxxxxxxxx.com 2018 | 备案号：
+                    <a href='#' target='_blank'>xICP备xxxxxxxx号-x</a>
+                </p>
+            </div>
+        </div>
+        <div class='media'>
+        </div>
+    </div>
+</footer>
+
+<script src="js/jquery-2.1.1.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/plugins/peity/jquery.peity.min.js"></script>
+<script src='scripts/tablesort.js'></script>
+<script src='js/util.js'></script>
+<script src="scripts/dummcy.js"></script>
+
+<script src="scripts/Highstock-5.0.12/highstock.js"></script>
+<script type="text/javascript">
+    $('.line').peity("line", { width: 50, height: 15, fill: '#f5f5f5', min: 99999, strokeWidth: 1 });
+    util.loadhander();
+</script>
+<script src="scripts/Highstock-5.0.12/modules/exporting.js"></script>
+<script src="scripts/gbi.js"></script>
+</body>
+</html>
