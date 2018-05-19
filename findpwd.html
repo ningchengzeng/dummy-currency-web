@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang=zh-cn>
+<head>
+    <title>找回密码-币小金</title>
+    <meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
+    <link rel="shortcut icon" href="img/favicon.ico">
+    <style>
+        .findpwd{width:400px;padding-top:1px;margin:0 auto;min-height:100px;margin-top:50px;}
+        .tit h1{font-size:18px;display:inline}
+        .tit{margin-bottom:30px}
+        .tabnav > div{display:block;width:50%;float:left;text-align:center;padding:1px 0;font-size:14px;cursor:pointer}
+        .tabnav{width:310px;position:relative;border-bottom:1px solid #ddd;float:right;height:23px}
+        .formItem{margin:15px 0;width:100%;overflow:hidden}
+        .formItem input{width:388px;height:23px;padding:5px;border-radius:5px;border:1px solid #ddd;background:#fcfcfc;font-size:14px;color:#444;outline:none}
+        .tabnav > .active{border-bottom:3px #3273e4 solid}
+        .alert{font-size:12px;color:red;display:none;margin:5px 0 0 0}
+        .hasBtn input,.hasPic input{width:250px}
+        .hasBtn button,.hasPic .pic{height:35px;border:1px solid #ddd;border-radius:5px;float:right;width:120px;background:#f1f1f1;outline:none;cursor:pointer}
+        .hasBtn button:hover{opacity:0.8}
+        .hasPic .pic{border-radius:0;border:none;background:#f1f1f1}
+        .btn{width:400px;height:35px;border:1px solid #0043c9;border-radius:5px;background:#3273e4;color:#fff;outline:none}
+        .btn:hover{opacity:0.9;cursor:pointer}.links{width:100%;text-align:center}
+        .links a{text-decoration:none;font-size:14px;color:#3273e4}
+        .links a:hover{text-decoration:underline}
+        .hasBtn button,.hasPic .pic img{width:100%;height:100%}
+    </style>
+<body>
+    <div class=findpwd>
+        <div class=tit>
+            <h1>找回密码</h1>
+            <div class=tabnav>
+                <div class=active>手机号找回</div>
+            </div>
+        </div>
+        <form method="" class=findPwd-phone style=display:block>
+            <div class=formItem>
+                <input id="telno" placeholder=输入手机号 class=phoneNum>
+                <p class=alert>*请输入正确的手机号</div>
+            <div class="formItem hasPic">
+                <input placeholder=输入图形验证码 class=imgcode1>
+                <div class="pic" id="divpic">
+                    <img id="verifyImage" style="cursor:hand" height="34" title="点击刷新验证码">
+                </div>
+                <p class=alert></p>
+            </div>
+            <div class="formItem hasBtn">
+                <input placeholder="收到的短信验证码" class=phonecode>
+                <button id=sendsms type=button class=smsbtn style=float:right;width:120px;height:35px>获取验证码</button>
+                <p class=alert></p>
+            </div>
+            <div class=formItem>
+                <input type=password placeholder=新的密码 class=pwd>
+                <p class=alert></p>
+            </div>
+            <div class=formItem>
+                <input type=password placeholder=再次输入密码 class=repwd>
+                <p class=alert></p>
+            </div>
+            <div class=formItem>
+                <button type=button class=btn>确定</button>
+                <p class=alert></p>
+            </div>
+        </form>
+        <div class=links><a href="index.html">返回主页</a></div>
+    </div>
+    <script src="scripts/jquery-2.1.1.js"></script>
+    <script src="scripts/dummcy.js"></script>
+    <script>findpwd.process();</script>
+</body>
+</html>

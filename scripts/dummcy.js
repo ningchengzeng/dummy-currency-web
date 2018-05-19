@@ -507,6 +507,138 @@ var util={
 
     }
 };
+
+//手机格式
+function checkPhone(p) {
+    var re = /^1(3|4|5|7|8)\d{9}$/;
+    if (!re.test(p)) {
+        return false;
+    }
+    else return true;
+}
+
+var findpwd = {
+    process: function(){
+        $("#telno").keyup(function(){
+            if(checkPhone($("#telno").val())){
+                $("#verifyImage").attr("src", BASE_URL + "user/verifyImage" + "?time=" + new Date().getTime()+ "&phone=" + $("#telno").val());
+            }
+        });
+
+        $("#verifyImage").click(function(){
+            if(checkPhone($("#telno").val())){
+                $(this).attr("src", BASE_URL + "user/verifyImage" + "?time=" + new Date().getTime()+ "&phone=" + $("#telno").val());
+            }else{
+                alert("手机号码不正确！");
+            }
+        });
+
+        $("#sendsms").click(function(){
+            if(!checkPhone($("#telno").val())){
+                return false;
+            }
+
+            $("#sendsms").attr("disabled", true);
+            $.ajax({
+                url: BASE_URL + "user/GetSms?telno=" + telno,
+                type: "GET",
+                async: true,
+                success: function (data) {
+                    var result = data.result;
+                    if (result == "1") {
+                        window.timeout = 360;
+                        window.interval = window.setInterval(function(){
+                            if(window.timeout == 0){
+                                $("#sendsms").attr("disabled", false);
+                                $("#sendsms").text("获取验证码");
+                                window.timeout = 360;
+                                window.clearTimeout(window.interval);
+                            }
+                            $("#sendsms").data("timeout", window.timeout);
+                            $("#sendsms").text(window.timeout + "秒");
+
+                            window.timeout --;
+                        },1000);
+
+                        alert("*手机短信验证码发送成功");
+                    }
+                    else if(result=="0") {
+                        alert("*手机短信验证码发送失败");
+                    }
+                    else if(result=="2") {
+                        alert("*短信验证码发送频繁, 休息下吧！");
+                    }
+                    else if (result == "3") {
+                        alert("*该手机号码已注册");
+                    }
+                    else {
+                        alert("*手机号码不能为空");
+                    }
+                }
+            });
+        });
+
+        $("button.btn").click(function(){
+            if(!checkPhone($("input#telno").val())){
+                alert("手机号码不正确");
+                return;
+            }
+            if($('input.imgcode1').val().trim() == ''){
+                alert('图片验证码不可以为空');
+                return;
+            }
+            if($('input.imgcode1').val().trim().length != 4){
+                alert('图片验证码长度不正确');
+                return;
+            }
+            if($('input.phonecode').val().trim() ==''){
+                alert("手机验证码不可以为空");
+            }
+            if($('input.phonecode').val().trim().length !=4){
+                alert('手机验证码长度不正确');
+                return;
+            }
+            //验证密码是否为空
+            if ($('input.pwd').val().trim() == '') {
+                alert("密码不能为空");
+                return;
+            }
+            if($('input.pwd').val().trim().length>4){
+                alert("密码长度必须大于4")
+                return;
+            }
+            //验证两次输入密码
+            if ($('input.repwd').val().trim() == '') {
+                alert('两次密码输入必须一致');
+                return;
+            }
+            if ($('input.repwd').val().trim() != $('input.pwd').val()) {
+                alert('两次密码输入必须一致');
+                return;
+            }
+
+            $.ajax({
+                url: BASE_URL + "user/finpwd",
+                type: "POST",
+                data:{
+                    phone: $("input#telno").val().trim(),
+                    captcha: $("input.phonecode").val().trim(),
+                    verifyImage: $("input.imgcode1").val().trim(),
+                    password: $("input.pwd").val().trim(),
+                    repassword: $("input.repwd").val().trim()
+                },
+                async: true,
+                success: function (data) {
+                    if(data.code == 1){
+                        window.location.replace("index.html")
+                    }
+                    alert(data.message);
+                }
+            });
+        });
+    }
+};
+
 /**
  * index.html
  * 主页处理

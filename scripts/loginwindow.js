@@ -61,6 +61,7 @@ function outerWindow(a) {
         "           <p class='alert'>*帐户名或者密码不正确</p>" +
         "       </div>" +
         "       <div class='links'>" +
+        "       <a href=\"findpwd.html\" target=\"_blank\" class=\"findPassword\">忘记密码</a>"+
         "           <span>没有帐号？<a rel='nofollow'class='signup'>立即注册</a></span>" +
         "       </div>" +
         "   </form>" +
@@ -69,6 +70,13 @@ function outerWindow(a) {
         "       <div class='formItem'>" +
         "           <input id='telno' type='text' class='account' placeholder='输入手机号码'>" +
         "           <p class='alert'></p>" +
+        "       </div>" +
+        "       <div class=\"formItem hasPic\">" +
+        "       <input placeholder=输入图形验证码 class=imgcode1>" +
+        "       <div class=\"pic\" id=\"divpic\">" +
+        "           <img id=\"verifyImage\" style=\"cursor:hand\" height=\"34\" title=\"点击刷新验证码\">" +
+        "       </div>" +
+        "       <p class=alert></p>" +
         "       </div>" +
         "       <div class='formItem'>" +
         "           <input type='text'class='sms' placeholder='输入短信验证码' style='width:167px;'>" +
