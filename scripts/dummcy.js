@@ -1299,7 +1299,7 @@ var exchange = {
         var i = '';
         var tags = val.tags;
         for (var s = 0; s < tags.length; s++) {
-            i += '<i class="' + tags[s] + '"></i>';
+            i += '<i class="' + tags[s] + '"></i>&nbsp;';
         }
         return i;
     },
@@ -1360,7 +1360,7 @@ var exchangedetails={
         $("div.boxContain div.info div.text").append(detail.desc);
 
         $(detail.tags).each(function(index,tag){
-            $("div.boxContain div.info div.tag").append("<i class=\"" +tag+ "\"></i>");
+            $("div.boxContain div.info div.tag").append("<i class=\"" +tag+ "\"></i>&nbsp;");
         });
 
         $("div.boxContain div.info div.web span:eq(0) a").attr("href", detail.wetsitHref);
@@ -1371,9 +1371,9 @@ var exchangedetails={
         $("div.tabBody:eq(1) section.artBox").append(detail.description);
         $("div.tabBody:eq(2) section.artBox").append(detail.costDescription);
 
-        $("div.vol div.num").html("¥" + util.toThousands(detail.price.cny) +"<span class=\"tag-rank\">排名<b>NO."+ detail.rank + "</b></span>");
-        $("div.vol div.num2 span:eq(0)").text("$" + util.toThousands(detail.price.usd));
-        $("div.vol div.num2 span:eq(1)").text("BTC" + util.toThousands(detail.price.btc));
+        $("div.vol div.num").html("¥" + util.toThousands(detail.price.cny) +"&nbsp;&nbsp;<span class=\"tag-rank\">排名<b>NO."+ detail.rank + "</b></span>");
+        $("div.vol div.num2 span:eq(0)").html("$&nbsp;" + util.toThousands(detail.price.usd));
+        $("div.vol div.num2 span:eq(1)").html("BTC&nbsp;" + util.toThousands(detail.price.btc));
     },
     coin: function(list){
         $("table.table.noBg tbody").empty();
