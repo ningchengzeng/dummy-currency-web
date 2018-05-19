@@ -531,7 +531,7 @@
         function loadcoinevent() {
             //var coincode = $("#coincode").val();
             var coinCode = GetRequest().currency;
-            var uri = "http://192.168.99.101/api/currency/getCoinevent";
+            var uri = "http://139.162.90.234/api/currency/getCoinevent";
             $.ajax({
                 url: uri,
                 type: "GET",
@@ -590,7 +590,7 @@
 
             //var data1 = $.parseJSON('[{"name":"BTC","y":38.17},{"name":"USD","y":32.31},{"name":"USDT","y":12.09},{"name":"EUR","y":6.24},{"name":"KRW","y":2.62},{"name":"ETH","y":2},{"name":"USDE","y":0.94},{"name":"GBP","y":0.85},{"name":"QC","y":0.84},{"name":"其他","y":3.94001}]');
             //var data1=[{"name":"USD","y":7.08},{"name":"JPY","y":6.5},{"name":"KRW","y":2.76},{"name":"MITH","y":2.12},{"name":"HT","y":1.97},{"name":"EUR","y":1.71},{"name":"EOS","y":1.58},{"name":"BNB","y":1.08},{"name":"ATMC","y":1.07},{"name":"其他","y":74.13}];
-            var urip = "http://192.168.99.101/api/currency/getCointradesPercent";
+            var urip = "http://139.162.90.234/api/currency/getCointradesPercent";
             $.ajax({
                 url: urip,
                 type: "GET",
