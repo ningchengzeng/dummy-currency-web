@@ -344,7 +344,7 @@ function preheadUpdate_New(a, data, char,ishome) {
         return;
     }
     if (ishome&&0 == a) {
-        document.title = data + ' BTC-比特币(Bitfinex) - 非小号 feixiaohao';
+        document.title = data + ' BTC-比特币(Bitfinex) - 币小金';
     }
 
     if (a >= 0 && a < 3) {

@@ -1806,7 +1806,8 @@ li.showmarket {
 }
 
 .showmarket .cell {
-	width: 140px;
+
+	width: 150px;
 	border-left: 1px solid #eaecef;
 	background: #fff;
 	padding: 15px 10px

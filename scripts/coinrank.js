@@ -86,7 +86,6 @@ GbiGraph.prototype.finishUpdateCharts = function (seriesData) {
 GbiGraph.prototype.fetchAndLoad = function (callback, start, end) {
     //var coincode = $("#coincode").val();
     var that = this;
-    //var apiDomain = "//api.feixiaohao.com";
     timeParams = ""
     if (start !== undefined && end !== undefined) {
         timeParams = start + "/" + end + "/";

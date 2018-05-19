@@ -337,11 +337,6 @@
                     <a href='manager.html' target='_blank'>免责声明</a>
                     <i class='space2'></i>
                 </div>
-                <div>
-                    <p>©Copyright xxxxxxxxxxx.com 2018 | 备案号：
-                        <a href='#' target='_blank'>xICP备xxxxxxxx号-x</a>
-                    </p>
-                </div>
             </div>
             <div class='media'>
             </div>
@@ -357,8 +352,6 @@
     <script type="text/javascript">
 
         $('.line').peity("line", { width: 50, height: 15, fill: '#f5f5f5', min: 99999, strokeWidth: 1 });
-        // loadglobalinfo_new();
-        // startSocketHub(true);
     </script>
     <script>
         var mun = 0;
@@ -387,15 +380,6 @@
         })
 
     </script>
-    <script type="text/javascript"> 
-        // loadindexdaohang();
-        // loadHomeNewCoin();
-        // loadHomeVolRank();
-        // loadHomeCoinMaxChange();
-        // loadconcept(0);
-        //autoComplete($('#search2'));
-    </script>
-
 
     <script>
         var userid = 0;
@@ -407,45 +391,7 @@
                 var deleteResult = [];
                 $('body').css('overflow', 'hidden');
                 var ii = layer.load(1)//开启加载中动画;
-                // $.ajax({//获取自选条目
-                //     url: "localhost:81//" + "user/selectuserticker",
-                //     dataType: 'json',
-                //     type: 'get',
-                //     xhrFields: {
-                //         withCredentials: true
-                //     },
-                //     success: function (data) {
-                //         if (data.length === 0) {
-                //             layer.msg('你还没有添加自选');
-                //             return;
-                //         }
-                //         var div2 = '<div class="sortwindow"><ul class="odercusotm" id="sortable"></ul><div class="loginTip"><div class="group"><a class="sure">确定</a><a class="cancel">取消</a></div></div></div>';
-                //         layer.open({
-                //             title: '编辑自选',
-                //             type: 1,
-                //             area: ['800px', '600px'],
-                //             shadeClose: false,
-                //             content: div2
-                //         });
-                //         var li = $('<li><div class="leftSide"><span class="tit"><img src="https://static.feixiaohao.com/Coin/8cc736e4abd44c3d689eb1599a27edb_small.png"><span>ETH/BTC</span></span><span class="sub">OKEX</span></div><a class="delete">×</a></li>');
-                //         //需要将返回的数据拼合成html填充到列表里面去
-                //         var imgsrc = '//static.feixiaohao.com';
 
-                //         for (var i = 0, l = data.length; i < l; i++) {
-
-                //             li.find('.tit img').attr('src', imgsrc + data[i].CoinLogo.toLowerCase().replace("/uploadfiles", ""));
-                //             li.find('.tit span').html(data[i].CoinSymbolPair);
-                //             li.find('.sub').html(data[i].SiteName);
-                //             li.attr('data_val', userid + '#' + data[i].CoinCode + '#' + data[i].CoinSymbolPair + '#' + data[i].SiteCode);//保存usrid，codecode,CoinSymbolPair,sitecode
-                //             $('.odercusotm').append(li.clone());
-                //         }
-                //         $("#sortable").focus();
-                //         sort = Sortable.create($("#sortable")[0], { ghostClass: 'drag', chosenClass: 'chosen' });
-                //         layer.close(ii);//关闭加载中动画
-                //     },
-                //     error: function () {
-                //     }
-                // });
                 $('body').on('click', '.sortwindow .cancel', function () {
                     $('.layui-layer-close').trigger('click');
                     sort.destroy();
@@ -467,24 +413,7 @@
 
                     var parms = new Object();
                     parms["pairs"] = encodeURIComponent(sortResult.toString().trim());
-
-
-                    // $.ajax({
-                    //     url: toolApiUrl + "user/updateuserticker",
-                    //     data: parms,
-                    //     type: "post",
-                    //     async: true,
-                    //     xhrFields: {
-                    //         withCredentials: true
-                    //     },
-                    //     success: function (data) {
-                    //         UpdateResponse(data);
-                    //         layer.close(ii);
-                    //     }
-                    // });
-
-
-                })
+                });
 
                 //处理编辑自选的反馈信息
                 function UpdateResponse(data) {
