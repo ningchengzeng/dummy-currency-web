@@ -1,4 +1,4 @@
-var BASE_URL = "http://139.162.90.234:81/";
+var BASE_URL = "http://192.168.99.101/";
 
 document.write("<script src=\"scripts/autocomplete.js\"></script>");
 
@@ -227,7 +227,7 @@ function getPageHtml(content, pageIndex, page, callbackFunction) {
                     }));
                 }
             } else if (pageIndex - 3 <= 1) {
-                for (var i = 1; i <= page; i++) {
+                for (var i = 1; i <=5; i++) {
                     if (i == pageIndex) {
                         content.append(node.clone().attr("index", pageIndex).text(pageIndex).click(function(){
                             callback(this);
@@ -633,11 +633,16 @@ var currencies = {
             transaction = data.transaction.title;
         }
 
+        var proportion = "0.00%";
+        if(data.coin.proportion){
+            proportion = Math.floor(data.coin.proportion * 100) / 100  + "%";
+        }
+        
         return "<tr>" +
             "    <td>"+data.index+"</td>" +
             "    <td>" +
-            "        <a href=\""+ data.exchangeHref + "\" target=\"_blank\">" +
-            "            <img height='15' width='18' src=\"" +data.exchangeIcon+ ".jpg\" alt=\"" + data.exchangeTitle + "\">" + data.exchangeTitle + "</a>" +
+            "        <a href=\"exchangedetails.html?currenty="+ data.exchange.code + "\" target=\"_blank\">" +
+            "            <img height='15' width='18' src=\"" +data.exchange.icon+ ".jpg\" alt=\"" + data.exchange.title + "\">" + data.exchange.title + "</a>" +
             "    </td>" +
             "    <td>" +transaction+ "</td>" +
             "    <td class=\"price\" " +
@@ -649,7 +654,7 @@ var currencies = {
             "             data-usd=\""+data.volume.usd+"\" data-cny=\""+data.volume.cny+"\" " +
             "         data-btc=\""+data.volume.btc+"\" " +
             "         data-native=\""+data.volume.native+"\">" +data.volume.init+ "</td>" +
-            "    <td>"+data.proportion+"</td>" +
+            "    <td>"+proportion+"</td>" +
             "    <td>" + data.time + "</td>" +
             "</tr>"
     },
@@ -698,8 +703,8 @@ var currencies = {
         $('#remark span').append(data.desc);
         $('#remark div.describe').append(data.describe);
 
-        $('#cnName').text(data.title.en);
-        $('#enName').text(data.title.cn);
+        $('#cnName').text(data.title.cn);
+        $('#enName').text(data.title.en);
         $('#sjjys').text(data.ticker.count+"家");// 交易所
         $('#fxtime').text(data.date); // 上架时间
 
@@ -1037,7 +1042,7 @@ var upDown = {
             + '<td>' + data.title.short + '</td>'
             + '<td class="volume" data-usd="' + data.volume.usd + '" data-cny="' + data.volume.cny + '" data-btc="' + data.volume.btc + '"><a href="currencies.html?currency=' + data.code + '#markets" target="_blank">' + data.volume.init + '</a></td>'
             + '<td class="price" data-usd="' + data.price.usd + '" data-cny="' + data.price.cny + '" data-btc="' + data.price.btc + '"><a href="currencies.html?currency=' + data.code + '#markets" target="_blank">' + data.price.init + '</a></td>'
-            + '<td><span class="text-green">' + data.proportion + '%</span></td>'
+            + '<td><span class="text-green">' + data.proportion + '</span></td>'
             + '</tr>';
     },
 
@@ -1128,27 +1133,27 @@ var exchange = {
 
     row: function(index, item){
         if(item.title){
-            return '<li>'
-                + '<div class="con"><a target="_blank" href="exchangedetails.html?currenty=' + item.code + '" class="pic"><img src="' + item.icon + '.jpg"></a>'
-                + '<div class="info">'
-                + '<div class="tit">'
-                + '<a target="_blank" href="exchangedetails.html?currenty=' + item.code + '"><b>' + item.title + '</b></a>'
-                + '<div class="star star' + item.star + ' style="float: right"></div>'
-                + '</div>'
-                + '<div class="des">'+item.desc+'</div>'
-                + '<i class="space"></i>国家:'
-                + '<a href="javascript:javascript:exchange.filter=\''+item.country.code+'\';exchange.ajaxData();">' + item.country.title + '</a>'
-                + '<a href=\ "{0}\"></a>'
-                + '<a href=\ "{0}\"></a>'
-                + '<i class="space"></i>交易币种:'
-                + '<a href="javascript:void(0)">'+ item.coinCount+'</a>'
-                + '<i class="space"></i>成交额(24h):'
-                + '<a href="exchangedetails.html?currenty=' + item.code + '">'+util.format_crypto_volume(item.price.cny)+'</a>支持：'
-                + '<span class="tag">' + exchange.setIValue(item) + '</span>'
-                + '</div>'
-                + '</div>'
-                + '</div>'
-                + '</li>';
+            return '<tr>' +
+            '<td>'+item.index+'</td>' +
+            '<td>' +
+            '    <a href="/exchangedetails.html?currenty='+item.code+'">' +
+            '        <img src="' + item.icon+'">'+ item.title +
+            '    </a>' +
+            '</td>' +
+            '<td>' +
+            '    <a href="/exchangedetails.html?currenty='+item.code+'">'+item.turnover+'</a>' +
+            '</td>' +
+            '<td>' +
+            '    <a target="_blank" href="/exchangedetails.html?currenty='+item.code+'">'+item.transactionPairCount+'</a>' +
+            '</td>' +
+            '<td>' + item.country.title +
+            '</td>' +
+            '<td>' + exchange.setIValue(item)+
+            '</td>' +
+            '<td>' +
+            '    <div class="star star'+item.star+'"></div>' +
+            '</td>' +
+            '</tr>'
         }else{
             return "";
         }
@@ -1158,7 +1163,7 @@ var exchange = {
         var i = '';
         var tags = val.tags;
         for (var s = 0; s < tags.length; s++) {
-            i += '<a href="exchangedetails.html?currenty=' + val.code + '&type=2"><i class="' + tags[s] + '"> </i></a>';
+            i += '<i class="' + tags[s] + '"></i>';
         }
         return i;
     },
@@ -1186,9 +1191,9 @@ var exchange = {
                 exchange.pageCount = Math.ceil(data.count/index.pageSize);
                 exchange.pageReader();
 
-                $('#itemsList').empty();
+                $('table.exchange-table').empty();
                 $(data.result).each(function(index, item){
-                    $('#itemsList').append(exchange.row(index, item));
+                    $('table.exchange-table').append(exchange.row(index, item));
                 });
             }
         });
@@ -1239,8 +1244,8 @@ var exchangedetails={
         $(list).each(function(index, item){
             $("table.table.noBg tbody").append("<tr>" +
                 "    <td>" +
-                "        <a href=\"currencies.html?currency="+item.coinCode+"\" target=\"_blank\">" +
-                "            <img src=\"" + item.coinIcon + "\" alt=\"" +item.title+ "\"/> " +item.title+
+                "        <a href=\"currencies.html?currency="+item.coin.code+"\" target=\"_blank\">" +
+                "            <img src=\"" + item.coin.icon + "\" alt=\"" + item.coin.title+ "\"/> " +item.coin.title+
                 "    </td>" +
                 "    <td>" +
                 "        <a href=\"" + item.transaction.href + "\" target=\"_blank\"> "+ item.transaction.title +"</a>" +
@@ -1249,12 +1254,12 @@ var exchangedetails={
                 "         data-usd=\""+item.price.usd+"\" data-cny=\""+item.price.cny+"\" " +
                 "         data-btc=\""+item.price.btc+"\" " +
                 "         data-native=\""+item.price.native+"\">" +item.price.init+ "</td>" +
-                "    <td>38万</td>" +
+                "    <td>" +item.ammount+ "</td>" +
                 "    <td class=\"volume\" " +
                 "             data-usd=\""+item.volume.usd+"\" data-cny=\""+item.volume.cny+"\" " +
                 "         data-btc=\""+item.volume.btc+"\" " +
                 "         data-native=\""+item.volume.native+"\">" +item.volume.init+ "</td>" +
-                "    <td>"+ item.proportion+"</td>" +
+                "    <td>"+ item.exchange.proportion+"%</td>" +
                 "    <td>" + item.time + "</td>" +
                 "    <td>" +
                 "        <div class=\"addto disactive\" onclick=\"addfocus();\">添加自选</div>" +
@@ -1273,11 +1278,27 @@ var exchangedetails={
             }
         });
     },
+    loadPiechartCoinvol: function(code){
+        $.ajax({
+            url: BASE_URL + "api/currency/exchange_coinvol",
+            type: "GET",
+            dataType: 'json',
+            data: "currency=" + code,
+            success: function (data) {
+                var pieArr = [];
+                $(data).each(function (index, item) {
+                    pieArr.push([item.name, item.y]);
+                });
+                $('#piechart_coinvol').highcharts().series[0].setData(pieArr);
+            }
+        });
+    },
     process: function(){
         totop();
         var currenty = GetRequest().currenty.split('/')[0];
         exchangedetails.dataAjax(currenty);
-
+        exchangedetails.loadPiechartCoinvol(currenty);
+        
         util.loadhander();
         util.showmarket();
     }
@@ -1451,72 +1472,6 @@ var coneptCoin = {
  * @type {{process: vol.process}}
  */
 var vol ={
-    row: function(item){
-        var resultString = "<div class=\"vol-rank\"><div class=\"tit\"><div class=\"rank\">NO." + item.currencie.index + "</div>\n" +
-            "    <a class=\"coin\" href=\"currencies.html?currency="+ item.currencie.code + "\">\n" +
-            "        <img src=\""+item.currencie.icon+"\" alt=\"+item.currencie.title+\">"+item.currencie.title+"</a>\n" +
-            "        <div class=\"data\">\n" +
-            "            <small>流通市值</small>\n" +
-            "            <span class=\"volume\" \n" +
-            "                data-usd=\""+item.currencie.marketCap.usd+"\" \n" +
-            "                data-cny=\""+item.currencie.marketCap.cny+"\" \n" +
-            "                data-btc=\""+item.currencie.marketCap.btc+"\">"+item.currencie.marketCap.init+"</span>\n" +
-            "        </div>\n" +
-            "        <div class=\"data\">\n" +
-            "            <small>价格</small>\n" +
-            "            <span class=\"price\" " +
-            "                   data-usd=\""+item.currencie.price.usd+"\" " +
-            "                   data-cny=\""+item.currencie.price.cny+"\" " +
-            "                   data-btc=\""+item.currencie.price.btc+"\">"+ item.currencie.price.init + "</span>\n" +
-            "        </div>\n" +
-            "        <a class=\"more\" title=\"查看更多\" href=\"currencies.html?currency="+ item.currencie.code + "\"></a>\n" +
-            "    </div>\n" +
-            "    <table class=\"table\">\n" +
-            "        <thead>\n" +
-            "            <tr>\n" +
-            "                <th>#</th><th>交易平台</th><th>交易对</th><th>成交额</th><th>价格</th><th>占比</th>\n" +
-            "            </tr>\n" +
-            "        </thead>\n" +
-            "        <tbody>\n" +
-            "        </tbody>\n" +
-            "    </table>\n" +
-            "</div>\n" +
-            "<div class=\"m30\"></div>";
-        var resultDocument = $("<div></div>").append($(resultString));
-
-        $(item.exchange).each(function(index, data){
-            var transaction ="";
-            if(data.transaction){
-                if(data.transaction.href != ""){
-                    transaction = "<a href=\""+data.transaction.href+"\" target=\"_blank\"> " + data.transaction.title + " </a>";
-                }else{
-                    transaction = data.transaction.title;
-                }
-            }
-
-            var itemString = "<tr>" +
-                "    <td>"+data.index+"</td>" +
-                "    <td>" +
-                "        <a href=\""+ data.exchangeHref + "\" target=\"_blank\">" +
-                "            <img height='15' width='18' src=\"" +data.exchangeIcon+ ".jpg\" alt=\"" + data.exchangeTitle + "\">" + data.exchangeTitle + "</a>" +
-                "    </td>" +
-                "    <td>" +transaction+ "</td>" +
-                "    <td class=\"volume\" " +
-                "             data-usd=\""+data.volume.usd+"\" data-cny=\""+data.volume.cny+"\" " +
-                "         data-btc=\""+data.volume.btc+"\" " +
-                "         data-native=\""+data.volume.native+"\">" +data.volume.init+ "</td>" +
-                "    <td class=\"price\" " +
-                "         data-usd=\""+data.price.usd+"\" data-cny=\""+ data.price.cny+"\" " +
-                "         data-btc=\""+data.price.btc+"\" " +
-                "         data-native=\""+data.price.native+"\">" +data.price.init+ "</td>" +
-
-                "    <td>"+data.proportion+"%</td>" +
-                "</tr>"
-            $("table tbody", resultDocument).append($(itemString));
-        });
-
-        return $(resultDocument).html();
-    },
     pageIndex : 0,
     dataAjax: function(){
         vol.pageIndex ++;
@@ -1529,10 +1484,8 @@ var vol ={
             },
             success: function (ret) {
                 if (ret.length > 0) {
-                    console.log(ret);
-                    $(ret).each(function(index, item){
-                        $(".boxContain").append(vol.row(item));
-                    });
+                    $(".boxContain").append($(ret));
+                    $(".boxContain a.more").remove();
                 } else {
                     vol.pageIndex = 1;
                 }

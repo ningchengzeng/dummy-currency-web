@@ -12,6 +12,7 @@
     <link href='themes/default/css/stylesheet_nav.css' rel='stylesheet'>
     <link href='themes/default/css/tablesort.css' rel='stylesheet'>
     <link rel='shortcut icon' href='img/favicon.ico' />
+    <link href="scripts/chartist/chartist.min.css" rel="stylesheet">
 </head>
 
 <body>
@@ -246,15 +247,23 @@
             </div>
 
             <div class="box box340">
+                    <div class="boxTit">
+                        <h2>币种成交额占比</h2>
+                    </div>
+                    <div class="boxContain loading" style="height:430px">
+                        <div class="m15"></div>
+                        <div class="char" id="piechart_coinvol"></div>
+                        <div class=m15></div>
+                    </div>
+                </div>
+
+            <div class="box box340">
                 <div class="boxTit">
                     <h2>平台最新公告</h2>
                 </div>
                 <div class="boxContain">
                     <ul class="artList">
-
                         <div class='nothing'></div>
-
-
                     </ul>
                 </div>
             </div>
@@ -289,9 +298,16 @@
     <script src="js/jquery-2.1.1.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/plugins/peity/jquery.peity.min.js"></script>
-    <script src='scripts/tablesort.js'></script>
     <script src='js/util.js'></script>
+
+    <script src="scripts/Highstock-5.0.12/highstock.js"></script>
+    <script src="scripts/hischarts_new.js?v=1.12"></script>
+    <script src="scripts/coinoutlink.js?v=1.35"></script>
+    <script src="scripts/coinrank.js?v=1.12"></script>
+    <script src="scripts/chartist/chartist.min.js"></script>
+
     <script src="scripts/dummcy.js"></script>
+
     <script type="text/javascript">
         $('.line').peity("line", { width: 50, height: 15, fill: '#f5f5f5', min: 99999, strokeWidth: 1 });
         exchangedetails.process();

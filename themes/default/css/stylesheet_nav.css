@@ -1020,28 +1020,6 @@ footer .media {
 	content: url("../images/fabi.png")
 }
 
-.star,.star5 {
-	width: 90px;
-	height: 18px;
-	background: url("../images/star.png")
-}
-
-.star1 {
-	background: url("../images/star.png") -72px top
-}
-
-.star2 {
-	background: url("../images/star.png") -54px top
-}
-
-.star3 {
-	background: url("../images/star.png") -36px top
-}
-
-.star4 {
-	background: url("../images/star.png") -18px top
-}
-
 .vol-rank .tit .rank {
 	display: inline-block;
 	height: 48px;
@@ -4087,4 +4065,84 @@ table .addto ,table .hasaddto {
 
 .highcharts-credits{
 	display: none;
+}
+
+/*********交易平台********/
+.exchange-table a img{
+	vertical-align: -2px;
+	margin-right: 3px;
+}
+.exchange-table .tag a i:before{
+	margin-top: 2px;
+	display: block;
+
+}
+.firstPart h1 small {
+	font-size: 14px;
+	color: #999;
+	margin-left: 5px;
+	vertical-align: -1px;
+	display: inline-block;
+	max-width: 140px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.star,
+.star10 {
+	width: 70px;
+	height: 14px;
+	background: url("../images/star.png");
+	background-size: 140px 14px;
+}
+
+.star2 {
+	background: url("../images/star.png") -56px top;
+	background-size: 140px 14px;
+}
+
+.star4 {
+	background: url("../images/star.png") -42px top;
+	background-size: 140px 14px;
+}
+
+.star6 {
+	background: url("../images/star.png") -28px top;
+	background-size: 140px 14px;
+}
+
+.star8 {
+	background: url("../images/star.png") -14px top;
+	background-size: 140px 14px;
+}
+
+.star1 {
+	background: url("../images/star_half.png") no-repeat;
+	background-size: 70px 70px;
+	background-position: 0 -46px;
+}
+
+.star3 {
+	background: url("../images/star_half.png") no-repeat;
+	background-size: 70px 70px;
+	background-position: 0 -32px;
+}
+
+.star5 {
+	background: url("../images/star_half.png") no-repeat;
+	background-size: 70px 70px;
+	background-position: 0 -28px;
+}
+
+.star7 {
+	background: url("../images/star_half.png") no-repeat;
+	background-size: 70px 70px;
+	background-position: 0 -14px;
+}
+
+.star9 {
+	background: url("../images/star_half.png") no-repeat;
+	background-size: 70px 70px;
+	background-position: 0 0;
 }
