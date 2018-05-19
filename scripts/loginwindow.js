@@ -155,7 +155,6 @@ function outerWindow(a) {
         }
     }
 
-
     //关闭
     $('body,html').on('click', '.outerWindow .close', function () {
         $('.outerWindow form').css("display", 'none');
@@ -177,11 +176,19 @@ function outerWindow(a) {
         checkPwd($('.setPassword').val().trim());
     });
 
+    //图片验证码
+    $('body').on('click', '.signupForm #verifyImage', function(e){
+        var telno = $('#telno').val();
+        if (telno.length == 0) {
+            $('.account').next('.alert').html("*手机号码不能为空").css('display', 'block');
+        }else{
+            $("#verifyImage").attr('src', toolApiUrl + "user/verifyImage?time=" + new Date().getTime()+ "&phone=" + $("#telno").val());
+        }
+    });
     //发送短信验证码（手机注册）
     $('body').on('click', '.signupForm .smsbtn', function (e) {
         var telno = $('#telno').val();
         if (telno.length==0) {
-
             $('.account').next('.alert').html("*手机号码不能为空").css('display', 'block');
         }
         else {
@@ -196,7 +203,6 @@ function outerWindow(a) {
                 }
             });
         }
-
     });
 
     //处理手机注册发送短信验证码的反馈信息
@@ -251,6 +257,7 @@ function outerWindow(a) {
             parms["password"] = $('.setPassword').val().trim();
             parms["confirmPwd"] = $('.rePassword').val().trim();
             parms["verifyCode"] = $('.sms').val().trim();
+            parms["verifyImage"] = $(".imgcode1").val().trim();
 
             $.ajax({
                 url: toolApiUrl + "user/register",

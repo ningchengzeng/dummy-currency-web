@@ -534,13 +534,14 @@ var findpwd = {
         });
 
         $("#sendsms").click(function(){
-            if(!checkPhone($("#telno").val())){
+            var telno = $("#telno").val();
+            if(!checkPhone(telno)){
                 return false;
             }
 
             $("#sendsms").attr("disabled", true);
             $.ajax({
-                url: BASE_URL + "user/GetSms?telno=" + telno,
+                url: BASE_URL + "user/GetSmsFindPwd?telno=" + telno,
                 type: "GET",
                 async: true,
                 success: function (data) {
@@ -563,21 +564,24 @@ var findpwd = {
                         alert("*手机短信验证码发送成功");
                     }
                     else if(result=="0") {
+                        $("#sendsms").attr("disabled", false);
                         alert("*手机短信验证码发送失败");
                     }
                     else if(result=="2") {
+                        $("#sendsms").attr("disabled", false);
                         alert("*短信验证码发送频繁, 休息下吧！");
                     }
                     else if (result == "3") {
-                        alert("*该手机号码已注册");
+                        $("#sendsms").attr("disabled", false);
+                        alert("*账户不存在！");
                     }
                     else {
+                        $("#sendsms").attr("disabled", false);
                         alert("*手机号码不能为空");
                     }
                 }
             });
         });
-
         $("button.btn").click(function(){
             if(!checkPhone($("input#telno").val())){
                 alert("手机号码不正确");
@@ -603,8 +607,8 @@ var findpwd = {
                 alert("密码不能为空");
                 return;
             }
-            if($('input.pwd').val().trim().length>4){
-                alert("密码长度必须大于4")
+            if($('input.pwd').val().trim().length<4){
+                alert("密码长度必须大于4");
                 return;
             }
             //验证两次输入密码
@@ -1268,15 +1272,15 @@ var exchange = {
             return '<tr>' +
             '<td>'+item.index+'</td>' +
             '<td>' +
-            '    <a href="/exchangedetails.html?currenty='+item.code+'">' +
+            '    <a href="exchangedetails.html?currenty='+item.code+'">' +
             '        <img src="' + item.icon+'">'+ item.title +
             '    </a>' +
             '</td>' +
             '<td>' +
-            '    <a href="/exchangedetails.html?currenty='+item.code+'">'+item.turnover+'</a>' +
+            '    <a href="exchangedetails.html?currenty='+item.code+'">'+item.turnover+'</a>' +
             '</td>' +
             '<td>' +
-            '    <a target="_blank" href="/exchangedetails.html?currenty='+item.code+'">'+item.transactionPairCount+'</a>' +
+            '    <a target="_blank" href="exchangedetails.html?currenty='+item.code+'">'+item.transactionPairCount+'</a>' +
             '</td>' +
             '<td>' + item.country.title +
             '</td>' +
@@ -1420,6 +1424,43 @@ var exchangedetails={
                 var pieArr = [];
                 $(data).each(function (index, item) {
                     pieArr.push([item.name, item.y]);
+                });
+                $('#piechart_coinvol').highcharts({
+                    legend: {
+                        itemStyle: {
+                            color: '#666',
+                            fontWeight: 'normal',
+                        },
+                        itemWidth: 120,
+                        symbolRadius: 0
+                    },
+                    chart: {
+                        plotBackgroundColor: null,
+                        plotBorderWidth: null,
+                        plotShadow: false
+                    },
+                    title: {
+                        text: ''
+                    },
+                    tooltip: {
+                        headerFormat: '{series.name}<br>',
+                        pointFormat: '{point.name}: <b>{point.percentage:.1f}%</b>'
+                    },
+                    plotOptions: {
+                        pie: {
+                            allowPointSelect: true,
+                            cursor: 'pointer',
+                            dataLabels: {
+                                enabled: false
+                            },
+                            showInLegend: true
+                        }
+                    },
+                    series: [{
+                        type: 'pie',
+                        name: '交易对成交量占比'
+                    }]
+
                 });
                 $('#piechart_coinvol').highcharts().series[0].setData(pieArr);
             }
