@@ -282,8 +282,12 @@ function getPageHtml(content, pageIndex, page, callbackFunction) {
         content.append(node.clone().attr("index", page).text(page).click(function(){
             callback(this);
         }));
+
+        content.append(next.clone().click(function(){
+            callback(this);
+        }));
     }
-    if (page > 1) {
+    else if (page > 1) {
         if (pageIndex != page) {
             content.append(next.clone().click(function(){
                 callback(this);
@@ -291,6 +295,9 @@ function getPageHtml(content, pageIndex, page, callbackFunction) {
         } else {
             content.append(next.clone());
         }
+    }
+    else {
+        content.append(next.clone());
     }
 
     $("a[index="+pageIndex+"]", content).addClass("active");
@@ -658,7 +665,7 @@ var index = {
             updown24HColor = "text-red";
         }
 
-        return "<tr style='height: 20px;' id=\""+ data["code"] +"\">" +
+        var result = "<tr style='height: 20px;' id=\""+ data["code"] +"\">" +
             "<td>" +data["index"] + "</td>" +
             "<td>" +
             "   <a href=\"currencies.html?currency="+ data["code"] +"\" target=\"_blank\">" +
@@ -684,6 +691,36 @@ var index = {
             "   <span class=\"line2\">" +data["char"]+ "</span>" +
             "</td>" +
             "</tr>";
+        if(GetRequest().type == "token"){
+            result = "<tr style='height: 20px;' id=\""+ data["code"] +"\">" +
+            "<td>" +data["index"] + "</td>" +
+            "<td>" +
+            "   <a href=\"currencies.html?currency="+ data["code"] +"\" target=\"_blank\">" +
+            "   <img src=\""+data["icon"]+"\" alt=\""+ data["title"] +"\">" +data["title"]+
+            "</a>" +
+            "</td>" +
+            "<td>" + data["plantform"] + "</td>" +
+            "<td class=\"market-cap\" data-usd=\""+data["marketCap"]["usd"]+"\" data-cny=\""+data["marketCap"]["cny"]+"\" data-btc=\""+data["marketCap"]["btc"]+"\">"+data["marketCap"]["init"]+"</td>" +
+            "<td>" +
+            "   <a href=\"currencies.html?currency="+ data["code"] +"\" target=\"_blank\" class=\"price\" data-usd=\""+data["price"]["usd"]+"\" data-cny=\"" +data["price"]["cny"]+ "\"" +
+            "   data-btc=\"" +data["price"]["btc"]+ "\">" + data["price"]["init"]+ "</a>" +
+            " </td>" +
+            " <td>" +data["amount"]+ "</td>" +
+            " <td>" +
+            " <a href=\"currencies.html?currency=" + data["code"] + "\" target=\"_blank\" class=\"volume\" " +
+            "data-usd=\"" + data["volume"]["usd"] + "\"" +
+            "data-cny=\"" + data["volume"]["usd"] + "\" " +
+            "data-btc=\"" + data["volume"]["usd"] + "\">" + data["volume"]["init"] + "</a>" +
+            "</td>" +
+            "<td class=\"change\">" +
+            "  <span class=\"" +updown24HColor+ "\">" +data["updown24H"]+ "%</span>" +
+            " </td>" +
+            " <td class=\"char\">" +
+            "   <span class=\"line2\">" +data["char"]+ "</span>" +
+            "</td>" +
+            "</tr>";
+        }
+        return result;
     },
     pageReader: function(){
         getPageHtml($("div.pageList"), index.pageCurrent, index.pageCount,function(currentIndex){
@@ -735,9 +772,39 @@ var index = {
         data();
         window.interval = window.setInterval(data, 1000 * 30);
     },
+    header: function(){
+        var head = "<tr>" +
+            "   <th>#</th>" +
+            "   <th data-sort-method='none'>名称</th>" +
+            "   <th>流通市值</th>" +
+            "   <th>价格</th>" +
+            "   <th>流通数量</th>" +
+            "   <th>成交额(24H)</th>" +
+            "   <th>涨跌(24H)</th>" +
+            "   <th>价格趋势(7D)</th>" +
+            "</tr>";
+
+        if(GetRequest().type == "token"){
+            head = "<tr>" +
+                "   <th>#</th>" +
+                "   <th data-sort-method='none'>名称</th>" +
+                "   <th>平台</th>" +
+                "   <th>流通市值</th>" +
+                "   <th>价格</th>" +
+                "   <th>流通数量</th>" +
+                "   <th>成交额(24H)</th>" +
+                "   <th>涨跌(24H)</th>" +
+                "   <th>价格趋势(7D)</th>" +
+                "</tr>";
+        }
+        $("table#table thead").append(head);
+    },
     process: function(){
         totop();
+        index.header();
+
         index.ajaxData();
+
         util.loadhander();
         util.showmarket();
         util.loadnotes(); //公告
