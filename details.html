@@ -510,7 +510,7 @@
         function loadcoinevent() {
             //var coincode = $("#coincode").val();
             var coinCode = GetRequest().currency;
-            var uri = "http://139.162.90.234:81/api/currency/getCoinevent";
+            var uri = "http://192.168.99.101/api/currency/getCoinevent";
             $.ajax({
                 url: uri,
                 type: "GET",
@@ -567,7 +567,7 @@
             var coinCode = GetRequest().currency;
             var pieArr = [];
 
-            var urip = "http://139.162.90.234:81/api/currency/getCointradesPercent";
+            var urip = "http://192.168.99.101/api/currency/getCointradesPercent";
             $.ajax({
                 url: urip,
                 type: "GET",

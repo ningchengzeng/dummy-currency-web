@@ -86,7 +86,7 @@ GbiGraph.prototype.finishUpdateCharts = function (seriesData) {
 GbiGraph.prototype.fetchAndLoad = function (callback, start, end) {
 
     var that = this;
-    var apiDomain = "http://139.162.90.234:81/api/currency";
+    var apiDomain = "http://192.168.99.101/api/currency";
     timeParams = ""
     if (start !== undefined && end !== undefined) {
         timeParams = start + "/" + end + "/";
